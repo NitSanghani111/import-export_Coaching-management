@@ -1,0 +1,41 @@
+# Uploads - keep directory but not files
+uploads/*
+!uploads/.gitkeep
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Database config (if needed for different environments)
+config/db.local.php
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+error_log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# PHP
+composer.phar
+vendor/
+
+# Backup files
+*.bak
+*.backup
+*.sql.gz
+*.sql.backup
