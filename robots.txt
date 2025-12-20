@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Disallow admin area
+Disallow: /admin/
+
+# Disallow config
+Disallow: /config/
+
+# Disallow includes
+Disallow: /includes/
+
+# Allow uploads for images
+Allow: /uploads/
+
+# Sitemap (create and upload your sitemap.xml)
+# Sitemap: https://yourdomain.com/sitemap.xml
