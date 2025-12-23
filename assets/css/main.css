@@ -1,0 +1,384 @@
+/* Moved from index.html */
+
+/* ==========
+  hero */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6px);
+  opacity: 0.35;
+  animation: float 22s linear infinite;
+}
+
+.ring.r1 {
+  width: 280px;
+  height: 280px;
+  left: 5%;
+  top: 10%;
+  box-shadow:
+    0 0 0 14px rgba(255,255,255,0.2),
+    0 0 60px 32px rgba(255,255,255,0.35);
+}
+
+.ring.r2 {
+  width: 200px;
+  height: 200px;
+  left: 45%;
+  top: 60%;
+  box-shadow:
+    0 0 0 12px rgba(255,255,255,0.18),
+    0 0 50px 28px rgba(255,255,255,0.3);
+  animation-delay: -6s;
+}
+
+.ring.r3 {
+  width: 160px;
+  height: 160px;
+  right: 10%;
+  top: 20%;
+  box-shadow:
+    0 0 0 10px rgba(255,255,255,0.16),
+    0 0 40px 22px rgba(255,255,255,0.25);
+  animation-delay: -12s;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px) translateX(0px); }
+  50%  { transform: translateY(-40px) translateX(20px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* ===== IMAGE BLEND FIX ===== */
+.hero-img {
+  mix-blend-mode: luminosity;
+  filter: contrast(1.15) brightness(0.95);
+  mask-image: radial-gradient(circle at center, black 70%, transparent 100%);
+}
+
+/* ===== PREMIUM BUTTON ===== */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+  background: white;
+  color: black;
+  transition: color 0.4s ease;
+}
+
+.cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #FFBE49;
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+  z-index: 0;
+}
+
+.cta-btn:hover::before {
+  transform: translateX(0);
+}
+
+.cta-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-arrow {
+  background: #FFBE49;
+  transition: background 0.4s ease;
+}
+
+.cta-btn:hover .cta-arrow {
+  background: black;
+  color: white;
+}
+
+/* ===============================
+   BASE CARD (BEFORE HOVER)
+   =============================== */
+.card-base {
+  background: #000;
+  border-radius: 32px;
+  box-shadow:
+    /* bottom only */
+    0 26px 45px rgba(255, 255, 255, 0.16),
+
+    /* left side */
+    -8px 0 22px rgba(255, 255, 255, 0.08),
+
+    /* right side */
+    8px 0 22px rgba(255, 255, 255, 0.08),
+
+    /* inner soft edge */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  transition: transform .5s ease, box-shadow .5s ease;
+}
+
+.card-base:hover {
+  transform: translateY(-14px);
+  box-shadow:
+    0 45px 95px rgba(0, 0, 0, 0.95),
+    0 20px 35px rgba(255, 186, 73, 0.38),
+    inset 0 -8px 18px rgba(255, 186, 73, 0.55);
+}
+
+.card-shadow {
+  background: #000;
+  border-radius: 28px;
+  box-shadow:
+    /* bottom thick */
+    0 26px 45px rgba(255, 255, 255, 0.16),
+
+    /* left thin */
+    -8px 0 22px rgba(255, 255, 255, 0.08),
+
+    /* right thin */
+    8px 0 22px rgba(255, 255, 255, 0.08),
+
+    /* inner edge */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* ==============================
+   HOVER STATE (2nd IMAGE LOOK)
+   ============================== */
+.card-shadow:hover {
+  transform: translateY(-14px);
+  box-shadow:
+    /* deeper bottom */
+    0 40px 65px rgba(255, 186, 73, 0.35),
+
+    /* side glow */
+    -10px 0 24px rgba(255, 186, 73, 0.18),
+    10px 0 24px rgba(255, 186, 73, 0.18),
+
+    /* inner bottom glow */
+    inset 0 -10px 20px rgba(255, 186, 73, 0.45);
+}
+
+/* =========================
+   GLASS RING CIRCLES
+========================= */
+.glass-rings {
+  position: absolute;
+  border-radius: 50%;
+  background: transparent;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* LEFT — medium ring */
+.ring-left-1 {
+  width: 200px;
+  height: 200px;
+  left: 80px;
+  top: 300px;
+
+  box-shadow:
+    0 0 0 14px rgba(255, 255, 255, 0.25),  /* ring thickness */
+    0 0 40px 20px rgba(255, 255, 255, 0.35); /* blur spread */
+
+  filter: blur(6px);
+}
+
+/* LEFT — small ring (chained) */
+.ring-left-2 {
+  width: 160px;
+  height: 160px;
+  left: -20px;
+  top: 420px;
+  opacity: 0.75;
+
+  box-shadow:
+    0 0 0 10px rgba(255, 255, 255, 0.22),
+    0 0 36px 18px rgba(255, 255, 255, 0.32);
+
+  filter: blur(6px);
+}
+
+/* CENTER — subtle ring */
+.ring-center {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  left: 50%;
+  top: 250px;
+  transform: translateX(-50%);
+  opacity: 0.6;
+
+  /* Foggy glass ring */
+  box-shadow:
+    0 0 0 10px rgba(255, 255, 255, 0.18),   /* ring thickness */
+    0 0 48px 26px rgba(255, 255, 255, 0.30); /* soft blur halo */
+
+  filter: blur(7px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================
+   ARROW BUTTON
+========================= */
+.arrow-btns {
+  width: 68px;
+  height: 68px;
+  border-radius: 9999px;
+  border: 2px solid white;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.arrow-btns:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.result-circle {
+  background: white;
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.05),
+    0 0 40px rgba(255,255,255,0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.result-item:hover .result-circle {
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 8px rgba(255,255,255,0.08),
+    0 0 60px rgba(255,255,255,0.5);
+}
+
+.glass-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(6px);
+}
+
+.ring-lg {
+  width: 260px;
+  height: 260px;
+  box-shadow:
+    0 0 0 12px rgba(255,255,255,0.18),
+    0 0 50px 28px rgba(255,255,255,0.35);
+}
+
+.ring-md {
+  width: 180px;
+  height: 180px;
+  box-shadow:
+    0 0 0 10px rgba(255,255,255,0.16),
+    0 0 42px 22px rgba(255,255,255,0.3);
+}
+
+/* ========== REVIEW CARD ========== */
+.review-card {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+/* ========== ARROWS ========== */
+.arrow-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: background 0.3s ease;
+}
+.arrow-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* =============================
+   Mobile responsive tweaks
+   (keeps UI style, improves fit)
+============================= */
+@media (max-width: 640px) {
+  /* Prevent hero from colliding with navbar on small screens */
+  .hero-section { padding-top: 6rem !important; }
+  .hero-section .hero-grid { gap: 2rem !important; }
+
+  .ring { filter: blur(4px); }
+  .ring.r1 { width: 180px; height: 180px; left: 2%; top: 8%; }
+  .ring.r2 { width: 140px; height: 140px; left: 52%; top: 66%; }
+  .ring.r3 { width: 120px; height: 120px; right: 4%; top: 16%; }
+
+  .ring-left-1, .ring-left-2 { transform: scale(0.85); }
+  .ring-center { width: 220px; height: 220px; top: 220px; }
+
+  .arrow-btns { width: 56px; height: 56px; font-size: 22px; }
+  .arrow-btn { width: 40px; height: 40px; font-size: 18px; }
+
+  .cta-btn { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+/* =============================
+   Tablet (md) responsive fixes
+   Keep UI style, improve fit
+============================= */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Hero layout: make two columns on tablets */
+  .hero-section { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+  .hero-section .hero-grid { grid-template-columns: 1fr 1fr !important; gap: 2.5rem !important; }
+  .hero-section .hero-img { max-width: 420px !important; }
+
+  /* Subtle ring size tweaks to avoid overlap */
+  .ring { filter: blur(5px); }
+  .ring.r1 { width: 220px; height: 220px; left: 6%; top: 12%; }
+  .ring.r2 { width: 160px; height: 160px; left: 52%; top: 62%; }
+  .ring.r3 { width: 140px; height: 140px; right: 6%; top: 22%; }
+
+  /* Growth pillars: 2 columns on tablets, 3 on large */
+  .pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+/* Footer separation shadow */
+footer {
+  box-shadow:
+    -14px -14px 28px rgba(255, 255, 255, 0.08), /* left/top glow */
+    0 -10px 24px rgba(255, 255, 255, 0.12);      /* top lift */
+}
+
+/* Base body setup for overlays */
+body {
+  position: relative;
+}
+
+/* Subtle side glow for page edges */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.10), rgba(255,255,255,0));
+  z-index: 1;
+}
+
+body::before {
+  left: 0;
+  transform: translateX(-40px);
+}
+
+body::after {
+  right: 0;
+  transform: translateX(40px);
+}
