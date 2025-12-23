@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>About Us | Parth Jethva</title>
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;500;700&family=Source+Serif+4:wght@400&display=swap"
+		rel="stylesheet"
+	/>
+
+	<!-- Tailwind CSS with cache busting -->
+	<script src="https://cdn.tailwindcss.com?v=3"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						brand: '#191919',
+						accent: '#F59E0B',
+					},
+					fontFamily: {
+						serif: ['Playfair Display', 'Georgia', 'serif'],
+						sans: ['Inter', 'system-ui', 'sans-serif'],
+					},
+				},
+			},
+		};
+	</script>
+	<style>
+		.mobile-menu {
+			transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+		}
+		.reveal {
+			opacity: 0;
+			transform: translateY(24px);
+			transition: opacity 0.6s ease, transform 0.6s ease;
+		}
+		.revealed {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		body {
+			margin: 0;
+			background: #000;
+			color: #fff;
+			font-family: 'Inter', system-ui, sans-serif;
+		}
+	</style>    
+</head>
+<body class="antialiased">
+	<div id="navbar-container"></div>
+
+	<main class="pt-0">
+		<!-- Hero -->
+		<section
+			class="relative min-h-[calc(100vh-72px)] lg:min-h-[calc(100vh-88px)] flex items-center overflow-hidden"
+			style="background-image:  url('../img/imgs/about_hero.jpeg'); background-size: cover; background-position: center;"
+			aria-label="Hero"
+		>	
+			<div class="absolute inset-0 bg-black/60"></div>
+			<div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 w-full">
+				<div class="flex flex-col lg:flex-row items-center lg:items-center justify-between gap-8 lg:gap-12">
+					<div class="max-w-3xl reveal text-center lg:text-left">
+						<h1 class="text-[40px] md:text-[46px] lg:text-[52px] font-bold text-white leading-tight mb-5" style="font-family: 'Libre Baskerville', serif;">
+							Meet Parth Jethva
+						</h1>
+						<p class="text-[24px] md:text-[24px] lg:text-[26px] text-white/85 leading-relaxed" style="font-family: 'Libre Baskerville', serif; font-weight: 500;">
+							Helping entrepreneurs scale with clarity, systems, and predictable growth.
+						</p>
+					</div>
+					<div class="reveal flex-shrink-0 lg:ml-auto lg:translate-x-10">
+						<div class="w-[240px] h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full overflow-hidden border-4 border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.35)] bg-black/30 backdrop-blur-sm flex items-center justify-center">
+							<img src="../img/imgs/client.jpeg" alt="Client portrait" class="w-full h-full object-cover">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="absolute inset-x-0 bottom-0 text-white/90">
+				<svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" class="w-full h-[120px]">
+					<path d="M0,80 C320,140 640,40 960,90 C1200,130 1320,90 1440,60 L1440,120 L0,120 Z" fill="rgba(0,0,0,0.6)"/>
+				</svg>
+			</div>
+		</section>
+
+		<!-- Who Am I -->
+		<section class="bg-black pt-20 md:pt-28 lg:pt-32 pb-16 md:pb-24 lg:pb-32 px-6 md:px-12 lg:px-20" id="about">
+			<div class="max-w-7xl mx-auto">
+				<h2 class="text-[32px] md:text-[36px] lg:text-[40px] font-bold text-white text-left mb-10 md:mb-12 lg:mb-16 reveal" style="font-family: 'Libre Baskerville', serif;">
+					Who am I?
+				</h2>
+				<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start reveal">
+					<div class="lg:col-span-7 space-y-5 md:space-y-6">
+						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Source Serif 4', serif;">
+							<span class="text-amber-400 font-semibold">Parth Jethva</span> is a Business Growth and Sales Mastery Coach who helps founders escape guesswork and build predictable revenue engines. With years of hands-on experience across sales, systems, and execution, Parth combines clarity-driven strategy with practical playbooks that work in the real world.
+						</p>
+						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Source Serif 4', serif;">
+							He has partnered with entrepreneurs across multiple industries, designing streamlined operating systems that reduce overwhelm and create sustainable growth. His approach prioritizes measurable outcomes, operational simplicity, and decision-making frameworks that keep teams aligned.
+						</p>
+						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Source Serif 4', serif;">
+							Parth’s coaching emphasizes strong foundations: clear offers, tight processes, and data-led sales motions. He equips leaders to scale without losing control, pairing strategic insight with day-to-day accountability.
+						</p>
+						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Source Serif 4', serif;">
+							If you’re ready to move beyond trial-and-error and lead with clarity, Parth delivers the guidance, systems, and momentum to help you grow confidently.
+						</p>
+					</div>
+					<div class="lg:col-span-5 order-2 lg:order-none">
+						<div class="w-full h-full min-h-[400px] lg:min-h-[500px] rounded-2xl border border-white/10 overflow-hidden shadow-2xl lg:sticky lg:top-24">
+							<img
+								src="../img/imgs/whoami.jpeg"
+								alt="Portrait of Parth Jethva in a business setting"
+								class="w-full h-full object-cover"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Vision & Mission -->
+		<section class="bg-black py-16 md:py-24 px-6 md:px-12 lg:px-20" id="vision">
+			<div class="max-w-7xl mx-auto">
+				<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-left mb-12 md:mb-16 reveal">
+					Our Vision And Mission
+				</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-14 justify-items-stretch md:justify-items-center">
+					<article class="reveal border border-amber-300/90 rounded-[28px] p-8 md:p-12 lg:p-16 min-h-[320px] md:min-h-[360px] lg:min-h-[380px] bg-gradient-to-b from-white/5 via-black/70 to-black/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center shadow-[0_14px_70px_-14px_rgba(245,158,11,0.32)] transition duration-300 transform hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_18px_90px_-12px_rgba(245,158,11,0.45)] hover:border-amber-200">
+						<img src="../img/design/icon-2.svg" class="pb-10"  alt="" style="width: 70px;">
+						<p class="font-serif text-[20px] md:text-[22px] lg:text-[24px] text-white leading-relaxed max-w-xl">
+							To empower entrepreneurs with clarity, giving them the tools needed to build stable, scalable, and profitable businesses.
+						</p>
+					</article>
+					<article class="reveal border border-white/45 rounded-[28px] p-8 md:p-12 lg:p-16 min-h-[320px] md:min-h-[360px] lg:min-h-[380px] bg-gradient-to-b from-white/4 via-black/70 to-black/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center shadow-[0_12px_48px_-16px_rgba(0,0,0,0.6)] transition duration-300 transform hover:-translate-y-2 hover:scale-[1.01] hover:border-amber-100/70 hover:shadow-[0_16px_70px_-14px_rgba(245,158,11,0.32)]">
+						<img src="../img/design/icon-1.svg" alt="" class="pb-10" style="width: 70px;">
+						<p class="font-serif text-[20px] md:text-[22px] lg:text-[24px] text-white leading-relaxed max-w-xl">
+							To empower entrepreneurs with clarity, systems, and the tools needed to build stable, scalable, and profitable businesses.
+						</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- My Approach -->
+		<section class="bg-black py-16 md:py-24 px-6 md:px-12 lg:px-20" id="approach">
+			<div class="max-w-7xl mx-auto">
+				<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-12 md:mb-16 reveal">My Approach</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-stretch md:items-end reveal">
+					<article class="relative border border-white/30 rounded-[28px] p-10 lg:p-12 flex flex-col items-center text-center min-h-[320px] bg-black/60 transition hover:border-amber-300/70 hover:shadow-2xl hover:shadow-amber-500/20">
+						<img src="../img/design/Handshake.svg" alt="" class="pb-10">
+						<p class="font-serif text-lg lg:text-xl text-white leading-relaxed">Clarity-driven<br />business strategy</p>
+					</article>
+					<article class="relative border border-white/30 rounded-[28px] p-10 md:p-12 lg:p-14 flex flex-col items-center text-center min-h-[320px] md:min-h-[380px] bg-black/70 shadow-[0_12px_60px_-10px_rgba(245,158,11,0.35)] transition hover:shadow-[0_16px_80px_-12px_rgba(245,158,11,0.45)]">
+						<img src="../img/design/icon-1.svg" alt="" class="pb-10">
+						<p class="font-serif text-lg md:text-xl lg:text-2xl text-white leading-relaxed">Clarity-driven<br />business strategy</p>
+					</article>
+					<article class="relative border border-white/30 rounded-[28px] p-10 lg:p-12 flex flex-col items-center text-center min-h-[320px] bg-black/60 transition hover:border-amber-300/70 hover:shadow-2xl hover:shadow-amber-500/20">
+						<img src="../img/design/Successful Businessman.svg"  class="pb-10" alt="">
+						<p class="font-serif text-lg lg:text-xl text-white leading-relaxed">Clarity-driven<br />business strategy</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- Why Work With Me -->
+		<section class="relative bg-black py-16 md:py-24 lg:py-28 px-6 md:px-12 lg:px-20 overflow-hidden" id="why">
+			<div class="absolute inset-0 pointer-events-none overflow-hidden">
+				<div class="absolute top-1/2 left-0 -translate-y-1/2 w-[540px] h-[540px] bg-white/[0.07] rounded-full blur-[150px]"></div>
+				<div class="absolute top-1/2 left-6 -translate-y-1/2 w-[360px] h-[360px] bg-white/[0.10] rounded-full blur-[120px]"></div>
+			</div>
+			<div class="max-w-7xl mx-auto relative z-10">
+				<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-12 md:mb-16 reveal">Why Work With Me</h2>
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center relative z-10">
+					<div class="space-y-5 md:space-y-6 lg:space-y-7 reveal">
+						<div class="flex items-start gap-3 md:gap-4">
+							<span class="mt-2 inline-block w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+							<p class="text-sm md:text-base lg:text-lg text-white/85 leading-relaxed">Practical, real-world business experience</p>
+						</div>
+						<div class="flex items-start gap-3 md:gap-4">
+							<span class="mt-2 inline-block w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+							<p class="text-sm md:text-base lg:text-lg text-white/85 leading-relaxed">Proven frameworks designed for predictable growth</p>
+						</div>
+						<div class="flex items-start gap-3 md:gap-4">
+							<span class="mt-2 inline-block w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+							<p class="text-sm md:text-base lg:text-lg text-white/85 leading-relaxed">Focus on systems, not motivation</p>
+						</div>
+						<div class="flex items-start gap-3 md:gap-4">
+							<span class="mt-2 inline-block w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+							<p class="text-sm md:text-base lg:text-lg text-white/85 leading-relaxed">Clear execution plans, not generic advice</p>
+						</div>
+						<div class="flex items-start gap-3 md:gap-4">
+							<span class="mt-2 inline-block w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+							<p class="text-sm md:text-base lg:text-lg text-white/85 leading-relaxed">Support that reduces founder overwhelm</p>
+						</div>
+						<div class="flex items-start gap-3 md:gap-4">
+							<span class="mt-2 inline-block w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+							<p class="text-sm md:text-base lg:text-lg text-white/85 leading-relaxed">Execution partners invested in your success</p>
+						</div>
+					</div>
+					<div class="reveal order-first lg:order-none w-full h-full min-h-[400px] lg:min-h-[500px] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+						<img
+							src="../img//imgs/workwithme.jpeg"
+							alt="Modern business office"
+							class="w-full h-full object-cover"
+							loading="lazy"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="bg-black py-16 md:py-24 pb-24 md:pb-32 px-6 md:px-12 lg:px-20" id="contact">
+			<div class="max-w-6xl mx-auto">
+				<div class="reveal border border-white/30 rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8">
+					<h3 class="font-source-serif-4 text-2xl md:text-3xl lg:text-2xl  text-white leading-tight text-center md:text-left max-w-xl">
+						Ready to scale with clarity and confidence?
+					</h3>
+					<a
+						href="../pages/Contact.html"
+						class="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-semibold text-base md:text-lg px-8 py-3 md:px-10 md:py-4 rounded-full shadow-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white"
+					>
+						Contact Us
+						<span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<div id="footer-container"></div>
+
+	<script>
+		const injectComponent = async (src, selector, pick) => {
+			const target = document.querySelector(selector);
+			if (!target) return null;
+			try {
+				const res = await fetch(src);
+				if (!res.ok) throw new Error(`Failed to load ${src}: ${res.status}`);
+				const html = await res.text();
+				const doc = new DOMParser().parseFromString(html, 'text/html');
+				const node = pick ? doc.querySelector(pick) : doc.body;
+				target.innerHTML = '';
+				if (node) target.appendChild(node.cloneNode(true));
+				return target;
+			} catch (err) {
+				console.error(err);
+				target.innerHTML = '<div class="text-red-500">Unable to load component.</div>';
+				return null;
+			}
+		};
+
+		const initNavbar = (root) => {
+			if (!root) return;
+			const header = root.querySelector('#site-header');
+			const menuToggle = root.querySelector('#menu-toggle');
+			const menuClose = root.querySelector('#menu-close');
+			const mobileMenu = root.querySelector('#mobile-menu');
+			const navLinks = root.querySelectorAll('.nav-link');
+			const logo = root.querySelector('a[href="#home"]');
+
+			const openMenu = () => {
+				if (!mobileMenu) return;
+				mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0');
+				mobileMenu.classList.add('opacity-100', 'translate-x-0');
+				document.body.classList.add('overflow-hidden');
+				mobileMenu.setAttribute('aria-hidden', 'false');
+			};
+
+			const closeMenu = () => {
+				if (!mobileMenu) return;
+				mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0');
+				mobileMenu.classList.remove('opacity-100', 'translate-x-0');
+				document.body.classList.remove('overflow-hidden');
+				mobileMenu.setAttribute('aria-hidden', 'true');
+			};
+
+			menuToggle?.addEventListener('click', openMenu);
+			menuClose?.addEventListener('click', closeMenu);
+			mobileMenu?.addEventListener('click', (event) => {
+				if (event.target === mobileMenu) closeMenu();
+			});
+
+			navLinks.forEach((link) => {
+				link.addEventListener('click', (event) => {
+					const targetId = link.getAttribute('href');
+					if (targetId && targetId.startsWith('#')) {
+						event.preventDefault();
+						const target = document.querySelector(targetId);
+						if (target) target.scrollIntoView({ behavior: 'smooth' });
+						closeMenu();
+					}
+				});
+			});
+
+			const setActiveLink = () => {
+				const scrollPos = window.scrollY + 120;
+				navLinks.forEach((link) => {
+					const targetId = link.getAttribute('href');
+					const section = targetId ? document.querySelector(targetId) : null;
+					if (!section) return;
+					const { offsetTop, offsetHeight } = section;
+					const isActive = scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight;
+					link.classList.toggle('text-white', isActive);
+					link.classList.toggle('text-white/80', !isActive);
+					link.classList.toggle('font-semibold', isActive);
+				});
+			};
+
+			const handleScrollEffects = () => {
+				const scrolled = window.scrollY > 50;
+				header?.classList.toggle('shadow-lg', scrolled);
+				header?.classList.toggle('bg-opacity-95', scrolled);
+				setActiveLink();
+			};
+
+			logo?.addEventListener('click', (event) => {
+				event.preventDefault();
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			});
+
+			document.addEventListener('scroll', handleScrollEffects);
+			window.addEventListener('load', setActiveLink);
+		};
+
+		const initReveal = () => {
+			const items = document.querySelectorAll('.reveal');
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('revealed');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.15 }
+			);
+			items.forEach((item) => observer.observe(item));
+		};
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			const navbarRoot = await injectComponent('../components/Navbar.html', '#navbar-container', 'header');
+			initNavbar(navbarRoot);
+			await injectComponent('../components/fotter.html', '#footer-container', 'footer');
+			initReveal();
+		});
+	</script>
+</body>
+</html>
