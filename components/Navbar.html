@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Parth Jethva | Navigation</title>
+	<!-- Use Tailwind Play CDN so arbitrary values (e.g., to-[#191919]) work without a build step -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	   <script src="https://cdn.tailwindcss.com?v=3"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						brand: '#191919',
+					},
+				},
+			},
+		};
+	</script>
+	<style>
+		/* Additional overrides for the mobile menu transition */
+		.mobile-menu {
+			transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+		}
+	</style>
+</head>
+<body class="antialiased bg-black text-white">
+	<header
+		id="site-header"
+		class="fixed top-0 inset-x-0 z-50 bg-gradient-to-r from-white/5 to-[#191919] backdrop-blur-md shadow-sm transition-shadow duration-300"
+	>
+		<div class="max-w-7xl mx-auto h-20 px-6 md:px-12 lg:px-20 flex items-center justify-between">
+			<a href="#home" class="flex items-center gap-3 group" aria-label="Parth Jethva home">
+				<img
+					src="../img/design/Logo.svg"
+					alt="Parth Jethva Logo"
+					class="h-12 w-14 object-contain drop-shadow-sm group-hover:scale-[1.02] transition"
+				/>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-8 lg:gap-10 text-sm md:text-base font-medium tracking-wide">
+				<a class="nav-link text-white/80 hover:text-white transition" href="../index.html">Home</a>
+				<a class="nav-link text-white/80 hover:text-white transition" href="../pages/About-us.html">About</a>
+				<a class="nav-link text-white/80 hover:text-white transition" href="../pages/Program.html">Programs</a>
+				<a class="nav-link text-white/80 hover:text-white transition" href="../pages/Contact.html">Contact</a>
+				<a class="nav-link text-white/80 hover:text-white transition" href="">Workshop</a>
+				<a class="nav-link text-white/80 hover:text-white transition" href="#blog">Blog</a>
+			</nav>
+
+			<div class="flex items-center gap-4">
+				<!-- <a
+					href="#register"
+					class="hidden md:inline-block bg-white text-black text-sm md:text-base font-semibold px-6 py-2 md:px-8 md:py-2.5 rounded-lg shadow-md transition transform hover:shadow-xl hover:scale-105"
+				>
+					Login
+				</a> -->
+
+				<button
+					id="menu-toggle"
+					class="md:hidden relative w-10 h-10 flex items-center justify-center"
+					aria-label="Open navigation menu"
+				>
+					<span class="sr-only">Toggle menu</span>
+					<div class="space-y-1.5">
+						<span class="block w-6 h-0.5 bg-white rounded"></span>
+						<span class="block w-6 h-0.5 bg-white rounded"></span>
+						<span class="block w-6 h-0.5 bg-white rounded"></span>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<div
+			id="mobile-menu"
+			class="mobile-menu fixed inset-0 z-40 bg-gradient-to-r from-white/5 to-[#191919] backdrop-blur-lg flex flex-col items-center justify-center opacity-0 pointer-events-none translate-x-full min-h-[100svh] overflow-y-auto p-10"
+			aria-hidden="true"
+		>
+			<button
+				id="menu-close"
+				class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center"
+				aria-label="Close navigation menu"
+			>
+				<span class="sr-only">Close menu</span>
+				<span class="absolute block w-8 h-0.5 bg-white rotate-45"></span>
+				<span class="absolute block w-8 h-0.5 bg-white -rotate-45"></span>
+			</button>
+
+			<nav class="flex flex-col items-center text-2xl font-semibold space-y-8">
+				<a class="nav-link text-white/90 hover:text-white transition" href="../index.html">Home</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="../pages/About-us.html">About</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="../pages/Program.html">Programs</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="../pages/Contact.html">Contact</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="#workshop">Workshop</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="#blog">Blog</a>
+			</nav>
+
+			<!-- <a
+				href="#register"
+				class="mt-8 inline-block bg-white text-black text-base font-semibold px-10 py-3 rounded-lg shadow-md transition transform hover:shadow-xl hover:scale-105"
+			>
+				Login
+			</a> -->
+		</div>
+	</header>
+
+	<script>
+		const header = document.getElementById('site-header');
+		const menuToggle = document.getElementById('menu-toggle');
+		const menuClose = document.getElementById('menu-close');
+		const mobileMenu = document.getElementById('mobile-menu');
+		const navLinks = document.querySelectorAll('.nav-link');
+
+		const openMenu = () => {
+			mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0');
+			mobileMenu.classList.add('opacity-100', 'translate-x-0');
+			document.body.classList.add('overflow-hidden');
+			mobileMenu.setAttribute('aria-hidden', 'false');
+		};
+
+		const closeMenu = () => {
+			mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0');
+			mobileMenu.classList.remove('opacity-100', 'translate-x-0');
+			document.body.classList.remove('overflow-hidden');
+			mobileMenu.setAttribute('aria-hidden', 'true');
+		};
+
+		menuToggle?.addEventListener('click', openMenu);
+		menuClose?.addEventListener('click', closeMenu);
+
+		mobileMenu?.addEventListener('click', (event) => {
+			if (event.target === mobileMenu) {
+				closeMenu();
+			}
+		});
+
+		navLinks.forEach((link) => {
+			link.addEventListener('click', (event) => {
+				const targetId = link.getAttribute('href');
+				if (targetId && targetId.startsWith('#')) {
+					event.preventDefault();
+					const target = document.querySelector(targetId);
+					if (target) {
+						target.scrollIntoView({ behavior: 'smooth' });
+					}
+					closeMenu();
+				}
+			});
+		});
+
+		const setActiveLink = () => {
+			const scrollPos = window.scrollY + 120;
+			navLinks.forEach((link) => {
+				const targetId = link.getAttribute('href');
+				const section = targetId ? document.querySelector(targetId) : null;
+				if (!section) return;
+				const { offsetTop, offsetHeight } = section;
+				const isActive = scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight;
+				link.classList.toggle('text-white', isActive);
+				link.classList.toggle('text-white/80', !isActive);
+				link.classList.toggle('font-semibold', isActive);
+			});
+		};
+
+		const handleScrollEffects = () => {
+			const scrolled = window.scrollY > 50;
+			header.classList.toggle('shadow-lg', scrolled);
+			header.classList.toggle('bg-opacity-95', scrolled);
+			setActiveLink();
+		};
+
+		const logo = document.querySelector('a[href="#home"]');
+		logo?.addEventListener('click', (event) => {
+			event.preventDefault();
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+
+		document.addEventListener('scroll', handleScrollEffects);
+		window.addEventListener('load', setActiveLink);
+	</script>
+</body>
+</html>
