@@ -1,12 +1,50 @@
+<?php
+require_once __DIR__ . '/db.php';
+
+// Fetch top 6 blogs
+$sql = "SELECT b.*, GROUP_CONCAT(c.name SEPARATOR '|') AS categories
+        FROM blog b
+        LEFT JOIN blog_categories bc ON bc.blog_id = b.id
+        LEFT JOIN categories c ON c.id = bc.category_id
+        GROUP BY b.id
+        ORDER BY b.created_at DESC
+        LIMIT 6";
+
+$result = mysqli_query($conn, $sql);
+$blogs = [];
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $blogs[] = $row;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Home page</title>
   <link rel="stylesheet" href="assets/css/main.css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Home blog card separation: gold border, subtle shadow */
+    .home-blog-card {
+      border: 1px solid #FFBE49;
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(12, 12, 12, 0.9);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .home-blog-card:hover {
+      border-color: #ffcc66; /* lighter gold on hover */
+      box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+    }
+    /* Panel behind carousel to separate from page background */
+  
+  </style>
 </head>
 
 <body class="bg-black text-white">
@@ -238,8 +276,8 @@
         Blogs
       </h2>
 
-      <a href="#"
-         class="inline-flex items-center gap-2 border-b border-white pb-1 mb-14">
+      <a href="pages/blog.php"
+         class="inline-flex items-center gap-2 border-b border-white pb-1 mb-14 hover:text-[#FFBE49] transition-colors">
         All Blogs →
       </a>
 
@@ -250,9 +288,42 @@
     </div>
 
     <!-- CAROUSEL -->
-    <div class="overflow-hidden">
+    <div class="overflow-hidden home-blog-panel">
       <div id="carousel"
            class="flex gap-12 transition-transform duration-500 ease-out">
+           
+        <?php if (!empty($blogs)): ?>
+          <?php foreach ($blogs as $blog): ?>
+            <?php
+              $title = htmlspecialchars($blog['title']);
+              $slug = htmlspecialchars($blog['slug']);
+              $image = !empty($blog['image']) ? 'admin/uploads/' . htmlspecialchars($blog['image']) : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80';
+              $description = htmlspecialchars(strip_tags($blog['description']));
+              $excerpt = strlen($description) > 150 ? substr($description, 0, 150) . '...' : $description;
+            ?>
+            
+            <a href="blogs/<?= $slug; ?>" class="min-w-[360px] max-w-[360px] block home-blog-card">
+              <img src="<?= $image; ?>"
+                   alt="<?= $title; ?>"
+                   class="w-full h-60 object-cover rounded-2xl mb-6" />
+
+              <h3 class="text-2xl font-serif mb-3">
+                <?= $title; ?>
+              </h3>
+
+              <p class="text-gray-300 leading-relaxed mb-6">
+                <?= $excerpt; ?>
+              </p>
+
+              <div class="w-full h-[3px] bg-[#FFBE49] rounded-full"></div>
+            </a>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <div class="text-gray-400 text-center py-10">
+            No blogs available yet.
+          </div>
+        <?php endif; ?>
+        
       </div>
     </div>
 

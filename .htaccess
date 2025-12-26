@@ -1,0 +1,27 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+# Increase upload and POST size limits
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+php_value max_input_time 300
+php_value max_execution_time 300
+
+# Increase memory limit for file processing
+php_value memory_limit 256M
+
+# Don't rewrite for actual files, directories, or pages folder
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_URI} ^/pages/
+RewriteRule ^ - [L]
+
+# Blog detail page (slug routing)
+RewriteRule ^blogs/([a-zA-Z0-9-]+)/?$ /pages/blog_detail.php?slug=$1 [L,QSA]
+
+# Internal rewrite for clean URLs (exclude .php files)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !\.(php|html|css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$ [NC]
+RewriteRule ^(.+)$ $1.php [L,QSA]

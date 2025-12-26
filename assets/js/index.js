@@ -1,58 +1,20 @@
 // Moved from index.html
 
-// Blogs data
-const blogs = [
-  {
-    title: "Business Strategies",
-    desc: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum.",
-    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-  },
-  {
-    title: "Sales System",
-    desc: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c"
-  },
-  {
-    title: "Leadership Growth",
-    desc: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum.",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf"
-  }
-];
-
-// Render blog cards
-const carousel = document.getElementById("carousel");
-if (carousel) {
-  blogs.forEach(blog => {
-    carousel.innerHTML += `
-      <div class="min-w-[360px] max-w-[360px]">
-        <img src="${blog.image}"
-             class="w-full h-60 object-cover rounded-2xl mb-6" />
-
-        <h3 class="text-2xl font-serif mb-3">
-          ${blog.title}
-        </h3>
-
-        <p class="text-gray-300 leading-relaxed mb-6">
-          ${blog.desc}
-        </p>
-
-        <div class="w-full h-[3px] bg-[#FFBE49] rounded-full"></div>
-      </div>
-    `;
-  });
-}
-
 /* =========================
-   CAROUSEL LOGIC
+   CAROUSEL LOGIC (Now handles server-rendered blogs)
 ========================= */
+const carousel = document.getElementById("carousel");
 let index = 0;
 const cardWidth = 360 + 48; // card width + gap
-const maxIndex = blogs.length - 2;
+
+// Count actual blog cards in the DOM
+const blogCount = carousel ? carousel.children.length : 0;
+const maxIndex = Math.max(0, blogCount - 2);
 
 const nextBtn = document.getElementById("next");
 const prevBtn = document.getElementById("prev");
 
-if (nextBtn && carousel) {
+if (nextBtn && carousel && blogCount > 0) {
   nextBtn.onclick = () => {
     if (index < maxIndex) {
       index++;
@@ -61,7 +23,7 @@ if (nextBtn && carousel) {
   };
 }
 
-if (prevBtn && carousel) {
+if (prevBtn && carousel && blogCount > 0) {
   prevBtn.onclick = () => {
     if (index > 0) {
       index--;
