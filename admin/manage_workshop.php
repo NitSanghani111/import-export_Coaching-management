@@ -292,6 +292,7 @@ foreach ($workshops as $w) { (($w['_start_ts'] ?: 0) >= $nowTs) ? $upcoming[] = 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow">
     <title>Manage Workshop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
