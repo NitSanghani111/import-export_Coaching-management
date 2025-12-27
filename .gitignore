@@ -16,7 +16,8 @@ Dockerfile
 # User uploads (runtime data)
 # ===============================
 uploads/
-
+workshops_img
+.sql
 
 
 # ===============================
