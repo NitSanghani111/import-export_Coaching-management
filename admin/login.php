@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   <!-- LEFT FORM -->
   <div class="px-12 py-16">
-    <h1 class="text-4xl font-serif mb-2">Create an account</h1>
+    <h1 class="text-4xl font-serif mb-2">Admin Login</h1>
     <p class="text-gray-600 mb-10">Access your learning and growth tools.</p>
 
     <?php if ($error): ?>
