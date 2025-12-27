@@ -8,6 +8,10 @@ if (!isset($_SESSION["admin"])) {
 }
 require_once __DIR__ . '/../db.php';
 
+// Flash message helper
+$flash_success = $_SESSION['flash_success'] ?? '';
+unset($_SESSION['flash_success']);
+
 // Ensure server-side timezone matches your expected locale
 // Change to your timezone if needed
 date_default_timezone_set('Asia/Kolkata');
@@ -86,7 +90,7 @@ function h($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
 
 // Handle actions: create, update, delete
 $error = '';
-$success = '';
+$success = $flash_success;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -148,7 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 if (mysqli_stmt_execute($stmt)) {
                   // PRG: avoid duplicate create on refresh
-                  header('Location: manage_workshop.php?success=created');
+                  $_SESSION['flash_success'] = 'Workshop created successfully!';
+                  header('Location: manage_workshop.php');
                   ob_end_flush();
                   exit;
                 } else {
@@ -214,7 +219,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               if ($stmt) {
                 mysqli_stmt_bind_param($stmt, $bindTypes, ...$bindValues);
                 if (mysqli_stmt_execute($stmt)) {
-                  header('Location: manage_workshop.php?success=updated');
+                  $_SESSION['flash_success'] = 'Workshop updated successfully!';
+                  header('Location: manage_workshop.php');
                   ob_end_flush();
                   exit;
                 } else { $error = 'Failed to update workshop.'; }
@@ -240,7 +246,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $p = $uploadDir . '/' . $img;
                     if (is_file($p)) @unlink($p);
                 }
-              header('Location: manage_workshop.php?success=deleted');
+              $_SESSION['flash_success'] = 'Workshop deleted successfully!';
+              header('Location: manage_workshop.php');
               ob_end_flush();
               exit;
             } else {

@@ -197,7 +197,7 @@ if (!empty($params)) {
         <!-- Category Filter as Cards -->
         <div class="flex flex-wrap gap-3 items-center">
           <a 
-            href="blog.php"
+            href="/blog"
             class="<?= $selectedCategoryId === 0 ? 'bg-amber-600 border-amber-600' : 'bg-gray-800 hover:bg-gray-700 border-gray-700' ?> border px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 inline-block"
           >
             All Categories
@@ -205,7 +205,7 @@ if (!empty($params)) {
           
           <?php foreach ($categories as $cat): ?>
             <a
-              href="blog.php?category=<?= (int)$cat['id']; ?>"
+              href="/blog?category=<?= (int)$cat['id']; ?>"
               class="<?= $selectedCategoryId === (int)$cat['id'] ? 'bg-amber-600 border-amber-600' : 'bg-gray-800 hover:bg-gray-700 border-gray-700' ?> border px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 inline-block"
             >
               <?= htmlspecialchars($cat['name']); ?>
@@ -285,7 +285,7 @@ if (!empty($params)) {
           <p class="text-2xl font-serif text-gray-400 mb-4">No articles found</p>
           <p class="text-gray-500">
             <?php if ($selectedCategoryId > 0): ?>
-              <a href="blog.php" class="underline hover:text-white transition-colors">View all articles</a>
+              <a href="/blog" class="underline hover:text-white transition-colors">View all articles</a>
             <?php else: ?>
               Check back soon for new content
             <?php endif; ?>

@@ -276,7 +276,7 @@ if ($result) {
         Blogs
       </h2>
 
-      <a href="pages/blog.php"
+      <a href="/blog"
          class="inline-flex items-center gap-2 border-b border-white pb-1 mb-14 hover:text-[#FFBE49] transition-colors">
         All Blogs →
       </a>
@@ -302,7 +302,7 @@ if ($result) {
               $excerpt = strlen($description) > 150 ? substr($description, 0, 150) . '...' : $description;
             ?>
             
-            <a href="blogs/<?= $slug; ?>" class="min-w-[360px] max-w-[360px] block home-blog-card">
+            <a href="/blogs/<?= $slug; ?>" class="min-w-[360px] max-w-[360px] block home-blog-card">
               <img src="<?= $image; ?>"
                    alt="<?= $title; ?>"
                    class="w-full h-60 object-cover rounded-2xl mb-6" />

@@ -202,7 +202,7 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
   <!-- ================= BACK NAVIGATION ================= -->
   <div class="bg-gradient-to-r from-black via-black to-gray-900 border-b border-gray-800">
     <div class="max-w-4xl mx-auto px-6 md:px-10 py-6">
-      <a href="./blog.php" class="back-button inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+      <a href="/blog" class="back-button inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
@@ -220,7 +220,7 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
         <!-- Meta Column -->
         <aside class="meta-column">
           <div class="meta-inner">
-            <a href="./blog.php" class="back-button inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-4">
+            <a href="/blog" class="back-button inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-4">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>

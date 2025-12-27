@@ -10,6 +10,10 @@ session_start();
 // Now require database
 require "../db.php";
 
+// Flash message helper
+$flash_success = $_SESSION['flash_success'] ?? null;
+unset($_SESSION['flash_success']);
+
 function createSlug($string) {
     $string = strtolower($string);
     $string = preg_replace('/[^a-z0-9]+/', '-', $string);
@@ -41,7 +45,8 @@ if (isset($_GET['delete'])) {
     $deleteStmt = $conn->prepare("DELETE FROM blog WHERE id = ?");
     $deleteStmt->bind_param("i", $id);
     $deleteStmt->execute();
-    header("Location: manage_blog.php?success=deleted");
+    $_SESSION['flash_success'] = 'Blog post deleted successfully!';
+    header("Location: manage_blog.php");
     ob_end_flush();
     exit;
 }
@@ -155,7 +160,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                 }
-                header("Location: manage_blog.php?success=updated");
+                $_SESSION['flash_success'] = 'Blog post updated successfully!';
+                header("Location: manage_blog.php");
             } else {
                 // Create new blog
                 if (!$image_name) {
@@ -175,7 +181,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             }
                         }
                     }
-                    header("Location: manage_blog.php?success=created");
+                    $_SESSION['flash_success'] = 'Blog post created successfully!';
+                    header("Location: manage_blog.php");
                 }
             }
             if (isset($error) === false) {
@@ -365,13 +372,13 @@ $total_blogs = count($blogs);
             <section class="flex-1 p-6 md:p-8 space-y-8">
 
                 <!-- Success/Error Messages -->
-                <?php if (isset($_GET['success'])): ?>
+                <?php if (!empty($flash_success)): ?>
                 <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-4 flex items-center gap-3 fade-in-up">
                     <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                     <span class="text-green-400">
-                        <?= $_GET['success'] === 'created' ? 'Blog post created successfully!' : ($_GET['success'] === 'updated' ? 'Blog post updated successfully!' : 'Blog post deleted successfully!') ?>
+                        <?= htmlspecialchars($flash_success) ?>
                     </span>
                 </div>
                 <?php endif; ?>

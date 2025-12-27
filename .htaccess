@@ -17,6 +17,14 @@ RewriteCond %{REQUEST_FILENAME} -d [OR]
 RewriteCond %{REQUEST_URI} ^/pages/
 RewriteRule ^ - [L]
 
+# Clean routes for top-level pages -> map to pages/*
+RewriteRule ^about/?$ /pages/About-us.html [L]
+RewriteRule ^contact/?$ /pages/Contact.html [L]
+RewriteRule ^program/?$ /pages/Program.html [L]
+RewriteRule ^workshop/?$ /pages/workshop.php [L]
+RewriteRule ^blog/?$ /pages/blog.php [L]
+RewriteRule ^trypage/?$ /pages/trypage.html [L]
+
 # Blog detail page (slug routing)
 RewriteRule ^blogs/([a-zA-Z0-9-]+)/?$ /pages/blog_detail.php?slug=$1 [L,QSA]
 
