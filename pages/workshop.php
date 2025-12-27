@@ -165,6 +165,7 @@ function getDescription($workshop, $descField) {
   <meta charset="UTF-8" />
   <title>Workshops</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow">
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
