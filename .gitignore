@@ -16,12 +16,12 @@ Dockerfile
 # User uploads (runtime data)
 # ===============================
 uploads/
-workshops_img
-.sql
+admin/workshops_img/
+*.sql
 
 
 # ===============================
-# Logs
+# Logs  
 # ===============================
 *.log
 
