@@ -1,3 +1,4 @@
+
 // Page Loading Animation Handler
 document.addEventListener('DOMContentLoaded', function() {
   // Fade out the loader after page has fully loaded
