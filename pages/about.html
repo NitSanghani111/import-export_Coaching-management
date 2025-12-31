@@ -9,11 +9,8 @@
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;500;700&family=Source+Serif+4:wght@400&display=swap"
-		rel="stylesheet"
-	/>
-
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
 
 	<!-- Tailwind CSS with cache busting -->
 	<script src="https://cdn.tailwindcss.com?v=3"></script>
@@ -23,7 +20,7 @@
 				extend: {
 					colors: {
 						brand: '#191919',
-						accent: '#F59E0B',
+						accent: '#FFBE49',
 					},
 					fontFamily: {
 						serif: ['Playfair Display', 'Georgia', 'serif'],
@@ -50,11 +47,21 @@
 			margin: 0;
 			background: #000;
 			color: #fff;
-			font-family: 'Inter', system-ui, sans-serif;
+			font-family: 'Inter', system-ui, -apple-system, sans-serif;
+		}
+		h1, h2, h3, h4, h5, h6 {
+			font-family: 'Playfair Display', Georgia, serif;
 		}
 	</style>    
 </head>
 <body class="antialiased">
+	
+	<!-- Page Loader -->
+	<div id="page-loader">
+		<div class="loader-spinner"></div>
+		<div class="loader-text">Loading</div>
+	</div>
+
 	<div id="navbar-container"></div>
 
 	<main class="pt-0">
@@ -352,5 +359,6 @@
 			initReveal();
 		});
 	</script>
+	<script src="../assets/js/loader.js"></script>
 </body>
 </html>

@@ -173,15 +173,19 @@ function getDescription($workshop, $descField) {
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css" />
 
   <style>
     body {
       background:#000;
       color:#fff;
-      font-family:'Inter',sans-serif;
+      font-family:'Inter', system-ui, -apple-system, sans-serif;
     }
-    .font-serif { font-family:'Playfair Display',serif; }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .font-serif { font-family:'Playfair Display', Georgia, serif; }
 
     /* hide scrollbar */
     .no-scrollbar::-webkit-scrollbar { display:none; }
@@ -190,6 +194,12 @@ function getDescription($workshop, $descField) {
 </head>
 
 <body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Loading</div>
+    </div>
+
     <div id="navbar-container"></div>
 <!-- ================= HERO ================= -->
 <section class="relative h-[70vh] md:h-[85vh] w-full overflow-hidden">
@@ -668,6 +678,7 @@ function getDescription($workshop, $descField) {
           });
         })();
 </script>
+<script src="../assets/js/loader.js"></script>
 
 </body>
 </html>

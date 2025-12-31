@@ -29,6 +29,10 @@ if ($result) {
   <title>Home page</title>
   <link rel="stylesheet" href="assets/css/main.css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     /* Home blog card separation: gold border, subtle shadow */
     .home-blog-card {
@@ -43,6 +47,12 @@ if ($result) {
       border-color: #ffcc66; /* lighter gold on hover */
       box-shadow: 0 12px 28px rgba(0,0,0,0.4);
     }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
     /* Panel behind carousel to separate from page background */
   
   </style>
@@ -50,6 +60,11 @@ if ($result) {
 
 <body class="bg-black text-white">
 
+<!-- Page Loader -->
+<div id="page-loader">
+  <div class="loader-spinner"></div>
+  <div class="loader-text">Loading</div>
+</div>
 
 <div id="navbar-container"></div>
 <!-- //hero section  -->
@@ -490,6 +505,7 @@ if ($result) {
 
 
     <div id="footer-container"></div>
+<script src="assets/js/loader.js"></script>
 <script src="assets/js/index.js"></script>
 
 </body>

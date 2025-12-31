@@ -542,3 +542,315 @@ body::after {
 .action-desc { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
 
 @media (max-width: 640px) { .action-grid { grid-template-columns: 1fr; } }
+
+/* =============================
+   Standardized Button Styles
+============================= */
+
+/* Primary Button - Gold/Yellow Accent */
+.btn-primary,
+button[type="submit"],
+a.btn-primary,
+.button-primary {
+  position: relative;
+  background: #FFBE49;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  outline: none;
+}
+
+.btn-primary:hover,
+button[type="submit"]:hover,
+a.btn-primary:hover,
+.button-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(255, 190, 73, 0.45);
+  background: #ffd27f;
+}
+
+.btn-primary:active,
+button[type="submit"]:active,
+a.btn-primary:active,
+.button-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 190, 73, 0.35);
+}
+
+.btn-primary:disabled,
+button[type="submit"]:disabled,
+.button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Secondary Button - White/Ghost */
+.btn-secondary,
+a.btn-secondary,
+.button-secondary {
+  position: relative;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 10px 26px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  outline: none;
+}
+
+.btn-secondary:hover,
+a.btn-secondary:hover,
+.button-secondary:hover {
+  border-color: rgba(255, 190, 73, 0.6);
+  background: rgba(255, 190, 73, 0.1);
+  box-shadow: 0 8px 24px rgba(255, 190, 73, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active,
+a.btn-secondary:active,
+.button-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(255, 190, 73, 0.15);
+}
+
+/* Tertiary Button - Minimal */
+.btn-tertiary,
+a.btn-tertiary,
+.button-tertiary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  outline: none;
+}
+
+.btn-tertiary:hover,
+a.btn-tertiary:hover,
+.button-tertiary:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Icon Button */
+.btn-icon,
+.button-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.btn-icon:hover,
+.button-icon:hover {
+  background: rgba(255, 190, 73, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 190, 73, 0.25);
+}
+
+.btn-icon:active,
+.button-icon:active {
+  transform: scale(0.95);
+}
+
+/* CTA Button - Large prominent button */
+.btn-cta,
+.button-cta {
+  position: relative;
+  background: linear-gradient(135deg, #FFBE49, #ffd27f);
+  color: #000;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 48px;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  outline: none;
+  font-size: 16px;
+  box-shadow: 0 8px 24px rgba(255, 190, 73, 0.35);
+}
+
+.btn-cta:hover,
+.button-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(255, 190, 73, 0.5);
+}
+
+.btn-cta:active,
+.button-cta:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 190, 73, 0.35);
+}
+
+/* Link Button - Text only */
+.btn-link,
+a.btn-link {
+  background: none;
+  color: #FFBE49;
+  font-weight: 600;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all 0.2s ease;
+  display: inline;
+}
+
+.btn-link:hover,
+a.btn-link:hover {
+  color: #ffd27f;
+}
+
+/* Loading state for all buttons */
+button:disabled,
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-tertiary:disabled,
+.btn-cta:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Ensure consistency with Tailwind buttons */
+.inline-flex.items-center.gap-4 button,
+.inline-flex.items-center.gap-3 button {
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.inline-flex.items-center.gap-4 button:hover,
+.inline-flex.items-center.gap-3 button:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth transitions for all interactive elements */
+button, a[href], input[type="button"], input[type="submit"] {
+  transition: all 0.25s ease;
+}
+
+/* =============================
+   Loading Animation / Splash Screen
+============================= */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #000 0%, #0b0b0b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#page-loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-spinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.loader-spinner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  animation: spin 3s linear infinite;
+}
+
+.loader-spinner::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 4px solid transparent;
+  border-top-color: #FFBE49;
+  border-right-color: #FFBE49;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite reverse;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 80px));
+  color: #FFBE49;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* =============================
+   Global Font Family Setup
+============================= */
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.serif-font {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.sans-font {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}

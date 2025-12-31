@@ -36,22 +36,23 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
-            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif']
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
           }
         }
       }
     }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
-
 
   <style>
     * {
@@ -63,8 +64,12 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
     body {
       background: #000;
       min-height: 100vh;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: #fff;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', Georgia, serif;
     }
 
     .back-button {
@@ -200,6 +205,13 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
   </style>
 </head>
 <body>
+    
+    <!-- Page Loader -->
+    <div id="page-loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Loading</div>
+    </div>
+
     <div id="navbar-container"></div>
   <!-- ================= BACK NAVIGATION ================= -->
   <div class="bg-gradient-to-r from-black via-black to-gray-900 border-b border-gray-800">
@@ -375,5 +387,6 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
             await injectComponent('../components/fotter.html', '#footer-container', 'footer');
         });
   </script>
+  <script src="../assets/js/loader.js"></script>
 </body>
 </html>
