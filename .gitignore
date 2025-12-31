@@ -18,7 +18,9 @@ Dockerfile
 uploads/
 admin/workshops_img/
 *.sql
+coachingdb.sql
 
+**/.git*
 
 # ===============================
 # Logs  

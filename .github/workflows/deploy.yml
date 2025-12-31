@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: FTP Deploy
+      - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -25,8 +25,10 @@ jobs:
           exclude: |
             **/.git*
             **/.github/**
-            **/docker-compose.yml
-            **/Dockerfile
             **/.env
-            **/node_modules/**
+            **/*.sql
             **/uploads/**
+            **/admin/workshops_img/**
+            **/node_modules/**
+            **/Dockerfile
+            **/docker-compose.yml
