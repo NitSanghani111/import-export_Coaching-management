@@ -54,6 +54,28 @@
 			backdrop-filter: blur(15px);
 		}
 		
+		/* Hamburger Menu Button - Visible on Mobile */
+		#menu-toggle {
+			display: flex !important;
+			padding: 8px;
+			cursor: pointer;
+			z-index: 50 !important;
+		}
+		
+		#menu-toggle:hover {
+			opacity: 0.8;
+		}
+		
+		#menu-toggle span {
+			display: block;
+			width: 24px;
+			height: 2px;
+			background-color: #ffffff;
+			margin: 5px 0;
+			transition: all 0.3s ease-in-out;
+			border-radius: 2px;
+		}
+		
 		/* Active nav link styling */
 		.nav-link.active {
 			color: #FFBE49 !important;
@@ -99,15 +121,13 @@
 
 			<button
 				id="menu-toggle"
-				class="md:hidden relative w-10 h-10 flex items-center justify-center z-50"
+				class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
 				aria-label="Open navigation menu"
 			>
 				<span class="sr-only">Toggle menu</span>
-				<div class="space-y-1.5 flex flex-col">
-					<span class="block w-6 h-0.5 bg-white rounded transition-all"></span>
-					<span class="block w-6 h-0.5 bg-white rounded transition-all"></span>
-					<span class="block w-6 h-0.5 bg-white rounded transition-all"></span>
-				</div>
+				<span class="w-6 h-0.5 bg-white rounded block"></span>
+				<span class="w-6 h-0.5 bg-white rounded block"></span>
+				<span class="w-6 h-0.5 bg-white rounded block"></span>
 			</button>
 		</div>
 
