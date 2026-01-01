@@ -4,14 +4,34 @@
 
   const setActivePageLink = () => {
     const navLinks = document.querySelectorAll('.nav-link');
-    const currentPath = window.location.pathname.replace(/\/index\.(php|html?)$/, '/');
-    const segments = currentPath.split('/').filter(Boolean);
-    const currentPage = segments[0] || 'home';
+    const path = window.location.pathname.toLowerCase();
+    const parts = path.split('/').filter(Boolean);
+    const last = parts.length ? parts[parts.length - 1] : '';
+
+    const deriveSlug = () => {
+      // Handle clean URLs first
+      if (path === '/' || path === '' || /\/index\.(php|html?)$/.test(path)) return 'home';
+      if (path.includes('/about')) return 'about';
+      if (path.includes('/program')) return 'program';
+      if (path.includes('/contact')) return 'contact';
+      if (path.includes('/workshop')) return 'workshop';
+      if (path.includes('/blog')) return 'blog';
+
+      // Fallback to filename (about.html, blog.php, blog_detail.php)
+      if (last) {
+        const base = last.replace(/\.(php|html?)$/, '');
+        if (base === 'index') return 'home';
+        if (base.startsWith('blog')) return 'blog';
+        return base;
+      }
+      return 'home';
+    };
+
+    const currentPage = deriveSlug();
 
     navLinks.forEach(link => {
-      const linkPage = link.getAttribute('data-page') || '';
-      const isHome = ['/', '', 'index.php', 'index.html'].includes(currentPath);
-      const active = (linkPage === currentPage) || (linkPage === 'home' && isHome);
+      const linkPage = (link.getAttribute('data-page') || '').toLowerCase();
+      const active = linkPage === currentPage || (linkPage === 'home' && currentPage === 'home');
       link.classList.toggle('text-white', active);
       link.classList.toggle('text-white/80', !active);
       link.classList.toggle('text-white/90', !active);

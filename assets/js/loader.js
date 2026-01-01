@@ -1,20 +1,17 @@
 
 // Professional Page Loading Animation Handler
 document.addEventListener('DOMContentLoaded', function() {
-  // Fade out the loader after page has fully loaded
+  // Fade out the loader as soon as critical content is ready
   const loader = document.getElementById('page-loader');
-  
-  // Ensure smooth transition with slight delay
-  setTimeout(() => {
-    if (loader) {
-      loader.classList.add('fade-out');
-      // Remove loader from DOM after animation completes
-      setTimeout(() => {
-        loader.style.display = 'none';
-        loader.remove();
-      }, 1200);
-    }
-  }, 800);
+  if (!loader) return;
+
+  requestAnimationFrame(() => {
+    loader.classList.add('fade-out');
+    setTimeout(() => {
+      loader.style.display = 'none';
+      loader.remove();
+    }, 500);
+  });
 });
 
 // Show loader on page navigation for better UX
