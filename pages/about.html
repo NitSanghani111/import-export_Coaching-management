@@ -264,76 +264,8 @@
 		};
 
 		const initNavbar = (root) => {
-			if (!root) return;
-			const header = root.querySelector('#site-header');
-			const menuToggle = root.querySelector('#menu-toggle');
-			const menuClose = root.querySelector('#menu-close');
-			const mobileMenu = root.querySelector('#mobile-menu');
-			const navLinks = root.querySelectorAll('.nav-link');
-			const logo = root.querySelector('a[href="#home"]');
-
-			const openMenu = () => {
-				if (!mobileMenu) return;
-				mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0');
-				mobileMenu.classList.add('opacity-100', 'translate-x-0');
-				document.body.classList.add('overflow-hidden');
-				mobileMenu.setAttribute('aria-hidden', 'false');
-			};
-
-			const closeMenu = () => {
-				if (!mobileMenu) return;
-				mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0');
-				mobileMenu.classList.remove('opacity-100', 'translate-x-0');
-				document.body.classList.remove('overflow-hidden');
-				mobileMenu.setAttribute('aria-hidden', 'true');
-			};
-
-			menuToggle?.addEventListener('click', openMenu);
-			menuClose?.addEventListener('click', closeMenu);
-			mobileMenu?.addEventListener('click', (event) => {
-				if (event.target === mobileMenu) closeMenu();
-			});
-
-			navLinks.forEach((link) => {
-				link.addEventListener('click', (event) => {
-					const targetId = link.getAttribute('href');
-					if (targetId && targetId.startsWith('#')) {
-						event.preventDefault();
-						const target = document.querySelector(targetId);
-						if (target) target.scrollIntoView({ behavior: 'smooth' });
-						closeMenu();
-					}
-				});
-			});
-
-			const setActiveLink = () => {
-				const scrollPos = window.scrollY + 120;
-				navLinks.forEach((link) => {
-					const targetId = link.getAttribute('href');
-					const section = targetId ? document.querySelector(targetId) : null;
-					if (!section) return;
-					const { offsetTop, offsetHeight } = section;
-					const isActive = scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight;
-					link.classList.toggle('text-white', isActive);
-					link.classList.toggle('text-white/80', !isActive);
-					link.classList.toggle('font-semibold', isActive);
-				});
-			};
-
-			const handleScrollEffects = () => {
-				const scrolled = window.scrollY > 50;
-				header?.classList.toggle('shadow-lg', scrolled);
-				header?.classList.toggle('bg-opacity-95', scrolled);
-				setActiveLink();
-			};
-
-			logo?.addEventListener('click', (event) => {
-				event.preventDefault();
-				window.scrollTo({ top: 0, behavior: 'smooth' });
-			});
-
-			document.addEventListener('scroll', handleScrollEffects);
-			window.addEventListener('load', setActiveLink);
+			// Navbar now handles its own initialization internally
+			// No need for external navbar management
 		};
 
 		const initReveal = () => {
