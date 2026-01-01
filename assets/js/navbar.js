@@ -4,18 +4,22 @@
 
   const getCurrentPage = () => {
     const path = window.location.pathname.toLowerCase();
-    if (path === '/' || path === '' || path === '/index.php') return 'home';
-    if (path.includes('/about')) return 'about';
-    if (path.includes('/program')) return 'program';
-    if (path.includes('/contact')) return 'contact';
-    if (path.includes('/workshop')) return 'workshop';
+    console.log('📍 Current path:', path);
+    
+    if (path === '/' || path === '' || path === '/index.php' || path.includes('index.php')) return 'home';
+    if (path.includes('/about') || path.includes('about.html')) return 'about';
+    if (path.includes('/program') || path.includes('program.html')) return 'program';
+    if (path.includes('/contact') || path.includes('contact.html')) return 'contact';
+    if (path.includes('/workshop') || path.includes('workshop.php')) return 'workshop';
     if (path.includes('/blog')) return 'blog';
     return 'home';
   };
 
   const setActivePageLink = () => {
     const currentPage = getCurrentPage();
+    console.log('🏠 Current page:', currentPage);
     const navLinks = document.querySelectorAll('.nav-link');
+    console.log('🔗 Found nav links:', navLinks.length);
     
     navLinks.forEach(link => {
       const page = link.getAttribute('data-page').toLowerCase();
@@ -25,6 +29,7 @@
         link.classList.add('active');
         link.style.color = '#FFBE49';
         link.style.fontWeight = '700';
+        console.log('✅ Active:', page);
       } else {
         link.classList.remove('active');
         link.style.color = '';
