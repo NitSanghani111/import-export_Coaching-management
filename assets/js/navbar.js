@@ -4,8 +4,6 @@
 
   const getCurrentPage = () => {
     const path = window.location.pathname.toLowerCase();
-    console.log('📍 Current path:', path);
-    
     if (path === '/' || path === '' || path === '/index.php' || path.includes('index.php')) return 'home';
     if (path.includes('/about') || path.includes('about.html')) return 'about';
     if (path.includes('/program') || path.includes('program.html')) return 'program';
@@ -17,19 +15,17 @@
 
   const setActivePageLink = () => {
     const currentPage = getCurrentPage();
-    console.log('🏠 Current page:', currentPage);
     const navLinks = document.querySelectorAll('.nav-link');
-    console.log('🔗 Found nav links:', navLinks.length);
     
     navLinks.forEach(link => {
-      const page = link.getAttribute('data-page').toLowerCase();
-      const isActive = page === currentPage;
+      const page = link.getAttribute('data-page');
+      if (!page) return;
+      const isActive = page.toLowerCase() === currentPage;
       
       if (isActive) {
         link.classList.add('active');
         link.style.color = '#FFBE49';
         link.style.fontWeight = '700';
-        console.log('✅ Active:', page);
       } else {
         link.classList.remove('active');
         link.style.color = '';
