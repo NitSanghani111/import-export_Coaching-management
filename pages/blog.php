@@ -332,21 +332,15 @@ if (!empty($params)) {
             }
         };
 
-        const initNavbar = (root) => {
-            // Navbar now handles its own initialization internally
-            // No need for external navbar management
-            return;
-        };
-
         document.addEventListener('DOMContentLoaded', async () => {
             const navbarRoot = await injectComponent('../components/Navbar.html', '#navbar-container', 'header');
-            // Navbar initializes itself after injection
-            if (typeof initializeNavbar === 'function') {
-                initializeNavbar();
-            }
+          if (typeof window.initNavbar === 'function') {
+            window.initNavbar();
+          }
             await injectComponent('../components/fotter.html', '#footer-container', 'footer');
         });
   </script>
+      <script src="../assets/js/navbar.js"></script>
   <script src="../assets/js/loader.js"></script>
 
 </body>

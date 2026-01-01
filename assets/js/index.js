@@ -52,12 +52,6 @@ const injectComponent = async (src, selector, pick) => {
   }
 };
 
-const initNavbar = (root) => {
-  // Navbar now handles its own initialization internally
-  // No need for external navbar management
-  return;
-};
-
 const initReveal = () => {
   // Guard: avoid errors if not present
   if (typeof observeElements === 'function') {
@@ -70,8 +64,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const navbarRoot = await injectComponent('components/Navbar.html', '#navbar-container', 'header');
   
   // Call navbar initialization after injection
-  if (typeof initializeNavbar === 'function') {
-    initializeNavbar();
+  if (typeof window.initNavbar === 'function') {
+    window.initNavbar();
   }
   
   await injectComponent('components/fotter.html', '#footer-container', 'footer');

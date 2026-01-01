@@ -510,6 +510,7 @@ if ($result) {
 
 
     <div id="footer-container"></div>
+<script src="assets/js/navbar.js"></script>
 <script src="assets/js/loader.js"></script>
 <script src="assets/js/index.js"></script>
 
