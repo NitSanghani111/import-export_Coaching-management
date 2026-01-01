@@ -333,39 +333,9 @@ if (!empty($params)) {
         };
 
         const initNavbar = (root) => {
-            if (!root) return;
-            const header = root.querySelector('#site-header');
-            const menuToggle = root.querySelector('#menu-toggle');
-            const menuClose = root.querySelector('#menu-close');
-            const mobileMenu = root.querySelector('#mobile-menu');
-
-            const openMenu = () => {
-                if (!mobileMenu) return;
-                mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0');
-                mobileMenu.classList.add('opacity-100', 'translate-x-0');
-                document.body.classList.add('overflow-hidden');
-            };
-
-            const closeMenu = () => {
-                if (!mobileMenu) return;
-                mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0');
-                mobileMenu.classList.remove('opacity-100', 'translate-x-0');
-                document.body.classList.remove('overflow-hidden');
-            };
-
-            menuToggle?.addEventListener('click', openMenu);
-            menuClose?.addEventListener('click', closeMenu);
-            mobileMenu?.addEventListener('click', (event) => {
-                if (event.target === mobileMenu) closeMenu();
-            });
-
-            const handleScrollEffects = () => {
-                const scrolled = window.scrollY > 50;
-                header?.classList.toggle('shadow-lg', scrolled);
-                header?.classList.toggle('bg-opacity-95', scrolled);
-            };
-
-            document.addEventListener('scroll', handleScrollEffects);
+            // Navbar now handles its own initialization internally
+            // No need for external navbar management
+            return;
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
