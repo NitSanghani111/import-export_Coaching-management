@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +8,13 @@
 	<title>Parth Jethva | Navigation</title>
 	<!-- Use Tailwind Play CDN so arbitrary values (e.g., to-[#191919]) work without a build step -->
 	<script src="https://cdn.tailwindcss.com"></script>
-	   <script src="https://cdn.tailwindcss.com?v=3"></script>
+	<script src="https://cdn.tailwindcss.com?v=3"></script>
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap"
+		rel="stylesheet" />
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<script>
 		tailwind.config = {
@@ -33,13 +36,20 @@
 		.mobile-menu {
 			transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 		}
+
 		body {
 			font-family: 'Inter', system-ui, -apple-system, sans-serif;
 		}
-		h1, h2, h3, h4, h5, h6 {
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
 			font-family: 'Playfair Display', Georgia, serif;
 		}
-		
+
 		/* Navbar header responsive background */
 		@media (max-width: 768px) {
 			#site-header {
@@ -47,13 +57,13 @@
 				backdrop-filter: blur(12px);
 			}
 		}
-		
+
 		/* Mobile menu darker background for better readability */
 		#mobile-menu {
 			background: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(25, 25, 25, 0.92)) !important;
 			backdrop-filter: blur(15px);
 		}
-		
+
 		/* Hamburger Menu Button - Always Visible and Working */
 		#menu-toggle {
 			display: flex !important;
@@ -70,12 +80,12 @@
 			justify-content: center;
 			position: relative;
 		}
-		
+
 		#menu-toggle:active,
 		#menu-toggle:hover {
 			opacity: 0.8;
 		}
-		
+
 		#menu-toggle span {
 			display: block;
 			width: 24px;
@@ -84,22 +94,22 @@
 			transition: all 0.3s ease-in-out;
 			border-radius: 2px;
 		}
-		
+
 		#menu-toggle span:nth-child(1) {
 			margin-top: 0;
 		}
-		
+
 		#menu-toggle span:nth-child(3) {
 			margin-bottom: 0;
 		}
-		
+
 		/* Hide nav on mobile, show hamburger */
 		@media (max-width: 768px) {
 			nav:not(#mobile-menu nav) {
 				display: none !important;
 			}
 		}
-		
+
 		/* Active nav link styling */
 		.nav-link.active {
 			color: #FFBE49 !important;
@@ -108,7 +118,7 @@
 			text-decoration-thickness: 2px;
 			text-underline-offset: 6px;
 		}
-		
+
 		.nav-link.active::after {
 			content: '';
 			position: absolute;
@@ -120,34 +130,33 @@
 		}
 	</style>
 </head>
+
 <body class="antialiased bg-black text-white">
-	<header
-		id="site-header"
-		class="fixed top-0 inset-x-0 z-50 bg-gradient-to-r from-white/5 to-[#191919] backdrop-blur-md shadow-sm transition-shadow duration-300"
-	>
+	<header id="site-header"
+		class="fixed top-0 inset-x-0 z-50 bg-gradient-to-r from-white/5 to-[#191919] backdrop-blur-md shadow-sm transition-shadow duration-300">
 		<div class="max-w-7xl mx-auto h-20 px-6 md:px-12 lg:px-20 flex items-center justify-between">
 			<a href="/" class="flex items-center gap-3 group" aria-label="Parth Jethva home">
-				<img
-					src="../img/design/Logo.svg"
-					alt="Parth Jethva Logo"
-					class="h-16 w-20 object-contain drop-shadow-sm group-hover:scale-[1.02] transition"
-				/>
+				<img src="../img/design/Logo.svg" alt="Parth Jethva Logo"
+					class="h-16 w-20 object-contain drop-shadow-sm group-hover:scale-[1.02] transition" />
 			</a>
 
 			<nav class="hidden md:flex items-center gap-8 lg:gap-10 text-sm md:text-base font-medium tracking-wide">
-				<a class="nav-link text-white/80 hover:text-white transition relative" href="/" data-page="home">Home</a>
-				<a class="nav-link text-white/80 hover:text-white transition relative" href="/about" data-page="about">About</a>
-				<a class="nav-link text-white/80 hover:text-white transition relative" href="/program" data-page="program">Programs</a>
-				<a class="nav-link text-white/80 hover:text-white transition relative" href="/contact" data-page="contact">Contact</a>
-				<a class="nav-link text-white/80 hover:text-white transition relative" href="/workshop" data-page="workshop">Workshop</a>
-				<a class="nav-link text-white/80 hover:text-white transition relative" href="/blog" data-page="blog">Blog</a>
+				<a class="nav-link text-white/80 hover:text-white transition relative" href="/"
+					data-page="home">Home</a>
+				<a class="nav-link text-white/80 hover:text-white transition relative" href="/about"
+					data-page="about">About</a>
+				<a class="nav-link text-white/80 hover:text-white transition relative" href="/program"
+					data-page="program">Programs</a>
+				<a class="nav-link text-white/80 hover:text-white transition relative" href="/contact"
+					data-page="contact">Contact</a>
+				<a class="nav-link text-white/80 hover:text-white transition relative" href="/workshop"
+					data-page="workshop">Workshop</a>
+				<a class="nav-link text-white/80 hover:text-white transition relative" href="/blog"
+					data-page="blog">Blog</a>
 			</nav>
 
-			<button
-				id="menu-toggle"
-				class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
-				aria-label="Open navigation menu"
-			>
+			<button id="menu-toggle" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+				aria-label="Open navigation menu">
 				<span class="sr-only">Toggle menu</span>
 				<span class="w-6 h-0.5 bg-white rounded block"></span>
 				<span class="w-6 h-0.5 bg-white rounded block"></span>
@@ -155,30 +164,32 @@
 			</button>
 		</div>
 
-		<div
-			id="mobile-menu"
-			class="mobile-menu fixed inset-x-0 top-0 z-40 bg-black  flex flex-col items-center justify-start opacity-0 pointer-events-none translate-x-full min-h-[75vh] max-h-[85vh] overflow-y-auto pt-24 pb-10"
-			aria-hidden="true"
-		>
-			<button
-				id="menu-close"
-				class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-50"
-				aria-label="Close navigation menu"
-			>
+		<div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-black
+         flex flex-col opacity-0 pointer-events-none translate-x-full
+         pt-24 pb-10">
+
+			<button id="menu-close" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-50"
+				aria-label="Close navigation menu">
 				<span class="sr-only">Close menu</span>
 				<span class="absolute block w-8 h-0.5 bg-white rounded-full rotate-45"></span>
 				<span class="absolute block w-8 h-0.5 bg-white rounded-full -rotate-45"></span>
 			</button>
 
-			<nav class="flex flex-col items-center text-xl font-semibold space-y-6">
+			<nav class="w-full h-full flex flex-col items-center justify-center
+           text-xl font-semibold space-y-6 bg-black">
+
 				<a class="nav-link text-white/90 hover:text-white transition" href="/" data-page="home">Home</a>
 				<a class="nav-link text-white/90 hover:text-white transition" href="/about" data-page="about">About</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/program" data-page="program">Programs</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/contact" data-page="contact">Contact</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/workshop" data-page="workshop">Workshop</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="/program"
+					data-page="program">Programs</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="/contact"
+					data-page="contact">Contact</a>
+				<a class="nav-link text-white/90 hover:text-white transition" href="/workshop"
+					data-page="workshop">Workshop</a>
 				<a class="nav-link text-white/90 hover:text-white transition" href="/blog" data-page="blog">Blog</a>
 			</nav>
 		</div>
 	</header>
 </body>
+
 </html>

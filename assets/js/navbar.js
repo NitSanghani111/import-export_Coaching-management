@@ -8,26 +8,23 @@
     const parts = path.split('/').filter(Boolean);
     const last = parts.length ? parts[parts.length - 1] : '';
 
-    const deriveSlug = () => {
-      // Handle clean URLs first
-      if (path === '/' || path === '' || /\/index\.(php|html?)$/.test(path)) return 'home';
-      if (parts.length === 1 && !last.includes('.')) return 'home';
-      if (path.includes('/home')) return 'home';
-      if (path.includes('/about')) return 'about';
-      if (path.includes('/program')) return 'program';
-      if (path.includes('/contact')) return 'contact';
-      if (path.includes('/workshop')) return 'workshop';
-      if (path.includes('/blog')) return 'blog';
+const deriveSlug = () => {
+  const path = window.location.pathname.toLowerCase();
 
-      // Fallback to filename (about.html, blog.php, blog_detail.php)
-      if (last) {
-        const base = last.replace(/\.(php|html?)$/, '');
-        if (base === 'index') return 'home';
-        if (base.startsWith('blog')) return 'blog';
-        return base;
-      }
-      return 'home';
-    };
+  // home
+  if (path === '/' || path === '' || path === '/index.php') return 'home';
+
+  // clean routes
+  if (path.startsWith('/about')) return 'about';
+  if (path.startsWith('/program')) return 'program';
+  if (path.startsWith('/contact')) return 'contact';
+  if (path.startsWith('/workshop')) return 'workshop';
+  if (path.startsWith('/blog')) return 'blog';
+
+  return 'home';
+};
+
+
 
     const currentPage = deriveSlug();
 
