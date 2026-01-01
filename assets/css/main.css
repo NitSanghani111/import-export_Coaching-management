@@ -773,13 +773,15 @@ button, a[href], input[type="button"], input[type="submit"] {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: linear-gradient(135deg, #000 0%, #0b0b0b 100%);
+  background: linear-gradient(135deg, #000 0%, #0b0b0b 50%, #000 100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 40px;
 }
 
 #page-loader.fade-out {
@@ -787,30 +789,43 @@ button, a[href], input[type="button"], input[type="submit"] {
   visibility: hidden;
 }
 
+/* Enhanced Loader Spinner */
 .loader-spinner {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
 }
 
+/* Outer rotating ring */
 .loader-spinner::before {
   content: "";
   position: absolute;
   inset: 0;
-  border: 4px solid rgba(255,255,255,0.1);
+  border: 3px solid rgba(255,255,255,0.1);
   border-radius: 50%;
   animation: spin 3s linear infinite;
 }
 
+/* Inner rotating border with accent */
 .loader-spinner::after {
   content: "";
   position: absolute;
-  inset: 12px;
-  border: 4px solid transparent;
+  inset: 15px;
+  border: 3px solid transparent;
   border-top-color: #FFBE49;
   border-right-color: #FFBE49;
   border-radius: 50%;
-  animation: spin 1.5s linear infinite reverse;
+  animation: spin-reverse 1.2s linear infinite;
+  box-shadow: 0 0 20px rgba(255, 190, 73, 0.6);
+}
+
+/* Middle decorative ring */
+.loader-spinner {
+  box-shadow: 
+    inset 0 0 0 2px rgba(255, 190, 73, 0.2),
+    0 0 40px rgba(255, 190, 73, 0.25);
+  border-radius: 50%;
+  animation: pulse-ring 2s ease-in-out infinite;
 }
 
 @keyframes spin {
@@ -818,22 +833,94 @@ button, a[href], input[type="button"], input[type="submit"] {
   100% { transform: rotate(360deg); }
 }
 
-.loader-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, calc(-50% + 80px));
-  color: #FFBE49;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  animation: pulse-text 1.5s ease-in-out infinite;
+@keyframes spin-reverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
 }
 
-@keyframes pulse-text {
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: inset 0 0 0 2px rgba(255, 190, 73, 0.2), 0 0 40px rgba(255, 190, 73, 0.25); }
+  50% { box-shadow: inset 0 0 0 2px rgba(255, 190, 73, 0.4), 0 0 60px rgba(255, 190, 73, 0.4); }
+}
+
+/* Enhanced Loader Text */
+.loader-text {
+  position: relative;
+  color: #FFBE49;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: fade-pulse 1.5s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(255, 190, 73, 0.5);
+}
+
+/* Dot animation for loading text */
+.loader-text::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #FFBE49;
+  border-radius: 50%;
+  left: 120%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: dot-bounce 1.5s ease-in-out infinite;
+  box-shadow: 
+    6px 0 0 -2px #FFBE49,
+    12px 0 0 -4px #FFBE49;
+}
+
+@keyframes fade-pulse {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
+}
+
+@keyframes dot-bounce {
+  0%, 100% { transform: translateY(-50%) scale(0.8); }
+  50% { transform: translateY(-50%) scale(1.2); }
+}
+
+/* Background animation for loader */
+#page-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 190, 73, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255, 190, 73, 0.05) 0%, transparent 50%);
+  animation: shift 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes shift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 20px); }
+}
+
+/* Loader overlay improvements */
+#page-loader {
+  backdrop-filter: blur(2px);
+}
+
+/* Loading text with progress indicator */
+.loader-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive loader sizing */
+@media (max-width: 640px) {
+  .loader-spinner {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .loader-text {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
 }
 
 /* =============================

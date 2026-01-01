@@ -751,6 +751,10 @@ Tell me what you’re stuck on, and my team will help you with the right next st
 
         document.addEventListener('DOMContentLoaded', async () => {
             const navbarRoot = await injectComponent('../components/Navbar.html', '#navbar-container', 'header');
+            // Navbar initializes itself after injection
+            if (typeof initializeNavbar === 'function') {
+                initializeNavbar();
+            }
             await injectComponent('../components/fotter.html', '#footer-container', 'footer');
         });
     </script>

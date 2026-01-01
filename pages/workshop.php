@@ -550,7 +550,10 @@ function getDescription($workshop, $descField) {
 
         document.addEventListener('DOMContentLoaded', async () => {
             const navbarRoot = await injectComponent('../components/Navbar.html', '#navbar-container', 'header');
-            initNavbar(navbarRoot);
+            // Navbar initializes itself after injection
+            if (typeof initializeNavbar === 'function') {
+                initializeNavbar();
+            }
             await injectComponent('../components/fotter.html', '#footer-container', 'footer');
             initReveal();
         });

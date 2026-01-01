@@ -182,105 +182,130 @@
 	</header>
 
 	<script>
-		const header = document.getElementById('site-header');
-		const menuToggle = document.getElementById('menu-toggle');
-		const menuClose = document.getElementById('menu-close');
-		const mobileMenu = document.getElementById('mobile-menu');
-		const navLinks = document.querySelectorAll('.nav-link');
+		// Initialize navbar functionality
+		const initializeNavbar = () => {
+			const header = document.getElementById('site-header');
+			const menuToggle = document.getElementById('menu-toggle');
+			const menuClose = document.getElementById('menu-close');
+			const mobileMenu = document.getElementById('mobile-menu');
+			const navLinks = document.querySelectorAll('.nav-link');
 
-		// Function to detect current page and set active link
-		const setActivePageLink = () => {
-			const currentPath = window.location.pathname;
-			const pathParts = currentPath.split('/').filter(p => p); // Remove empty parts
-			const currentPage = pathParts[0] || 'home'; // Get first part or default to home
-			
-			navLinks.forEach((link) => {
-				const linkPage = link.getAttribute('data-page');
-				let isActive = false;
+			if (!menuToggle || !menuClose || !mobileMenu) {
+				console.error('Navbar elements not found');
+				return;
+			}
+
+			// Function to detect current page and set active link
+			const setActivePageLink = () => {
+				const currentPath = window.location.pathname;
+				const pathParts = currentPath.split('/').filter(p => p);
+				const currentPage = pathParts[0] || 'home';
 				
-				// Check if link's page matches current page
-				if (linkPage === currentPage) {
-					isActive = true;
-				}
-				// Special case: home page (root or index)
-				else if (linkPage === 'home' && (currentPath === '/' || currentPath === '' || pathParts.length === 0)) {
-					isActive = true;
-				}
-				
-				// Apply or remove active class
-				if (isActive) {
-					link.classList.add('active');
-					link.classList.remove('text-white/80', 'text-white/90');
-					link.classList.add('text-white');
-					link.style.fontWeight = '700';
-					link.style.color = '#FFBE49';
-				} else {
-					link.classList.remove('active');
-					link.classList.add('text-white/80', 'text-white/90');
-					link.style.fontWeight = 'normal';
-					link.style.color = '';
-				}
+				navLinks.forEach((link) => {
+					const linkPage = link.getAttribute('data-page');
+					let isActive = false;
+					
+					if (linkPage === currentPage) {
+						isActive = true;
+					}
+					else if (linkPage === 'home' && (currentPath === '/' || currentPath === '' || pathParts.length === 0)) {
+						isActive = true;
+					}
+					
+					if (isActive) {
+						link.classList.add('active');
+						link.classList.remove('text-white/80', 'text-white/90');
+						link.classList.add('text-white');
+						link.style.fontWeight = '700';
+						link.style.color = '#FFBE49';
+					} else {
+						link.classList.remove('active');
+						link.classList.add('text-white/80', 'text-white/90');
+						link.style.fontWeight = 'normal';
+						link.style.color = '';
+					}
+				});
+			};
+
+			// Open mobile menu
+			const openMenu = () => {
+				mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0');
+				mobileMenu.classList.add('opacity-100', 'translate-x-0');
+				document.body.classList.add('overflow-hidden');
+				mobileMenu.setAttribute('aria-hidden', 'false');
+			};
+
+			// Close mobile menu
+			const closeMenu = () => {
+				mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0');
+				mobileMenu.classList.remove('opacity-100', 'translate-x-0');
+				document.body.classList.remove('overflow-hidden');
+				mobileMenu.setAttribute('aria-hidden', 'true');
+			};
+
+			// Event listeners for menu toggle and close
+			menuToggle.addEventListener('click', (e) => {
+				e.stopPropagation();
+				openMenu();
 			});
-		};
 
-		const openMenu = () => {
-			mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0');
-			mobileMenu.classList.add('opacity-100', 'translate-x-0');
-			document.body.classList.add('overflow-hidden');
-			mobileMenu.setAttribute('aria-hidden', 'false');
-		};
-
-		const closeMenu = () => {
-			mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0');
-			mobileMenu.classList.remove('opacity-100', 'translate-x-0');
-			document.body.classList.remove('overflow-hidden');
-			mobileMenu.setAttribute('aria-hidden', 'true');
-		};
-
-		menuToggle?.addEventListener('click', openMenu);
-		menuClose?.addEventListener('click', closeMenu);
-
-		mobileMenu?.addEventListener('click', (event) => {
-			if (event.target === mobileMenu) {
+			menuClose.addEventListener('click', (e) => {
+				e.stopPropagation();
 				closeMenu();
-			}
-		});
-
-		// Close mobile menu when a link is clicked
-		navLinks.forEach((link) => {
-			link.addEventListener('click', (event) => {
-				// Close mobile menu after a short delay
-				setTimeout(() => {
-					closeMenu();
-				}, 100);
 			});
-		});
 
-		const handleScrollEffects = () => {
-			const scrolled = window.scrollY > 50;
-			header.classList.toggle('shadow-lg', scrolled);
-			header.classList.toggle('bg-opacity-95', scrolled);
+			// Close menu when clicking on backdrop
+			mobileMenu.addEventListener('click', (event) => {
+				if (event.target === mobileMenu) {
+					closeMenu();
+				}
+			});
+
+			// Close menu when clicking on links
+			navLinks.forEach((link) => {
+				link.addEventListener('click', (event) => {
+					setTimeout(() => {
+						closeMenu();
+					}, 100);
+				});
+			});
+
+			// Close menu on escape key
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape') {
+					closeMenu();
+				}
+			});
+
+			// Scroll effects
+			const handleScrollEffects = () => {
+				const scrolled = window.scrollY > 50;
+				header.classList.toggle('shadow-lg', scrolled);
+				header.classList.toggle('bg-opacity-95', scrolled);
+			};
+
+			document.addEventListener('scroll', handleScrollEffects);
+			window.addEventListener('load', () => {
+				setActivePageLink();
+			});
+			
+			// Initialize on page load
+			setActivePageLink();
+			
+			// Check visibility change
+			document.addEventListener('visibilitychange', () => {
+				if (!document.hidden) {
+					setActivePageLink();
+				}
+			});
 		};
 
-		const logo = document.querySelector('a[href="/"]');
-		logo?.addEventListener('click', (event) => {
-			closeMenu();
-		});
-
-		document.addEventListener('scroll', handleScrollEffects);
-		window.addEventListener('load', () => {
-			setActivePageLink();
-		});
-		
-		// Initialize active link on page load
-		setActivePageLink();
-		
-		// Also check when page becomes visible
-		document.addEventListener('visibilitychange', () => {
-			if (!document.hidden) {
-				setActivePageLink();
-			}
-		});
+		// Initialize when DOM is ready
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initializeNavbar);
+		} else {
+			initializeNavbar();
+		}
 	</script>
 </body>
 </html>
