@@ -23,10 +23,10 @@ if ($isLocalDocker) {
 // LIVE (ByetHost / Hostinger)
 // ===============================
 else {
-    $host = "localhost";   // cPanel MySQL host
-    $user = "cpanel_db_user";     // change this
-    $pass = "cpanel_db_password"; // change this
-    $db   = "cpanel_db_name";     // change this
+    $host = "sql212.byethost15.com";   // cPanel MySQL host
+    $user="b15_40662924";     // change this
+    $pass = "5t932bvy"; // change this
+    $db   = "b15_40662924_coachingdb";     // change this
 }
 
 // ===============================
