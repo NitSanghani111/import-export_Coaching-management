@@ -58,10 +58,9 @@
 			}
 		}
 
-		/* Mobile menu darker background for better readability */
+		/* Mobile menu solid black background */
 		#mobile-menu {
-			background: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(25, 25, 25, 0.92)) !important;
-			backdrop-filter: blur(15px);
+			background: #000000 !important;
 		}
 
 		/* Hamburger Menu Button - Always Visible and Working */
@@ -164,9 +163,7 @@
 			</button>
 		</div>
 
-		<div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-black
-         flex flex-col opacity-0 pointer-events-none translate-x-full
-         pt-24 pb-10">
+		<div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-black flex flex-col opacity-0 pointer-events-none translate-x-full pt-24 pb-10">
 
 			<button id="menu-close" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-50"
 				aria-label="Close navigation menu">
@@ -175,8 +172,7 @@
 				<span class="absolute block w-8 h-0.5 bg-white rounded-full -rotate-45"></span>
 			</button>
 
-			<nav class="w-full h-full flex flex-col items-center justify-center
-           text-xl font-semibold space-y-6 bg-black">
+			<nav class="w-full h-full flex flex-col items-center justify-center text-xl font-semibold space-y-6">
 
 				<a class="nav-link text-white/90 hover:text-white transition" href="/" data-page="home">Home</a>
 				<a class="nav-link text-white/90 hover:text-white transition" href="/about" data-page="about">About</a>

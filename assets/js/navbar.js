@@ -1,42 +1,35 @@
-// Navbar behavior controller
+// Simple Navbar Controller
 (() => {
   const state = { initialized: false };
 
-  const setActivePageLink = () => {
-    const navLinks = document.querySelectorAll('.nav-link');
+  const getCurrentPage = () => {
     const path = window.location.pathname.toLowerCase();
-    const parts = path.split('/').filter(Boolean);
-    const last = parts.length ? parts[parts.length - 1] : '';
+    if (path === '/' || path === '' || path === '/index.php') return 'home';
+    if (path.includes('/about')) return 'about';
+    if (path.includes('/program')) return 'program';
+    if (path.includes('/contact')) return 'contact';
+    if (path.includes('/workshop')) return 'workshop';
+    if (path.includes('/blog')) return 'blog';
+    return 'home';
+  };
 
-const deriveSlug = () => {
-  const path = window.location.pathname.toLowerCase();
-
-  // home
-  if (path === '/' || path === '' || path === '/index.php') return 'home';
-
-  // clean routes
-  if (path.startsWith('/about')) return 'about';
-  if (path.startsWith('/program')) return 'program';
-  if (path.startsWith('/contact')) return 'contact';
-  if (path.startsWith('/workshop')) return 'workshop';
-  if (path.startsWith('/blog')) return 'blog';
-
-  return 'home';
-};
-
-
-
-    const currentPage = deriveSlug();
-
+  const setActivePageLink = () => {
+    const currentPage = getCurrentPage();
+    const navLinks = document.querySelectorAll('.nav-link');
+    
     navLinks.forEach(link => {
-      const linkPage = (link.getAttribute('data-page') || '').toLowerCase();
-      const active = linkPage === currentPage || (linkPage === 'home' && currentPage === 'home');
-      link.classList.toggle('text-white', active);
-      link.classList.toggle('text-white/80', !active);
-      link.classList.toggle('text-white/90', !active);
-      link.classList.toggle('active', active);
-      link.style.fontWeight = active ? '700' : '400';
-      link.style.color = active ? '#FFBE49' : '';
+      const page = link.getAttribute('data-page').toLowerCase();
+      const isActive = page === currentPage;
+      
+      if (isActive) {
+        link.classList.add('active');
+        link.style.color = '#FFBE49';
+        link.style.fontWeight = '700';
+      } else {
+        link.classList.remove('active');
+        link.style.color = '';
+        link.style.fontWeight = '400';
+      }
     });
   };
 
