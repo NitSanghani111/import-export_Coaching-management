@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: parthj/htdocs/
+          server-dir: parthj.22web.org/htdocs/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
