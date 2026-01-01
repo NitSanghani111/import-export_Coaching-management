@@ -11,6 +11,8 @@
     const deriveSlug = () => {
       // Handle clean URLs first
       if (path === '/' || path === '' || /\/index\.(php|html?)$/.test(path)) return 'home';
+      if (parts.length === 1 && !last.includes('.')) return 'home';
+      if (path.includes('/home')) return 'home';
       if (path.includes('/about')) return 'about';
       if (path.includes('/program')) return 'program';
       if (path.includes('/contact')) return 'contact';
