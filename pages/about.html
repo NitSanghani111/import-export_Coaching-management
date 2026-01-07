@@ -245,7 +245,8 @@
 	</main>
 
 	<div id="footer-container"></div>
-
+<script src="../assets/js/loader.js"></script>
+	<script src="../assets/js/navbar.js"></script>
 	<script>
 		const injectComponent = async (src, selector, pick) => {
 			const target = document.querySelector(selector);
@@ -283,15 +284,16 @@
 		};
 
 		document.addEventListener('DOMContentLoaded', async () => {
-			const navbarRoot = await injectComponent('../components/Navbar.html', '#navbar-container', 'header');
-			if (typeof window.initNavbar === 'function') {
-				window.initNavbar();
-			}
+			const navbarRoot = await injectComponent('/components/Navbar.html', '#navbar-container');
+			setTimeout(() => {
+				if (typeof window.initNavbar === 'function') {
+					window.initNavbar();
+				}
+			}, 150);
 			await injectComponent('../components/fotter.html', '#footer-container', 'footer');
 			initReveal();
 		});
 	</script>
-	<script src="../assets/js/loader.js"></script>
-	<script src="../assets/js/navbar.js"></script>
+	
 </body>
 </html>

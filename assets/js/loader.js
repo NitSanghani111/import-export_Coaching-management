@@ -5,12 +5,21 @@ document.addEventListener('DOMContentLoaded', function() {
   const loader = document.getElementById('page-loader');
   if (!loader) return;
 
+  // Minimum display time for smooth UX (avoid flash)
+  const minDisplayTime = 800;
+  const startTime = performance.now();
+
   requestAnimationFrame(() => {
-    loader.classList.add('fade-out');
+    const elapsed = performance.now() - startTime;
+    const delay = Math.max(0, minDisplayTime - elapsed);
+    
     setTimeout(() => {
-      loader.style.display = 'none';
-      loader.remove();
-    }, 500);
+      loader.classList.add('fade-out');
+      setTimeout(() => {
+        loader.style.display = 'none';
+        loader.remove();
+      }, 500);
+    }, delay);
   });
 });
 
@@ -82,16 +91,6 @@ function getCachedData(key) {
 function setCachedData(key, data) {
   cache.set(key, { data, timestamp: Date.now() });
 }
-
-// Disable cache busting for static assets
-window.addEventListener('load', () => {
-  // Set cache headers for service worker if available
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(() => {
-      // Service worker not available, continue without it
-    });
-  }
-});
 
 // Performance optimization: defer non-critical scripts
 document.addEventListener('DOMContentLoaded', () => {

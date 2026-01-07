@@ -41,9 +41,19 @@ const injectComponent = async (src, selector, pick) => {
     if (!res.ok) throw new Error(`Failed to load ${src}: ${res.status}`);
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    const node = pick ? doc.querySelector(pick) : doc.body;
-    target.innerHTML = '';
-    if (node) target.appendChild(node.cloneNode(true));
+    
+    // For navbar, inject both header and mobile menu
+    if (pick === 'header') {
+      const header = doc.querySelector('header');
+      const mobileMenu = doc.querySelector('#mobile-menu');
+      target.innerHTML = '';
+      if (header) target.appendChild(header.cloneNode(true));
+      if (mobileMenu) target.appendChild(mobileMenu.cloneNode(true));
+    } else {
+      const node = pick ? doc.querySelector(pick) : doc.body;
+      target.innerHTML = '';
+      if (node) target.appendChild(node.cloneNode(true));
+    }
     return target;
   } catch (err) {
     console.error(err);
@@ -63,10 +73,12 @@ const initReveal = () => {
 document.addEventListener('DOMContentLoaded', async () => {
   const navbarRoot = await injectComponent('components/Navbar.html', '#navbar-container', 'header');
   
-  // Call navbar initialization after injection
-  if (typeof window.initNavbar === 'function') {
-    window.initNavbar();
-  }
+  // Wait a moment for DOM to settle, then call navbar initialization
+  setTimeout(() => {
+    if (typeof window.initNavbar === 'function') {
+      window.initNavbar();
+    }
+  }, 150);
   
   await injectComponent('components/fotter.html', '#footer-container', 'footer');
   initReveal();
@@ -74,19 +86,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Reviews carousel controls (global for onclick)
 let indexa = 0;
-const track = document.getElementById("reviewTrack");
-const total = track ? track.children.length : 0;
 
 function nextReview() {
+  const track = document.getElementById("reviewTrack");
   if (!track) return;
-  if (indexa < total - 1) indexa++;
-  track.style.transform = `translateX(-${indexa * 100}%)`;
+  const total = track.children.length;
+  if (indexa < total - 1) {
+    indexa++;
+    // Account for gap-6 (24px) between cards
+    const cardWidth = track.children[0].offsetWidth;
+    const gap = 24; // gap-6 = 24px
+    track.style.transform = `translateX(-${indexa * (cardWidth + gap)}px)`;
+  }
 }
 
 function prevReview() {
+  const track = document.getElementById("reviewTrack");
   if (!track) return;
-  if (indexa > 0) indexa--;
-  track.style.transform = `translateX(-${indexa * 100}%)`;
+  if (indexa > 0) {
+    indexa--;
+    // Account for gap-6 (24px) between cards
+    const cardWidth = track.children[0].offsetWidth;
+    const gap = 24; // gap-6 = 24px
+    track.style.transform = `translateX(-${indexa * (cardWidth + gap)}px)`;
+  }
 }
 
 // Expose to global scope for inline onclick

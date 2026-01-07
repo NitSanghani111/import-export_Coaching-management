@@ -2,16 +2,20 @@
 (() => {
   const state = { initialized: false };
 
-  const getCurrentPage = () => {
-    const path = window.location.pathname.toLowerCase();
-    if (path === '/' || path === '' || path === '/index.php' || path.includes('index.php')) return 'home';
-    if (path.includes('/about') || path.includes('about.html')) return 'about';
-    if (path.includes('/program') || path.includes('program.html')) return 'program';
-    if (path.includes('/contact') || path.includes('contact.html')) return 'contact';
-    if (path.includes('/workshop') || path.includes('workshop.php')) return 'workshop';
-    if (path.includes('/blog')) return 'blog';
-    return 'home';
-  };
+const getCurrentPage = () => {
+	const path = window.location.pathname.toLowerCase();
+	const filename = path.split('/').pop();
+
+	// Check filename or path segments
+	if (path === '/' || path.endsWith('/') || filename === '' || filename === 'index.php') return 'home';
+	if (path.includes('about') || filename === 'about.html') return 'about';
+	if (path.includes('program') || filename === 'program.html') return 'program';
+	if (path.includes('contact') || filename === 'contact.html') return 'contact';
+	if (path.includes('workshop') || filename === 'workshop.php') return 'workshop';
+	if (path.includes('blog') || filename.includes('blog')) return 'blog';
+
+	return 'home';
+};
 
   const setActivePageLink = () => {
     const currentPage = getCurrentPage();
@@ -37,40 +41,53 @@
   const bindNavbar = () => {
     const header = document.getElementById('site-header');
     const menuToggle = document.getElementById('menu-toggle');
-    const menuClose = document.getElementById('menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    if (!header || !menuToggle || !menuClose || !mobileMenu) return false;
+    if (!header || !menuToggle || !mobileMenu) return false;
     if (state.initialized) return true;
 
-    const openMenu = () => {
-      mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0');
-      mobileMenu.classList.add('opacity-100', 'translate-x-0');
-      document.body.classList.add('overflow-hidden');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-    };
+    const isMobileView = () => window.matchMedia('(max-width: 767px)').matches;
 
-    const closeMenu = () => {
-      mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0');
-      mobileMenu.classList.remove('opacity-100', 'translate-x-0');
-      document.body.classList.remove('overflow-hidden');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-    };
+  const setToggleState = (isOpen) => {
+	menuToggle.classList.toggle('open', isOpen);
+	menuToggle.setAttribute(
+		'aria-label',
+		isOpen ? 'Close navigation menu' : 'Open navigation menu'
+	);
+};
 
-    menuToggle.addEventListener('click', e => {
-      e.stopPropagation();
-      openMenu();
-    });
 
-    menuClose.addEventListener('click', e => {
-      e.stopPropagation();
-      closeMenu();
-    });
+const openMenu = () => {
+	mobileMenu.classList.remove('pointer-events-none', 'opacity-0', 'scale-95');
+	mobileMenu.classList.add('opacity-100', 'scale-100');
 
-    mobileMenu.addEventListener('click', event => {
-      if (event.target === mobileMenu) closeMenu();
-    });
+	document.body.classList.add('menu-open');
+	setToggleState(true);   // 🔥 THIS LINE MAKES X ICON APPEAR
+};
+
+const closeMenu = () => {
+	mobileMenu.classList.add('pointer-events-none', 'opacity-0', 'scale-95');
+	mobileMenu.classList.remove('opacity-100', 'scale-100');
+
+	document.body.classList.remove('menu-open');
+	setToggleState(false);  // 🔥 THIS LINE RESTORES HAMBURGER
+};
+
+
+menuToggle.addEventListener('click', (e) => {
+	e.preventDefault();
+	e.stopPropagation();
+
+	const isClosed = mobileMenu.classList.contains('opacity-0');
+
+	if (isClosed) {
+		openMenu();
+	} else {
+		closeMenu();
+	}
+});
+
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => setTimeout(closeMenu, 80));
@@ -90,6 +107,11 @@
     handleScrollEffects();
     setActivePageLink();
 
+    // Close the mobile drawer if the viewport is no longer mobile sized
+    window.addEventListener('resize', () => {
+      if (!isMobileView()) closeMenu();
+    });
+
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) setActivePageLink();
     });
@@ -99,10 +121,10 @@
   };
 
   window.initNavbar = () => {
-    const success = bindNavbar();
-    if (!success) {
-      // Retry after a tick if navbar not yet injected
-      setTimeout(bindNavbar, 50);
-    }
+
+  	const ok = bindNavbar();
+	if (!ok) {
+		console.error('Navbar elements missing on this page');
+	}
   };
 })();

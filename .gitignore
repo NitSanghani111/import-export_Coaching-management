@@ -15,7 +15,7 @@ Dockerfile
 # ===============================
 # User uploads (runtime data)
 # ===============================
-uploads/
+
 admin/workshops_img/
 *.sql
 coachingdb.sql

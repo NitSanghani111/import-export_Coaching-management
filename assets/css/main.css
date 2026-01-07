@@ -780,13 +780,54 @@ button, a[href], input[type="button"], input[type="submit"] {
   justify-content: center;
   opacity: 1;
   visibility: visible;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  gap: 40px;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 30px;
+}
+
+/* Loader Logo Container */
+.loader-logo-container {
+  position: relative;
+  margin-bottom: 10px;
+  animation: logoFloatLoad 2s ease-in-out infinite;
+}
+
+/* Loader Logo Styling */
+.loader-logo {
+  width: 100px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(255, 190, 73, 0.4));
+  animation: logoFadeIn 0.6s ease-out;
+}
+
+@keyframes logoFloatLoad {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes logoFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 #page-loader.fade-out {
   opacity: 0;
   visibility: hidden;
+}
+
+/* Ensure loader is above all content except mobile menu */
+#page-loader {
+  z-index: 9999 !important;
 }
 
 /* Enhanced Loader Spinner */
@@ -903,6 +944,27 @@ button, a[href], input[type="button"], input[type="submit"] {
   backdrop-filter: blur(2px);
 }
 
+/* Keep drawer hidden until opened */
+#mobile-menu {
+  display: none;
+}
+
+body.menu-open #mobile-menu {
+  display: flex;
+}
+
+/* Keep drawer fully hidden when in closed state */
+#mobile-menu.pointer-events-none {
+  visibility: hidden;
+}
+
+/* Hide the mobile drawer on tablet/desktop viewports */
+@media (min-width: 768px) {
+  #mobile-menu {
+    display: none !important;
+  }
+}
+
 /* Loading text with progress indicator */
 .loader-text {
   display: flex;
@@ -912,13 +974,18 @@ button, a[href], input[type="button"], input[type="submit"] {
 
 /* Responsive loader sizing */
 @media (max-width: 640px) {
-  .loader-spinner {
+  .loader-logo {
     width: 80px;
-    height: 80px;
+    height: 100px;
+  }
+  
+  .loader-spinner {
+    width: 70px;
+    height: 70px;
   }
   
   .loader-text {
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 2px;
   }
 }

@@ -32,9 +32,17 @@
 		};
 	</script>
 	<style>
-		/* Additional overrides for the mobile menu transition */
+		/* Mobile menu smooth transition */
 		.mobile-menu {
-			transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+			transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+			            opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+		
+		/* Prevent body scroll when menu is open */
+		body.menu-open {
+			overflow: hidden;
+			position: fixed;
+			width: 100%;
 		}
 
 		body {
@@ -53,54 +61,43 @@
 		/* Navbar header responsive background */
 		@media (max-width: 768px) {
 			#site-header {
-				background: linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(25, 25, 25, 0.8)) !important;
-				backdrop-filter: blur(12px);
+				background: rgb(0, 0, 0) !important;
+				
 			}
 		}
 
-		/* Mobile menu solid black background */
-		#mobile-menu {
-			background: #000000 !important;
-		}
+	#menu-toggle {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+	width: 44px;
+	height: 44px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+}
 
-		/* Hamburger Menu Button - Always Visible and Working */
-		#menu-toggle {
-			display: flex !important;
-			flex-direction: column;
-			gap: 6px;
-			padding: 8px;
-			cursor: pointer;
-			z-index: 51 !important;
-			background: transparent;
-			border: none;
-			width: 44px;
-			height: 44px;
-			align-items: center;
-			justify-content: center;
-			position: relative;
-		}
+#menu-toggle span {
+	width: 24px;
+	height: 2px;
+	background: #fff;
+	border-radius: 2px;
+	transition: transform 0.3s ease, opacity 0.2s ease;
+}
 
-		#menu-toggle:active,
-		#menu-toggle:hover {
-			opacity: 0.8;
-		}
+/* OPEN STATE → X ICON */
+#menu-toggle.open span:nth-child(1) {
+	transform: translateY(8px) rotate(45deg);
+}
 
-		#menu-toggle span {
-			display: block;
-			width: 24px;
-			height: 2px;
-			background-color: #ffffff;
-			transition: all 0.3s ease-in-out;
-			border-radius: 2px;
-		}
+#menu-toggle.open span:nth-child(2) {
+	opacity: 0;
+}
 
-		#menu-toggle span:nth-child(1) {
-			margin-top: 0;
-		}
-
-		#menu-toggle span:nth-child(3) {
-			margin-bottom: 0;
-		}
+#menu-toggle.open span:nth-child(3) {
+	transform: translateY(-8px) rotate(-45deg);
+}
 
 		/* Hide nav on mobile, show hamburger */
 		@media (max-width: 768px) {
@@ -109,7 +106,7 @@
 			}
 		}
 
-		/* Active nav link styling */
+		/* Desktop active state */
 		.nav-link.active {
 			color: #FFBE49 !important;
 			font-weight: 700;
@@ -127,12 +124,66 @@
 			height: 2px;
 			background: #FFBE49;
 		}
+
+		/* Mobile link blocks */
+		#mobile-menu .nav-link {
+			display: block;
+			position: relative;
+			font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			font-weight: 600;
+			letter-spacing: 0.2px;
+			background: #0d0d0d;
+			border: 1px solid #1f1f1f;
+			transition: all 0.2s ease;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		#mobile-menu .nav-link.active {
+			background: #1a1202;
+			color: #FFBE49 !important;
+			border-color: #FFBE49 !important;
+			box-shadow: 0 8px 30px rgba(255, 190, 73, 0.28);
+			font-weight: 700;
+		}
+.nav-link.active {
+	color: #FFBE49 !important;
+	font-weight: 700;
+}
+
+		#mobile-menu .nav-link:active {
+			background: #241a08 !important;
+			transform: scale(0.97);
+		}
+		
+		/* Stagger animation for nav links */
+		#mobile-menu.opacity-100 .nav-link {
+			animation: slideInRight 0.3s ease forwards;
+			opacity: 0;
+		}
+		
+		#mobile-menu.opacity-100 .nav-link:nth-child(1) { animation-delay: 0.05s; }
+		#mobile-menu.opacity-100 .nav-link:nth-child(2) { animation-delay: 0.1s; }
+		#mobile-menu.opacity-100 .nav-link:nth-child(3) { animation-delay: 0.15s; }
+		#mobile-menu.opacity-100 .nav-link:nth-child(4) { animation-delay: 0.2s; }
+		#mobile-menu.opacity-100 .nav-link:nth-child(5) { animation-delay: 0.25s; }
+		#mobile-menu.opacity-100 .nav-link:nth-child(6) { animation-delay: 0.3s; }
+		
+		@keyframes slideInRight {
+			from {
+				opacity: 0;
+				transform: translateX(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
 	</style>
 </head>
 
-<body class="antialiased bg-black text-white">
+<body class="antialiased bg-black-1000 text-white">
 	<header id="site-header"
-		class="fixed top-0 inset-x-0 z-50 bg-gradient-to-r from-white/5 to-[#191919] backdrop-blur-md shadow-sm transition-shadow duration-300">
+		class="fixed top-0 inset-x-0 z-[9998] bg-black backdrop-blur-md shadow-sm transition-shadow duration-300">
 		<div class="max-w-7xl mx-auto h-20 px-6 md:px-12 lg:px-20 flex items-center justify-between">
 			<a href="/" class="flex items-center gap-3 group" aria-label="Parth Jethva home">
 				<img src="../img/design/Logo.svg" alt="Parth Jethva Logo"
@@ -162,30 +213,32 @@
 				<span class="w-6 h-0.5 bg-white rounded block"></span>
 			</button>
 		</div>
-
-		<div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-black flex flex-col opacity-0 pointer-events-none translate-x-full pt-24 pb-10">
-
-			<button id="menu-close" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-50"
-				aria-label="Close navigation menu">
-				<span class="sr-only">Close menu</span>
-				<span class="absolute block w-8 h-0.5 bg-white rounded-full rotate-45"></span>
-				<span class="absolute block w-8 h-0.5 bg-white rounded-full -rotate-45"></span>
-			</button>
-
-			<nav class="w-full h-full flex flex-col items-center justify-center text-xl font-semibold space-y-6">
-
-				<a class="nav-link text-white/90 hover:text-white transition" href="/" data-page="home">Home</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/about" data-page="about">About</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/program"
-					data-page="program">Programs</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/contact"
-					data-page="contact">Contact</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/workshop"
-					data-page="workshop">Workshop</a>
-				<a class="nav-link text-white/90 hover:text-white transition" href="/blog" data-page="blog">Blog</a>
-			</nav>
-		</div>
 	</header>
+
+	<!-- Mobile Menu Drawer - Outside header for proper layering -->
+<div id="mobile-menu"
+  class="mobile-menu fixed inset-0 bg-black flex flex-col
+         pointer-events-none opacity-0 scale-95 transition-all duration-300"
+  style="z-index: 9997;">
+
+		<!-- Navigation links - Padding top to avoid header overlap -->
+		<nav class="flex-1 flex flex-col items-stretch justify-center px-6 py-10 mt-20 space-y-3 relative z-10">
+			<a class="nav-link text-center text-white text-xl font-semibold py-5 px-6 rounded-xl bg-white/5 hover:bg-white/10 hover:text-[#FFBE49] active:scale-[0.98] transition-all duration-300 border border-white/10" href="/" data-page="home">Home</a>
+			<a class="nav-link text-center text-white text-xl font-semibold py-5 px-6 rounded-xl bg-white/5 hover:bg-white/10 hover:text-[#FFBE49] active:scale-[0.98] transition-all duration-300 border border-white/10" href="/about" data-page="about">About</a>
+			<a class="nav-link text-center text-white text-xl font-semibold py-5 px-6 rounded-xl bg-white/5 hover:bg-white/10 hover:text-[#FFBE49] active:scale-[0.98] transition-all duration-300 border border-white/10" href="/program" data-page="program">Programs</a>
+			<a class="nav-link text-center text-white text-xl font-semibold py-5 px-6 rounded-xl bg-white/5 hover:bg-white/10 hover:text-[#FFBE49] active:scale-[0.98] transition-all duration-300 border border-white/10" href="/contact" data-page="contact">Contact</a>
+			<a class="nav-link text-center text-white text-xl font-semibold py-5 px-6 rounded-xl bg-white/5 hover:bg-white/10 hover:text-[#FFBE49] active:scale-[0.98] transition-all duration-300 border border-white/10" href="/workshop" data-page="workshop">Workshop</a>
+			<a class="nav-link text-center text-white text-xl font-semibold py-5 px-6 rounded-xl bg-white/5 hover:bg-white/10 hover:text-[#FFBE49] active:scale-[0.98] transition-all duration-300 border border-white/10" href="/blog" data-page="blog">Blog</a>
+		</nav>
+
+		<div class="px-6 py-5 border-t border-white/10 text-center text-white/40 text-sm relative z-10">
+			<p>© 2026 Parth Jethva</p>
+		</div>
+	</div>
+
+	<!-- Include Navbar JavaScript -->
+	<script src="/assets/js/navbar.js"></script>
+
 </body>
 
 </html>

@@ -65,8 +65,11 @@ if ($result) {
 
 <body class="bg-black text-white">
 
-<!-- Page Loader -->
+<!-- Page Loader with Logo -->
 <div id="page-loader">
+  <div class="loader-logo-container">
+    <img src="img/design/Logo.svg" alt="Loading" class="loader-logo" />
+  </div>
   <div class="loader-spinner"></div>
   <div class="loader-text">Loading</div>
 </div>
@@ -197,6 +200,8 @@ if ($result) {
       <img
         src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
         class="w-full h-48 sm:h-56 object-cover rounded-t-[28px]"
+        loading="eager"
+        alt="Program image"
       />
 
       <!-- Content -->
@@ -226,6 +231,8 @@ if ($result) {
       <img
         src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
         class="w-full h-48 sm:h-56 object-cover rounded-t-[28px]"
+        loading="eager"
+        alt="Program image"
       />
 
       <!-- Content -->
@@ -421,7 +428,7 @@ if ($result) {
 
   <!-- TITLE -->
   <h2 class="text-4xl md:text-5xl font-serif mb-14">
-    Reviews
+   Testimonials
   </h2>
 
   <!-- OUTER FRAME -->
@@ -442,10 +449,10 @@ if ($result) {
     <div class="relative z-10 max-w-4xl mx-auto overflow-hidden">
 
       <!-- TRACK -->
-      <div id="reviewTrack" class="flex transition-transform duration-500 ease-out">
+      <div id="reviewTrack" class="flex gap-6 transition-transform duration-1000 ease-out">
 
         <!-- REVIEW 1 -->
-        <div class="min-w-full bg-white text-black rounded-[22px] px-10 py-8 review-card">
+        <div class="min-w-full bg-white text-black rounded-[22px] px-10 py-8 review-card flex-shrink-0">
           <div class="flex items-center gap-4 mb-3">
             <div class="w-14 h-14 rounded-full bg-gray-300 flex items-center justify-center">
               👤
@@ -459,7 +466,7 @@ if ($result) {
             </div>
           </div>
 
-          <hr class="border-black/70 my-4" />
+          <hr class="border-black/70 my-10" />
 
           <div class="flex justify-between items-center mb-4">
             <div class="text-yellow-500 text-lg">★★★★☆</div>
@@ -473,7 +480,7 @@ if ($result) {
         </div>
 
         <!-- REVIEW 2 -->
-        <div class="min-w-full bg-white text-black rounded-[22px] px-10 py-8 review-card">
+        <div class="min-w-full bg-white text-black rounded-[22px] px-10 py-8 review-card flex-shrink-0">
           <div class="flex items-center gap-4 mb-3">
             <div class="w-14 h-14 rounded-full bg-gray-300 flex items-center justify-center">
               👤

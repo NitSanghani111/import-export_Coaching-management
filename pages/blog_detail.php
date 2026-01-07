@@ -325,35 +325,54 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
     </div>
   </article>
   <div id="footer-container"></div>
-  <script>
-            const injectComponent = async (src, selector, pick) => {
-            const target = document.querySelector(selector);
-            if (!target) return null;
-            try {
-                const res = await fetch(src);
-                if (!res.ok) throw new Error(`Failed to load ${src}: ${res.status}`);
-                const html = await res.text();
-                const doc = new DOMParser().parseFromString(html, 'text/html');
-                const node = pick ? doc.querySelector(pick) : doc.body;
-                target.innerHTML = '';
-                if (node) target.appendChild(node.cloneNode(true));
-                return target;
-            } catch (err) {
-                console.error(err);
-                target.innerHTML = '<div class="text-red-500">Unable to load component.</div>';
-                return null;
-            }
-        };
+<script src="../assets/js/loader.js"></script>
+	<script src="../assets/js/navbar.js"></script>
+	<script>
+		const injectComponent = async (src, selector, pick) => {
+			const target = document.querySelector(selector);
+			if (!target) return null;
+			try {
+				const res = await fetch(src);
+				if (!res.ok) throw new Error(`Failed to load ${src}: ${res.status}`);
+				const html = await res.text();
+				const doc = new DOMParser().parseFromString(html, 'text/html');
+				const node = pick ? doc.querySelector(pick) : doc.body;
+				target.innerHTML = '';
+				if (node) target.appendChild(node.cloneNode(true));
+				return target;
+			} catch (err) {
+				console.error(err);
+				target.innerHTML = '<div class="text-red-500">Unable to load component.</div>';
+				return null;
+			}
+		};
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            const navbarRoot = await injectComponent('../components/Navbar.html', '#navbar-container', 'header');
-          if (typeof window.initNavbar === 'function') {
-            window.initNavbar();
-          }
-            await injectComponent('../components/fotter.html', '#footer-container', 'footer');
-        });
-  </script>
-      <script src="../assets/js/navbar.js"></script>
-  <script src="../assets/js/loader.js"></script>
+		const initReveal = () => {
+			const items = document.querySelectorAll('.reveal');
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('revealed');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.15 }
+			);
+			items.forEach((item) => observer.observe(item));
+		};
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			const navbarRoot = await injectComponent('/components/Navbar.html', '#navbar-container');
+			setTimeout(() => {
+				if (typeof window.initNavbar === 'function') {
+					window.initNavbar();
+				}
+			}, 150);
+			await injectComponent('../components/fotter.html', '#footer-container', 'footer');
+			initReveal();
+		});
+	</script>
 </body>
 </html>
