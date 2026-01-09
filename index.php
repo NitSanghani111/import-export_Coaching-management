@@ -424,86 +424,86 @@ if ($result) {
 </section>
 
 
-<section class="max-w-7xl mx-auto px-6 py-32">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-24 md:py-32">
 
   <!-- TITLE -->
-  <h2 class="text-4xl md:text-5xl font-serif mb-14">
+  <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-6 sm:mb-12 md:mb-14">
    Testimonials
   </h2>
 
   <!-- OUTER FRAME -->
-  <div class="relative rounded-[28px] border border-white/70 px-10 py-20 overflow-hidden">
+  <div class="testimonial-frame relative rounded-3xl sm:rounded-[28px] border border-white/70 px-3 sm:px-6 md:px-10 py-8 sm:py-16 md:py-20 overflow-hidden">
 
     <!-- BACKGROUND RINGS -->
-    <div class="glass-ring ring-lg left-10 top-20"></div>
-    <div class="glass-ring ring-md right-32 top-16"></div>
-    <div class="glass-ring ring-lg left-1/2 bottom-[-90px] -translate-x-1/2"></div>
+    <div class="glass-ring ring-lg hidden sm:block left-10 top-20"></div>
+    <div class="glass-ring ring-md hidden md:block right-32 top-16"></div>
+    <div class="glass-ring ring-lg hidden sm:block left-1/2 bottom-[-90px] -translate-x-1/2"></div>
 
     <!-- ARROWS -->
-    <div class="absolute right-10 top-10 flex gap-4 z-20">
-      <button class="arrow-btn" onclick="prevReview()">←</button>
-      <button class="arrow-btn" onclick="nextReview()">→</button>
+    <div class="testimonial-arrows absolute right-3 sm:right-6 md:right-10 top-3 sm:top-6 md:top-10 flex gap-2 sm:gap-3 md:gap-4 z-20">
+      <button class="arrow-btn z-50 shadow-md bg-black/70" onclick="prevReview()">←</button>
+      <button class="arrow-btn z-50 shadow-md bg-black/70" onclick="nextReview()">→</button>
     </div>
 
     <!-- CAROUSEL VIEWPORT -->
     <div class="relative z-10 max-w-4xl mx-auto overflow-hidden">
 
       <!-- TRACK -->
-      <div id="reviewTrack" class="flex gap-6 transition-transform duration-1000 ease-out">
+      <div id="reviewTrack" class="flex gap-4 sm:gap-6 transition-transform duration-1000 ease-out">
 
         <!-- REVIEW 1 -->
-        <div class="min-w-full bg-white text-black rounded-[22px] px-10 py-8 review-card flex-shrink-0">
-          <div class="flex items-center gap-4 mb-3">
-            <div class="w-14 h-14 rounded-full bg-gray-300 flex items-center justify-center">
+        <div class="max-w-[100%] bg-white text-black rounded-2xl sm:rounded-[22px] px-4 sm:px-6 md:px-10 py-4 sm:py-7 md:py-8 review-card flex-shrink-0">
+          <div class="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-3">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0 text-sm sm:text-base">
               👤
             </div>
-            <div>
-              <h3 class="text-2xl font-serif">Lorem ipsum dolor</h3>
-              <p class="text-sm text-gray-500 flex gap-3">
+            <div class="min-w-0">
+              <h3 class="text-lg sm:text-2xl font-serif leading-tight">Lorem ipsum dolor</h3>
+              <p class="text-xs sm:text-sm text-gray-500 flex flex-wrap gap-1.5 sm:gap-3">
                 <span>1 Review</span>
                 <span>📍 India</span>
               </p>
             </div>
           </div>
 
-          <hr class="border-black/70 my-10" />
+          <hr class="border-black/70 my-3 sm:my-6 md:my-10" />
 
-          <div class="flex justify-between items-center mb-4">
-            <div class="text-yellow-500 text-lg">★★★★☆</div>
-            <div class="text-sm text-gray-500">Date of review</div>
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1 sm:gap-0 mb-2 sm:mb-4">
+            <div class="text-yellow-500 text-sm sm:text-lg">★★★★☆</div>
+            <div class="text-xs sm:text-sm text-gray-500">Date of review</div>
           </div>
 
-          <h4 class="text-lg font-semibold mb-2">Brief Review</h4>
-          <p class="text-gray-700 leading-relaxed">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          <h4 class="text-sm sm:text-lg font-semibold mb-1.5 sm:mb-2">Brief Review</h4>
+          <p class="text-xs sm:text-base text-gray-700 leading-snug sm:leading-relaxed">
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco Excepteur sint occaecat cupidatat non proident,
           </p>
         </div>
 
         <!-- REVIEW 2 -->
-        <div class="min-w-full bg-white text-black rounded-[22px] px-10 py-8 review-card flex-shrink-0">
-          <div class="flex items-center gap-4 mb-3">
-            <div class="w-14 h-14 rounded-full bg-gray-300 flex items-center justify-center">
+        <div class="min-w-full bg-white text-black rounded-2xl sm:rounded-[22px] px-4 sm:px-6 md:px-10 py-4 sm:py-7 md:py-8 review-card flex-shrink-0">
+          <div class="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-3">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0 text-sm sm:text-base">
               👤
             </div>
-            <div>
-              <h3 class="text-2xl font-serif">John Doe</h3>
-              <p class="text-sm text-gray-500 flex gap-3">
+            <div class="min-w-0">
+              <h3 class="text-lg sm:text-2xl font-serif leading-tight">John Doe</h3>
+              <p class="text-xs sm:text-sm text-gray-500 flex flex-wrap gap-1.5 sm:gap-3">
                 <span>3 Reviews</span>
                 <span>📍 USA</span>
               </p>
             </div>
           </div>
 
-          <hr class="border-black/70 my-4" />
+          <hr class="border-black/70 my-3 sm:my-6 md:my-10" />
 
-          <div class="flex justify-between items-center mb-4">
-            <div class="text-yellow-500 text-lg">★★★★★</div>
-            <div class="text-sm text-gray-500">Date of review</div>
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1 sm:gap-0 mb-2 sm:mb-4">
+            <div class="text-yellow-500 text-sm sm:text-lg">★★★★★</div>
+            <div class="text-xs sm:text-sm text-gray-500">Date of review</div>
           </div>
 
-          <h4 class="text-lg font-semibold mb-2">Excellent Experience</h4>
-          <p class="text-gray-700 leading-relaxed">
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <h4 class="text-sm sm:text-lg font-semibold mb-1.5 sm:mb-2">Excellent Experience</h4>
+          <p class="text-xs sm:text-base text-gray-700 leading-snug sm:leading-relaxed">
+            Excepteur sint occaecat cupidatat non proident,Excepteur sint occaecat cupidatat non proident,
           </p>
         </div>
 

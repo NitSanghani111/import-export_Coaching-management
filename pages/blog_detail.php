@@ -63,7 +63,7 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
     
     body {
       background: #000;
-      min-height: 100vh;
+    
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: #fff;
     }
@@ -105,8 +105,8 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
     }
 
     /* Article container polish */
-    .article-container { max-width: 900px; margin: 0 auto; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.65)); border-radius: 14px; box-shadow: 0 22px 60px rgba(0,0,0,0.7); padding: 28px; }
-    @media (max-width: 768px) { .article-container { padding: 18px; margin: 0 12px; border-radius: 10px; } }
+    .article-container { max-width: 1400px; margin: 0 auto; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.65)); border-radius: 14px; box-shadow: 0 22px 60px rgba(0,0,0,0.7); padding: 40px 48px; }
+    @media (max-width: 768px) { .article-container { padding: 20px 16px; margin: 0 12px; border-radius: 10px; } }
 
     /* Prose Styling */
     .prose-content h2 {
@@ -194,13 +194,20 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
     .share-box a { color: #f3d88b; }
     .share-box a:hover { background: rgba(255,255,255,0.06); color: #fff; }
 
+    /* Hide bottom share section on mobile, show only on desktop */
+    @media (max-width: 980px) {
+      .share-box {
+        display: none;
+      }
+    }
+
     /* Layout for two-column article (meta + main) */
-    .article-layout { display: grid; grid-template-columns: 280px 1fr; gap: 36px; align-items: start; }
-    @media (max-width: 980px) { .article-layout { grid-template-columns: 1fr; } .meta-column { order: 2; } .article-main { order: 1; } }
+    .article-layout { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 980px) { .article-layout { grid-template-columns: 1fr; gap: 24px; } .meta-column { order: 2; } .article-main { order: 1; } }
     .meta-column .meta-inner { position: sticky; top: 80px; }
     .meta-card { background: rgba(255,255,255,0.02); }
-    .article-main .feature-image { border-radius: 10px; }
-    .prose-content { margin-top: 18px; color: #e8e3da; font-size: 1.02rem; line-height: 1.9; }
+    .article-main .feature-image { border-radius: 10px; max-width: 100%; }
+    .prose-content { margin-top: 18px; color: #e8e3da; font-size: 1.02rem; line-height: 1.9; max-width: 900px; }
     .prose-content blockquote { border-left: 4px solid rgba(184,134,11,0.2); padding-left: 16px; color: #f4ecd3; }
   </style>
 </head>
@@ -215,7 +222,7 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
     <div id="navbar-container"></div>
   <!-- ================= BACK NAVIGATION ================= -->
   <div class="bg-gradient-to-r from-black via-black to-gray-900 border-b border-gray-800">
-    <div class="max-w-4xl mx-auto px-6 md:px-10 py-6">
+    <div class="max-w-[1400px] mx-auto px-8 md:px-12 py-6">
       <a href="/blog" class="back-button inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -226,7 +233,7 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
   </div>
 
   <!-- ================= ARTICLE CONTENT ================= -->
-  <article class="bg-black min-h-screen">
+  <article class="bg-black ">
     <div class="article-container">
 
       <!-- Article Layout: meta column + main content -->
@@ -280,16 +287,16 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
         <!-- Main Article -->
         <main class="article-main">
           <!-- Title -->
-          <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-6 text-white">
+          <h1 class="font-serif text-4xl md:text-5xl lg:text-4xl leading-tight tracking-tight mb-6 text-white">
             <?= htmlspecialchars($blog['title']); ?>
           </h1>
 
           <!-- Featured Image -->
-          <div class="mb-8 -mx-6 md:mx-0 md:rounded-xl overflow-hidden">
+          <div class="mb-8 md:rounded-xl overflow-hidden">
             <img 
               src="<?= $image; ?>" 
               alt="<?= htmlspecialchars($blog['title']); ?>" 
-              class="feature-image w-full h-80 md:h-[420px] object-cover"
+              class="feature-image w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover"
             />
           </div>
 

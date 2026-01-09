@@ -76,7 +76,7 @@ if (!empty($params)) {
     
     body { 
       background: #000;
-      min-height: 100vh;
+  
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
     
