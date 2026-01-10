@@ -2,6 +2,20 @@ Options -Indexes
 RewriteEngine On
 RewriteBase /
 
+# ========== SECURITY - PROTECT SENSITIVE FILES ==========
+
+# Protect .env file from direct access
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protect configuration and log files
+<FilesMatch "\.(env|log|sql|md|txt|json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
 # ========== PERFORMANCE OPTIMIZATION ==========
 
 # Enable Gzip compression

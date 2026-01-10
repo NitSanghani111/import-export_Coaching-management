@@ -7,6 +7,11 @@
  * Returns JSON response for AJAX calls
  */
 
+// Enable error reporting for debugging (disable in production after fixing)
+error_reporting(E_ALL);
+ini_set('display_errors', 0); // Don't display errors to user
+ini_set('log_errors', 1);
+
 // Set headers for JSON response
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -22,11 +27,30 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Load MailService
-require_once __DIR__ . '/../includes/MailService.php';
-
-// Optionally, load database connection to save registration
-require_once __DIR__ . '/../db.php';
+// Try-catch for loading dependencies
+try {
+    // Load MailService
+    if (!file_exists(__DIR__ . '/../includes/MailService.php')) {
+        throw new Exception('MailService.php not found. Check file path.');
+    }
+    require_once __DIR__ . '/../includes/MailService.php';
+    
+    // Optionally, load database connection to save registration
+    if (file_exists(__DIR__ . '/../db.php')) {
+        require_once __DIR__ . '/../db.php';
+    } else {
+        $conn = null; // Database optional
+        error_log('Workshop Registration: db.php not found, skipping database save');
+    }
+} catch (Exception $e) {
+    error_log('Workshop Registration - File Load Error: ' . $e->getMessage());
+    echo json_encode([
+        'success' => false,
+        'message' => 'System configuration error. Please contact support.',
+        'debug' => $e->getMessage() // Remove this line in production
+    ]);
+    exit;
+}
 
 try {
     // Get POST data
@@ -50,15 +74,29 @@ try {
     $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
     
     // Save registration to database (optional but recommended)
-    $saved = saveRegistrationToDatabase($conn, $data);
-    
-    if (!$saved) {
-        error_log('Failed to save workshop registration to database: ' . json_encode($data));
-        // Continue anyway - we'll still send emails
+    if (isset($conn) && $conn) {
+        $saved = saveRegistrationToDatabase($conn, $data);
+        
+        if (!$saved) {
+            error_log('Failed to save workshop registration to database: ' . json_encode($data));
+            // Continue anyway - we'll still send emails
+        }
+    } else {
+        error_log('Workshop Registration: Database connection not available, skipping save');
     }
     
     // Initialize MailService
-    $mailService = new MailService();
+    try {
+        $mailService = new MailService();
+    } catch (Exception $e) {
+        error_log('Workshop Registration - MailService Init Error: ' . $e->getMessage());
+        echo json_encode([
+            'success' => false,
+            'message' => 'Email system error. Please contact support.',
+            'debug' => 'MailService Error: ' . $e->getMessage() // Remove in production
+        ]);
+        exit;
+    }
     
     // Send workshop registration emails (admin + user)
     $result = $mailService->sendWorkshopRegistration($data);
@@ -72,14 +110,19 @@ try {
     echo json_encode($result);
     
 } catch (Exception $e) {
-    // Log error
+    // Log error with full trace
     error_log('Workshop Registration Error: ' . $e->getMessage());
+    error_log('Stack Trace: ' . $e->getTraceAsString());
     
-    // Return error response
+    // Return error response with debug info
     echo json_encode([
         'success' => false,
-        'message' => 'An unexpected error occurred. Please try again later.'
+        'message' => 'An unexpected error occurred. Please try again later.',
+        'debug' => $e->getMessage(), // Remove in production
+        'file' => $e->getFile(), // Remove in production
+        'line' => $e->getLine() // Remove in production
     ]);
+}
 }
 
 /**

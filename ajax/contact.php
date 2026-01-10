@@ -6,6 +6,11 @@
  * Returns JSON response for AJAX calls
  */
 
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 0); // Don't display errors to user
+ini_set('log_errors', 1);
+
 // Set headers for JSON response
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -21,8 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Load MailService
-require_once __DIR__ . '/../includes/MailService.php';
+// Load MailService with error handling
+try {
+    if (!file_exists(__DIR__ . '/../includes/MailService.php')) {
+        throw new Exception('MailService.php not found');
+    }
+    require_once __DIR__ . '/../includes/MailService.php';
+} catch (Exception $e) {
+    error_log('Contact Form - File Load Error: ' . $e->getMessage());
+    echo json_encode([
+        'success' => false,
+        'message' => 'System configuration error. Please contact support.',
+        'debug' => $e->getMessage() // Remove in production
+    ]);
+    exit;
+}
 
 try {
     // Get POST data
@@ -41,8 +59,18 @@ try {
     $data['subject'] = htmlspecialchars($data['subject'], ENT_QUOTES, 'UTF-8');
     $data['message'] = htmlspecialchars($data['message'], ENT_QUOTES, 'UTF-8');
     
-    // Initialize MailService
-    $mailService = new MailService();
+    // Initialize MailService with error handling
+    try {
+        $mailService = new MailService();
+    } catch (Exception $initError) {
+        error_log('MailService Initialization Error: ' . $initError->getMessage());
+        echo json_encode([
+            'success' => false,
+            'message' => 'Email service configuration error. Please contact support.',
+            'debug' => 'MailService init failed: ' . $initError->getMessage()
+        ]);
+        exit;
+    }
     
     // Send contact email
     $result = $mailService->sendContactEmail($data);
@@ -56,12 +84,17 @@ try {
     echo json_encode($result);
     
 } catch (Exception $e) {
-    // Log error
+    // Log detailed error for debugging
     error_log('Contact Form Error: ' . $e->getMessage());
+    error_log('Error File: ' . $e->getFile() . ' on line ' . $e->getLine());
+    error_log('Stack Trace: ' . $e->getTraceAsString());
     
-    // Return error response
+    // Return error response with debug info
     echo json_encode([
         'success' => false,
-        'message' => 'An unexpected error occurred. Please try again later.'
+        'message' => 'An unexpected error occurred. Please try again later.',
+        'debug' => $e->getMessage(),
+        'file' => $e->getFile(),
+        'line' => $e->getLine()
     ]);
 }
