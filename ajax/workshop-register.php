@@ -123,7 +123,7 @@ try {
         'line' => $e->getLine() // Remove in production
     ]);
 }
-}
+
 
 /**
  * Save registration to database

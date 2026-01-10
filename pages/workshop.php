@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../db.php';
 date_default_timezone_set('Asia/Kolkata');
 
+header('Content-Type: application/json');
 // Detect available columns in workshops table
 $workshopCols = [];
 $colsRes = mysqli_query($conn, "SHOW COLUMNS FROM workshops");
@@ -705,12 +706,39 @@ function getDescription($workshop, $descField) {
             formFeedbackEl.className = 'mt-4 text-sm text-red-400 hidden';
             
             try {
-              const response = await fetch('../ajax/workshop-register.php', {
+              // Get raw response first for debugging
+              const response = await fetch('../ajax/workshop-register-new.php', {
                 method: 'POST',
                 body: formData
               });
               
-              const result = await response.json();
+              // Log response status
+              console.log('[Workshop] Response status:', response.status);
+              
+              // Get raw text first
+              const responseText = await response.text();
+              console.log('[Workshop] Raw response:', responseText.substring(0, 500));
+              
+              // Check if response is empty
+              if (!responseText || responseText.trim() === '') {
+                throw new Error('Server returned empty response. Check error logs on server.');
+              }
+              
+              // Try to parse JSON
+              let result;
+              try {
+                result = JSON.parse(responseText);
+              } catch (parseError) {
+                console.error('[Workshop] JSON parse error:', parseError);
+                console.error('[Workshop] Full response:', responseText);
+                
+                // Check if it's HTML (500 error page)
+                if (responseText.includes('<!DOCTYPE') || responseText.includes('<html')) {
+                  throw new Error('Server error (500). Please check: 1) .env file exists, 2) vendor/ folder uploaded, 3) file paths correct');
+                }
+                
+                throw new Error('Invalid server response: ' + parseError.message);
+              }
               
               if (result.success) {
                 // Professional success message with animation
@@ -838,8 +866,24 @@ function getDescription($workshop, $descField) {
                 submitSpinner.classList.add('hidden');
               }
             } catch (error) {
-              console.error('Registration error:', error);
-              formFeedbackEl.textContent = 'Network error. Please try again.';
+              console.error('[Workshop] Registration error:', error);
+              console.error('[Workshop] Error details:', {
+                message: error.message,
+                stack: error.stack
+              });
+              
+              // User-friendly error message
+              let errorMsg = 'Network error. Please try again.';
+              
+              if (error.message.includes('Server error (500)')) {
+                errorMsg = 'Server configuration error. Please contact support and mention: Missing .env or vendor files.';
+              } else if (error.message.includes('empty response')) {
+                errorMsg = 'Server error. Please contact support.';
+              } else if (error.message) {
+                errorMsg = error.message;
+              }
+              
+              formFeedbackEl.textContent = errorMsg;
               formFeedbackEl.className = 'mt-4 text-sm text-red-400 block';
               submitBtn.disabled = false;
               submitLabel.textContent = 'Register Now';
