@@ -4,6 +4,12 @@
 .env
 
 # ===============================
+# Dependencies (install on server)
+# ===============================
+/vendor/
+composer.lock
+
+# ===============================
 # Docker (local only)
 # ===============================
 docker-compose.yml

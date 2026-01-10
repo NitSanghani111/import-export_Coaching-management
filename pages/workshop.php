@@ -369,7 +369,8 @@ function getDescription($workshop, $descField) {
             type="button"
             class="open-register bg-white text-black text-xs px-4 py-2 rounded-md hover:bg-gray-200 transition"
             data-title="<?php echo htmlspecialchars($workshop['title']); ?>"
-            data-id="<?php echo htmlspecialchars($workshop['id']); ?>">
+            data-id="<?php echo htmlspecialchars($workshop['id']); ?>"
+            data-date="<?php echo formatDate($workshop[$datetimeAlias] ?? null); ?>">
             Register Now
           </button>
         </div>
@@ -394,46 +395,159 @@ function getDescription($workshop, $descField) {
 
     <div id="footer-container"></div>
 
-<!-- Register Modal (dark themed, accessible) -->
-<div id="registerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 px-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="bg-[#0b0b0b] text-white rounded-xl w-full max-w-4xl overflow-hidden shadow-2xl border border-white/10">
-    <div class="flex items-center justify-between px-6 py-4 border-b border-white/5">
-      <h3 id="modalTitle" class="font-serif text-lg">Register for Workshop</h3>
-      <button id="modalClose" aria-label="Close register form" class="text-gray-300 hover:text-white text-2xl leading-none">&times;</button>
+<!-- Register Modal (Professional Design) -->
+<div id="registerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm px-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] text-white rounded-2xl w-full max-w-4xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.9)] border border-white/10 transform transition-all duration-300">
+    
+    <!-- Modal Header with Workshop Details -->
+    <div class="relative px-8 py-6 border-b border-white/10 bg-gradient-to-r from-[#111] to-[#1a1a1a]">
+      <div class="flex items-start justify-between">
+        <div class="flex-1 pr-8">
+          <div class="flex items-center gap-2 mb-1">
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-xs font-medium text-amber-400 uppercase tracking-wider">Workshop Registration</span>
+          </div>
+          <h3 id="modalTitle" class="font-serif text-xl md:text-2xl font-semibold leading-tight">Register for Workshop</h3>
+        </div>
+        <button id="modalClose" aria-label="Close register form" class="text-gray-400 hover:text-white transition-colors duration-200 text-3xl leading-none w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5">&times;</button>
+      </div>
     </div>
 
-    <form id="registerForm" class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6" novalidate>
+    <form id="registerForm" class="p-8" novalidate>
       <input type="hidden" name="workshop_id" id="workshop_id">
       <input type="hidden" name="workshop_title" id="workshop_title">
+      <input type="hidden" name="workshop_date" id="workshop_date">
 
-      <div class="flex flex-col gap-4">
-        <label class="text-xs text-gray-300">Full name <span class="text-red-500">*</span></label>
-        <input id="r_name" name="name" placeholder="Full name" class="p-3 bg-[#0f0f0f] border border-white/10 rounded text-white" required>
+      <!-- Form Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Left Column -->
+        <div class="space-y-5">
+          <!-- Full Name -->
+          <div class="group">
+            <label for="r_name" class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+              </svg>
+              Full Name <span class="text-red-400">*</span>
+            </label>
+            <input 
+              id="r_name" 
+              name="name" 
+              type="text"
+              placeholder="Enter your full name" 
+              class="w-full px-4 py-3 bg-[#0f0f0f] border border-white/10 rounded-lg text-white placeholder-gray-500 
+                     focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 
+                     transition-all duration-200 group-hover:border-white/20" 
+              required>
+          </div>
 
-        <label class="text-xs text-gray-300">Email <span class="text-red-500">*</span></label>
-        <input id="r_email" name="email" type="email" placeholder="you@example.com" class="p-3 bg-[#0f0f0f] border border-white/10 rounded text-white" required>
+          <!-- Email -->
+          <div class="group">
+            <label for="r_email" class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Email Address <span class="text-red-400">*</span>
+            </label>
+            <input 
+              id="r_email" 
+              name="email" 
+              type="email" 
+              placeholder="you@example.com" 
+              class="w-full px-4 py-3 bg-[#0f0f0f] border border-white/10 rounded-lg text-white placeholder-gray-500 
+                     focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 
+                     transition-all duration-200 group-hover:border-white/20" 
+              required>
+          </div>
 
-        <label class="text-xs text-gray-300">Contact number</label>
-        <input id="r_contact" name="contact" placeholder="Phone or WhatsApp" class="p-3 bg-[#0f0f0f] border border-white/10 rounded text-white">
+          <!-- Contact Number -->
+          <div class="group">
+            <label for="r_contact" class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              Contact Number
+            </label>
+            <input 
+              id="r_contact" 
+              name="contact" 
+              type="tel"
+              placeholder="Phone or WhatsApp" 
+              class="w-full px-4 py-3 bg-[#0f0f0f] border border-white/10 rounded-lg text-white placeholder-gray-500 
+                     focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 
+                     transition-all duration-200 group-hover:border-white/20">
+          </div>
 
-        <label class="text-xs text-gray-300">Who are you?</label>
-        <input id="r_who" name="who" placeholder="Founder, Student, etc." class="p-3 bg-[#0f0f0f] border border-white/10 rounded text-white">
-      </div>
-
-      <div class="flex flex-col gap-4">
-        <label class="text-xs text-gray-300">Tell us something about you</label>
-        <textarea id="r_message" name="message" rows="8" placeholder="A short note" class="p-3 bg-[#0f0f0f] border border-white/10 rounded text-white w-full"></textarea>
-
-        <div class="flex items-center justify-between mt-auto">
-          <div id="formFeedback" class="text-sm text-red-400"></div>
-          <div class="flex gap-3">
-            <button type="button" id="modalCancel" class="px-4 py-2 rounded border border-white/10 text-white">Cancel</button>
-            <button type="submit" id="modalSubmit" class="px-4 py-2 rounded bg-white text-black flex items-center gap-2">
-              <span id="submitLabel">Send</span>
-              <svg id="submitSpinner" class="w-4 h-4 hidden animate-spin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="60" stroke-dashoffset="0"></circle></svg>
-            </button>
+          <!-- Who Are You -->
+          <div class="group">
+            <label for="r_who" class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Who Are You?
+            </label>
+            <input 
+              id="r_who" 
+              name="who" 
+              type="text"
+              placeholder="e.g., Entrepreneur, Student, Professional" 
+              class="w-full px-4 py-3 bg-[#0f0f0f] border border-white/10 rounded-lg text-white placeholder-gray-500 
+                     focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 
+                     transition-all duration-200 group-hover:border-white/20">
           </div>
         </div>
+
+        <!-- Right Column -->
+        <div class="space-y-5">
+          <!-- Message -->
+          <div class="group h-full flex flex-col">
+            <label for="r_message" class="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+              </svg>
+              Tell Us About Yourself
+            </label>
+            <textarea 
+              id="r_message" 
+              name="message" 
+              rows="11" 
+              placeholder="Share your goals, challenges, or what you hope to gain from this workshop..." 
+              class="w-full px-4 py-3 bg-[#0f0f0f] border border-white/10 rounded-lg text-white placeholder-gray-500 
+                     focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 
+                     transition-all duration-200 resize-none group-hover:border-white/20 flex-1"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error/Feedback Message -->
+      <div id="formFeedback" class="mt-4 text-sm text-red-400 hidden"></div>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex items-center justify-between pt-6 border-t border-white/10">
+        <button 
+          type="button" 
+          id="modalCancel" 
+          class="px-6 py-2.5 rounded-lg border border-white/10 text-gray-300 hover:text-white hover:bg-white/5 
+                 transition-all duration-200 font-medium">
+          Cancel
+        </button>
+        <button 
+          type="submit" 
+          id="modalSubmit" 
+          class="px-8 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 
+                 text-black font-semibold flex items-center gap-2 shadow-lg shadow-amber-500/30 
+                 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-200 
+                 disabled:opacity-50 disabled:cursor-not-allowed">
+          <span id="submitLabel">Register Now</span>
+          <svg id="submitSpinner" class="w-5 h-5 hidden animate-spin" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </button>
       </div>
     </form>
   </div>
@@ -529,14 +643,16 @@ function getDescription($workshop, $descField) {
           const modalTitle = document.getElementById('modalTitle');
           const workshopId = document.getElementById('workshop_id');
           const workshopTitle = document.getElementById('workshop_title');
+          const workshopDate = document.getElementById('workshop_date');
           const modalClose = document.getElementById('modalClose');
           const modalCancel = document.getElementById('modalCancel');
           const form = document.getElementById('registerForm');
 
-          const openModal = (title, id) => {
+          const openModal = (title, id, date) => {
             modalTitle.textContent = 'Register — ' + (title || 'Workshop');
             workshopId.value = id || '';
             workshopTitle.value = title || '';
+            workshopDate.value = date || 'Date TBA';
             modal.classList.remove('hidden');
             modal.classList.add('flex');
           };
@@ -551,30 +667,184 @@ function getDescription($workshop, $descField) {
             if (t) {
               const title = t.getAttribute('data-title');
               const id = t.getAttribute('data-id');
-              openModal(title, id);
+              const date = t.getAttribute('data-date');
+              openModal(title, id, date);
             }
           });
 
           modalClose?.addEventListener('click', closeModal);
           modalCancel?.addEventListener('click', closeModal);
 
-          form?.addEventListener('submit', function(ev){
+          form?.addEventListener('submit', async function(ev){
             ev.preventDefault();
-            // simple validation
+            
+            const submitBtn = document.getElementById('modalSubmit');
+            const submitLabel = document.getElementById('submitLabel');
+            const submitSpinner = document.getElementById('submitSpinner');
+            const formFeedback = document.getElementById('formFeedback');
+            
+            // Simple validation
             const name = document.getElementById('r_name').value.trim();
             const email = document.getElementById('r_email').value.trim();
-            const contact = document.getElementById('r_contact').value.trim();
+            const formFeedbackEl = document.getElementById('formFeedback');
+            
             if (!name || !email) {
-              alert('Please enter name and email');
+              formFeedbackEl.textContent = 'Please enter name and email';
+              formFeedbackEl.className = 'mt-4 text-sm text-red-400 block';
               return;
             }
+            
+            // Get form data
+            const formData = new FormData(form);
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitLabel.textContent = 'Processing...';
+            submitSpinner.classList.remove('hidden');
+            formFeedbackEl.textContent = '';
+            formFeedbackEl.className = 'mt-4 text-sm text-red-400 hidden';
+            
+            try {
+              const response = await fetch('../ajax/workshop-register.php', {
+                method: 'POST',
+                body: formData
+              });
+              
+              const result = await response.json();
+              
+              if (result.success) {
+                // Professional success message with animation
+                form.innerHTML = `
+                  <div class="py-12 px-8 text-center">
+                    <!-- Success Animation -->
+                    <div class="mb-6 relative inline-block">
+                      <div class="w-24 h-24 mx-auto bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 animate-bounce-once">
+                        <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                      </div>
+                      <!-- Confetti effect -->
+                      <div class="absolute inset-0 pointer-events-none">
+                        <div class="absolute top-0 left-1/4 w-2 h-2 bg-amber-400 rounded-full animate-confetti-1"></div>
+                        <div class="absolute top-2 right-1/4 w-2 h-2 bg-blue-400 rounded-full animate-confetti-2"></div>
+                        <div class="absolute top-4 left-1/2 w-2 h-2 bg-pink-400 rounded-full animate-confetti-3"></div>
+                      </div>
+                    </div>
 
-            // For now: static behavior — show success message
-            form.innerHTML = '<div class="p-6 text-center">\n  <h4 class="text-lg font-semibold">Thanks — you are registered</h4>\n  <p class="text-sm text-gray-700 mt-2">We will contact you with the workshop details.</p>\n  <div class="mt-4">\n    <button id="closeAfter" class="px-4 py-2 bg-black text-white rounded">Close</button>\n  </div>\n</div>';
+                    <!-- Success Message -->
+                    <h4 class="text-2xl md:text-3xl font-serif font-bold mb-3 text-white">
+                      🎉 Registration Confirmed!
+                    </h4>
+                    <p class="text-gray-300 text-base mb-6 max-w-md mx-auto leading-relaxed">
+                      ${result.message}
+                    </p>
 
-            const closeAfter = document.getElementById('closeAfter');
-            closeAfter?.addEventListener('click', closeModal);
-            console.log('Register (static):', {name, email, contact, id: workshopId.value, title: workshopTitle.value});
+                    <!-- Info Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 max-w-xl mx-auto">
+                      <div class="bg-gradient-to-br from-amber-500/10 to-amber-600/10 border border-amber-500/20 rounded-lg p-4 text-left">
+                        <div class="flex items-start gap-3">
+                          <svg class="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                          </svg>
+                          <div>
+                            <p class="text-xs text-gray-400 mb-0.5">Email Confirmation</p>
+                            <p class="text-sm text-white">Check your inbox</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/10 border border-blue-500/20 rounded-lg p-4 text-left">
+                        <div class="flex items-start gap-3">
+                          <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                          </svg>
+                          <div>
+                            <p class="text-xs text-gray-400 mb-0.5">Workshop Details</p>
+                            <p class="text-sm text-white">Coming 24-48hrs before</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                      <button 
+                        type="button" 
+                        id="closeAfter" 
+                        class="px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 
+                               text-black font-semibold rounded-lg shadow-lg shadow-amber-500/30 
+                               hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-200 
+                               flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Got it, Thanks!
+                      </button>
+                      <button 
+                        type="button" 
+                        onclick="window.location.href='../pages/workshop.php'" 
+                        class="px-6 py-3 border border-white/10 text-gray-300 hover:text-white hover:bg-white/5 
+                               rounded-lg transition-all duration-200 font-medium">
+                        View More Workshops
+                      </button>
+                    </div>
+
+                    <!-- Additional Note -->
+                    <p class="text-xs text-gray-500 mt-8">
+                      Questions? Reply to the confirmation email or contact us directly.
+                    </p>
+                  </div>
+
+                  <style>
+                    @keyframes bounce-once {
+                      0%, 100% { transform: translateY(0); }
+                      50% { transform: translateY(-20px); }
+                    }
+                    @keyframes confetti-1 {
+                      0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+                      100% { transform: translate(-40px, 60px) rotate(180deg); opacity: 0; }
+                    }
+                    @keyframes confetti-2 {
+                      0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+                      100% { transform: translate(40px, 70px) rotate(-180deg); opacity: 0; }
+                    }
+                    @keyframes confetti-3 {
+                      0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+                      100% { transform: translate(20px, 80px) rotate(270deg); opacity: 0; }
+                    }
+                    .animate-bounce-once {
+                      animation: bounce-once 0.6s ease-in-out;
+                    }
+                    .animate-confetti-1 {
+                      animation: confetti-1 1s ease-out forwards;
+                    }
+                    .animate-confetti-2 {
+                      animation: confetti-2 1.2s ease-out forwards;
+                    }
+                    .animate-confetti-3 {
+                      animation: confetti-3 1.1s ease-out forwards;
+                    }
+                  </style>
+                `;
+                
+                const closeAfter = document.getElementById('closeAfter');
+                closeAfter?.addEventListener('click', closeModal);
+              } else {
+                // Error message
+                formFeedbackEl.textContent = result.message;
+                formFeedbackEl.className = 'mt-4 text-sm text-red-400 block';
+                submitBtn.disabled = false;
+                submitLabel.textContent = 'Register Now';
+                submitSpinner.classList.add('hidden');
+              }
+            } catch (error) {
+              console.error('Registration error:', error);
+              formFeedbackEl.textContent = 'Network error. Please try again.';
+              formFeedbackEl.className = 'mt-4 text-sm text-red-400 block';
+              submitBtn.disabled = false;
+              submitLabel.textContent = 'Register Now';
+              submitSpinner.classList.add('hidden');
+            }
           });
         })();
 </script>
