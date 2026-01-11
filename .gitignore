@@ -2,39 +2,51 @@
 # Environment / Secrets
 # ===============================
 .env
-
+.env.local
+.env.production
+Dockerfile
+docker-compose.yml
 # ===============================
-# Dependencies (install on server)
+# Dependencies
 # ===============================
 /vendor/
 composer.lock
+node_modules/
 
 # ===============================
-# Docker (local only)
+# User Uploads (Runtime Data)
 # ===============================
-docker-compose.yml
-Dockerfile
-.dockerignore
-/docker/
-
+admin/uploads/*
+!admin/uploads/.gitkeep
+admin/workshops_img/*
+!admin/workshops_img/.gitkeep
 
 # ===============================
-# User uploads (runtime data)
+# Database
 # ===============================
-
-admin/workshops_img/
 *.sql
-coachingdb.sql
-
-**/.git*
+!coachingdb.sql
 
 # ===============================
-# Logs  
+# IDE & System Files
+# ===============================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ===============================
+# Logs
 # ===============================
 *.log
+error_log
+debug.log
 
 # ===============================
-# Optional: cache / temp
+# Cache & Temp
 # ===============================
 .cache/
 .tmp/
+tmp/

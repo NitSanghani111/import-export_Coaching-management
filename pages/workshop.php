@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../db.php';
 date_default_timezone_set('Asia/Kolkata');
 
-header('Content-Type: application/json');
 // Detect available columns in workshops table
 $workshopCols = [];
 $colsRes = mysqli_query($conn, "SHOW COLUMNS FROM workshops");
