@@ -1,9 +1,15 @@
-name: Deploy to ByetHost
+name: Deploy to ByetHost (Disabled)
+
+# Workflow is currently disabled - using manual deployment
+# To enable: uncomment the 'on:' section below and add secrets to GitHub
+
+# on:
+#   push:
+#     branches:
+#       - main
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: # Only run manually from GitHub Actions tab
 
 jobs:
   deploy:
@@ -26,9 +32,17 @@ jobs:
             **/.git*
             **/.github/**
             **/.env
+            **/.env.example
             **/*.sql
-            **/uploads/**
+            **/coachingdb.sql
             **/admin/workshops_img/**
             **/node_modules/**
             **/Dockerfile
             **/docker-compose.yml
+            **/README.md
+            **/DEPLOYMENT.md
+            **/PERFORMANCE.md
+            **/QUICK_FIX_REFERENCE.md
+            **/.qodo/**
+            **/.vscode/**
+            **/optimize-database.sql
