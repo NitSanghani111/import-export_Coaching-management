@@ -167,14 +167,24 @@ function getDescription($workshop, $descField) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow">
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Fonts -->
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="../assets/css/main.css" as="style">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="../assets/css/main.css" />
+
+  <!-- Tailwind (defer to prevent blocking) -->
+  <link rel="preload" as="script" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com" defer></script>
+
+  <!-- Google Fonts optimized -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
 
   <style>
     body {
@@ -552,8 +562,8 @@ function getDescription($workshop, $descField) {
     </form>
   </div>
 </div>
-<script src="../assets/js/navbar.js"></script>
-<script src="../assets/js/loader.js"></script>
+<script src="../assets/js/navbar.js" defer></script>
+<script src="../assets/js/loader.js" defer></script>
 
 <!-- ================= CAROUSEL SCRIPT ================= -->
 <script>
@@ -929,13 +939,16 @@ function getDescription($workshop, $descField) {
 		};
 
 		document.addEventListener('DOMContentLoaded', async () => {
-			const navbarRoot = await injectComponent('/components/Navbar.html', '#navbar-container');
-			setTimeout(() => {
-				if (typeof window.initNavbar === 'function') {
-					window.initNavbar();
-				}
-			}, 150);
-			await injectComponent('../components/fotter.html', '#footer-container', 'footer');
+			// Load components in parallel for faster page load
+			const [navbarRoot] = await Promise.all([
+				injectComponent('/components/Navbar.html', '#navbar-container'),
+				injectComponent('../components/fotter.html', '#footer-container', 'footer')
+			]);
+			
+			// Initialize navbar immediately
+			if (typeof window.initNavbar === 'function') {
+				window.initNavbar();
+			}
 			initReveal();
 		});
 	</script>

@@ -69,18 +69,19 @@ const initReveal = () => {
   }
 };
 
-// Init on DOM ready
+// Init on DOM ready - Load components in parallel for speed
 document.addEventListener('DOMContentLoaded', async () => {
-  const navbarRoot = await injectComponent('components/Navbar.html', '#navbar-container', 'header');
+  // Load navbar and footer in parallel (not sequential)
+  const [navbarRoot] = await Promise.all([
+    injectComponent('components/Navbar.html', '#navbar-container', 'header'),
+    injectComponent('components/fotter.html', '#footer-container', 'footer')
+  ]);
   
-  // Wait a moment for DOM to settle, then call navbar initialization
-  setTimeout(() => {
-    if (typeof window.initNavbar === 'function') {
-      window.initNavbar();
-    }
-  }, 150);
+  // Initialize navbar immediately
+  if (typeof window.initNavbar === 'function') {
+    window.initNavbar();
+  }
   
-  await injectComponent('components/fotter.html', '#footer-container', 'footer');
   initReveal();
 });
 

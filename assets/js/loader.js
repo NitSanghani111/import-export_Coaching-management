@@ -1,25 +1,16 @@
 
-// Professional Page Loading Animation Handler
+// Fast Page Loading Handler - Hide loader ASAP
 document.addEventListener('DOMContentLoaded', function() {
-  // Fade out the loader as soon as critical content is ready
   const loader = document.getElementById('page-loader');
   if (!loader) return;
 
-  // Minimum display time for smooth UX (avoid flash)
-  const minDisplayTime = 800;
-  const startTime = performance.now();
-
+  // Hide loader immediately when DOM is ready
   requestAnimationFrame(() => {
-    const elapsed = performance.now() - startTime;
-    const delay = Math.max(0, minDisplayTime - elapsed);
-    
+    loader.classList.add('fade-out');
     setTimeout(() => {
-      loader.classList.add('fade-out');
-      setTimeout(() => {
-        loader.style.display = 'none';
-        loader.remove();
-      }, 500);
-    }, delay);
+      loader.style.display = 'none';
+      loader.remove();
+    }, 300);
   });
 });
 

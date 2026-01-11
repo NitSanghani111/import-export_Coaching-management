@@ -4,10 +4,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once __DIR__ . '/db.php';
 
-
-
-// Fetch top 6 blogs
-$sql = "SELECT b.*, GROUP_CONCAT(c.name SEPARATOR '|') AS categories
+// Fetch top 6 blogs with optimized query
+$sql = "SELECT b.id, b.title, b.image, b.created_at,
+        GROUP_CONCAT(c.name SEPARATOR '|') AS categories
         FROM blog b
         LEFT JOIN blog_categories bc ON bc.blog_id = b.id
         LEFT JOIN categories c ON c.id = bc.category_id
@@ -21,6 +20,7 @@ if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         $blogs[] = $row;
     }
+    mysqli_free_result($result);
 }
 ?>
 
@@ -32,12 +32,25 @@ if ($result) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Home page</title>
+  
+  <!-- Preconnect to external domains for faster loading -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="assets/css/main.css" as="style">
+  
+  <!-- CSS (defer non-critical) -->
   <link rel="stylesheet" href="assets/css/main.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind (defer to prevent blocking) -->
+  <link rel="preload" as="script" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  
+  <!-- Google Fonts with font-display swap for faster rendering -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
   <style>
     /* Home blog card separation: gold border, subtle shadow */
     .home-blog-card {
@@ -516,9 +529,9 @@ if ($result) {
 
 
     <div id="footer-container"></div>
-<script src="assets/js/loader.js"></script>
-<script src="assets/js/navbar.js"></script>
-<script src="assets/js/index.js"></script>
+<script src="assets/js/loader.js" defer></script>
+<script src="assets/js/navbar.js" defer></script>
+<script src="assets/js/index.js" defer></script>
 
 </body>
 
