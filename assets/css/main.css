@@ -246,6 +246,98 @@
   background: rgba(255,255,255,0.1);
 }
 
+/* Results section zig-zag layout */
+.results-grid-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.results-zigzag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 100px 80px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.results-zigzag-grid .result-item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.results-zigzag-grid .result-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.results-zigzag-grid .result-item:nth-child(3) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.results-zigzag-grid .result-item:nth-child(4) {
+  grid-column: 1 / span 1;
+  grid-row: 2;
+  margin-left: calc(50% + 10px);
+}
+
+.results-zigzag-grid .result-item:nth-child(5) {
+  grid-column: 2 / span 1;
+  grid-row: 2;
+  margin-left: calc(50% + 10px);
+}
+
+.result-item {
+  max-width: 280px;
+}
+
+@media (max-width: 1024px) {
+  .results-zigzag-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
+    max-width: 700px;
+  }
+  
+  .results-zigzag-grid .result-item:nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .results-zigzag-grid .result-item:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+    margin-left: 0;
+  }
+  
+  .results-zigzag-grid .result-item:nth-child(5) {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    margin-left: 0;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .results-zigzag-grid {
+    grid-template-columns: 1fr;
+    gap: 50px 0;
+    max-width: 320px;
+  }
+  
+  .results-zigzag-grid .result-item {
+    grid-column: 1 !important;
+    margin-left: 0 !important;
+  }
+  
+  .results-zigzag-grid .result-item:nth-child(1) { grid-row: 1; }
+  .results-zigzag-grid .result-item:nth-child(2) { grid-row: 2; }
+  .results-zigzag-grid .result-item:nth-child(3) { grid-row: 3; }
+  .results-zigzag-grid .result-item:nth-child(4) { grid-row: 4; }
+  .results-zigzag-grid .result-item:nth-child(5) { grid-row: 5; }
+}
+
 .result-circle {
   background: white;
   box-shadow:

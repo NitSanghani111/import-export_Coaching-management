@@ -66,18 +66,36 @@
 			}
 		}
 
-		/* Hide close icon by default, show hamburger */
+		/* Menu toggle button states */
+		#menu-toggle {
+			position: relative;
+		}
+
+		/* Show hamburger by default */
+		#three-bar-icon {
+			display: flex !important;
+			opacity: 1;
+			visibility: visible;
+		}
+
+		/* Hide close icon by default */
 		#close-icon {
-			display: none;
+			display: none !important;
+			opacity: 0;
+			visibility: hidden;
 		}
 
 		/* When menu is open, hide hamburger and show close icon */
 		body.menu-open #three-bar-icon {
-			display: none;
+			display: none !important;
+			opacity: 0;
+			visibility: hidden;
 		}
 
 		body.menu-open #close-icon {
-			display: flex;
+			display: flex !important;
+			opacity: 1;
+			visibility: visible;
 		}
 
 		/* Hide nav on mobile, show hamburger */
@@ -214,7 +232,7 @@
 					<span class="w-6 h-0.5 bg-white rounded block"></span>
 				</div>
 
-				<div id="close-icon" class="absolute inset-0 flex items-center justify-center">
+				<div id="close-icon" class="hidden absolute inset-0 items-center justify-center">
 					<span class="sr-only">Close menu</span>
 					<!-- Line 1 -->
 					<span class="absolute w-6 h-0.5 bg-white rounded rotate-45"></span>

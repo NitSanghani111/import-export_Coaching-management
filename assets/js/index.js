@@ -88,15 +88,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Reviews carousel controls (global for onclick)
 let indexa = 0;
 
+function getGapSize() {
+  // Responsive gap sizes matching the Tailwind classes: gap-4 sm:gap-6
+  if (window.innerWidth < 640) {
+    return 16; // gap-4 = 16px for mobile
+  }
+  return 24; // gap-6 = 24px for desktop
+}
+
 function nextReview() {
   const track = document.getElementById("reviewTrack");
   if (!track) return;
   const total = track.children.length;
   if (indexa < total - 1) {
     indexa++;
-    // Account for gap-6 (24px) between cards
     const cardWidth = track.children[0].offsetWidth;
-    const gap = 24; // gap-6 = 24px
+    const gap = getGapSize();
     track.style.transform = `translateX(-${indexa * (cardWidth + gap)}px)`;
   }
 }
@@ -106,12 +113,25 @@ function prevReview() {
   if (!track) return;
   if (indexa > 0) {
     indexa--;
-    // Account for gap-6 (24px) between cards
     const cardWidth = track.children[0].offsetWidth;
-    const gap = 24; // gap-6 = 24px
+    const gap = getGapSize();
     track.style.transform = `translateX(-${indexa * (cardWidth + gap)}px)`;
   }
 }
+
+// Reset carousel position on window resize to recalculate positions
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const track = document.getElementById("reviewTrack");
+    if (track && indexa > 0) {
+      const cardWidth = track.children[0].offsetWidth;
+      const gap = getGapSize();
+      track.style.transform = `translateX(-${indexa * (cardWidth + gap)}px)`;
+    }
+  }, 250);
+});
 
 // Expose to global scope for inline onclick
 window.nextReview = nextReview;
