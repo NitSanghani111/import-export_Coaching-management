@@ -147,8 +147,11 @@ if ($result) {
     </div>
   </section>
 
-  <section class="max-w-7xl mx-auto px-6 py-28">
-
+  <section class="max-w-7xl mx-auto px-6 py-28 relative">
+    <!-- Subtle background -->
+    <div class="absolute inset-0 opacity-5" style="background: radial-gradient(circle at 20% 50%, #FFBE49 0%, transparent 50%), radial-gradient(circle at 80% 50%, #FFBE49 0%, transparent 50%);"></div>
+    
+    <div class="relative z-10">
     <!-- Heading -->
     <h2 class="text-4xl md:text-5xl font-serif mb-20">
       My 3 Growth Pillars
@@ -158,7 +161,7 @@ if ($result) {
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pillars-grid">
 
       <!-- CARD 1 -->
-      <div class="card-base px-12 py-16 text-center">
+      <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
         <div class="mb-8 text-gray-400">
           <img src="./img/design/Clarity.svg" alt="" class="w-18 h-18 mx-auto" />
           <p class="text-xs tracking-widest mt-2 text-gray-500">CLARITY</p>
@@ -174,7 +177,7 @@ if ($result) {
       </div>
 
       <!-- CARD 2 -->
-      <div class="card-base px-12 py-16 text-center">
+      <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
         <div class="mb-8 text-gray-400">
           <img src="./img/design/Computer.svg" alt="" class="w-18 h-18 mx-auto" />
         </div>
@@ -189,7 +192,7 @@ if ($result) {
       </div>
 
       <!-- CARD 3 -->
-      <div class="card-base px-12 py-16 text-center">
+      <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
         <div class="mb-8 text-gray-400">
           <img src="./img/design/Growth.svg" alt="" class="w-18 h-18 mx-auto" />
         </div>
@@ -204,12 +207,18 @@ if ($result) {
       </div>
 
     </div>
+    </div>
+    <!-- Bottom gold border accent -->
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
   </section>
 
   <!-- Signature progrmams -->
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
+  <!-- Top gold border accent -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
 
+  <div class="relative z-10">
   <!-- Section Title -->
   <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif mb-14">
     Our Programs
@@ -344,6 +353,9 @@ if ($result) {
     </div>
 
   </div>
+  </div>
+  <!-- Bottom gold border accent -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
 </section>
 
 
@@ -419,7 +431,10 @@ if ($result) {
   </section> -->
   <!-- i help you  with -->
   <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 overflow-hidden">
-
+    <!-- Bottom gold border accent -->
+    <!-- Top gold border accent -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+    
     <!-- Decorative Background Elements -->
     <div class="absolute top-10 left-0 w-64 h-64 bg-[#FFBE49] opacity-5 rounded-full blur-3xl"></div>
     <div class="absolute bottom-10 right-0 w-96 h-96 bg-[#FFBE49] opacity-5 rounded-full blur-3xl"></div>
@@ -601,7 +616,9 @@ if ($result) {
   </section>
 
   <!-- the reulut  -->
-  <section class="max-w-7xl mx-auto px-6 py-10">
+  <section class="max-w-7xl mx-auto px-6 py-10 relative">
+    <!-- Top gold border accent -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
 
     <!-- Title -->
     <h2 class="text-4xl md:text-5xl font-serif mb-5">
@@ -613,8 +630,8 @@ if ($result) {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-24 gap-x-10 place-items-center">
 
       <!-- ITEM 1 -->
-      <div class="result-item text-center max-w-xs lg:col-span-1 lg:col-start-1">
-        <p class="text-gray-300 mb-8">
+      <div class="result-item text-center max-w-xl lg:col-span-1 lg:col-start-1">
+        <p class="text-gray-300 text-xl mb-8">
           Higher & Predictable revenue
 
         </p>
@@ -625,7 +642,7 @@ if ($result) {
 
       <!-- ITEM 2 -->
       <div class="result-item text-center max-w-xs lg:col-start-3 lg:col-span-1">
-        <p class="text-gray-300 mb-8">
+        <p class="text-gray-300 mb-8 text-xl">
           Stronger, more accountable teams
         </p>
         <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto">
@@ -635,7 +652,7 @@ if ($result) {
 
       <!-- ITEM 3 -->
       <div class="result-item text-center max-w-xs lg:col-span-2 lg:col-start-5">
-        <p class="text-gray-300 mb-8">
+        <p class="text-gray-300 mb-8 text-xl">
           Stable & system-driven operations
         </p>
         <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto">
@@ -648,7 +665,7 @@ if ($result) {
         <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8">
           <img src="img/imgs/h2.png" class="w-14 h-14 object-contain" />
         </div>
-        <p class="text-gray-300">
+        <p class="text-gray-300 text-xl">
           More time freedom for the founder
         </p>
       </div>
@@ -658,17 +675,19 @@ if ($result) {
         <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8">
           <img src="img/imgs/h4.png" class="w-14 h-14 object-contain" />
         </div>
-        <p class="text-gray-300">
+        <p class="text-gray-300 text-xl">
           Increased business stability & growth momentum
         </p>
       </div>
 
     </div>
+    <!-- Bottom gold border accent -->
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
   </section>
 
 
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-24 md:py-32">
-
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-24 md:py-32 relative">    <!-- Top gold border accent -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
     <!-- TITLE -->
     <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-6 sm:mb-12 md:mb-14">
       Testimonials
