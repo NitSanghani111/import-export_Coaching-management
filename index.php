@@ -91,9 +91,7 @@ if ($result) {
 
   <!-- Page Loader with Logo -->
   <div id="page-loader">
-    <div class="loader-logo-container">
-      <img src="img/design/Logo.svg" alt="Loading" class="loader-logo" />
-    </div>
+   
     <div class="loader-spinner"></div>
     <div class="loader-text">Loading</div>
   </div>
@@ -615,72 +613,246 @@ if ($result) {
 
   </section>
 
-  <!-- the reulut  -->
-  <section class="max-w-7xl mx-auto px-6 py-10 relative">
+  <!-- the results -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 relative overflow-hidden">
     <!-- Top gold border accent -->
     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
 
-    <!-- Title -->
-    <h2 class="text-4xl md:text-5xl font-serif mb-5">
-      The Results
-    </h2>
-    <h3 class="text-3xl mb-8">Entrepreneurs across 15+ industries have scaled using my methods
-    </h3>
-    <!-- GRID -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-24 gap-x-10 place-items-center">
+    <!-- Decorative corners -->
+    <div class="absolute top-10 left-10 w-24 h-24 border-l-2 border-t-2 border-[#FFBE49] opacity-20"></div>
+    <div class="absolute top-10 right-10 w-24 h-24 border-r-2 border-t-2 border-[#FFBE49] opacity-20"></div>
 
-      <!-- ITEM 1 -->
-      <div class="result-item text-center max-w-xl lg:col-span-1 lg:col-start-1">
-        <p class="text-gray-300 text-xl mb-8">
-          Higher & Predictable revenue
+    <!-- Title Section -->
+    <div class="text-center mb-16 sm:mb-20 relative z-10">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif mb-6">
+        The Results
+      </h2>
+      <p class="text-xl sm:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        Entrepreneurs across 15+ industries have scaled using my methods
+      </p>
+      
+      <!-- Gold underline accent -->
+      <div class="w-32 h-1 bg-[#FFBE49] mx-auto mt-8"></div>
+    </div>
 
-        </p>
-        <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto">
-          <img src="img/imgs/h1.png" class="w-14 h-14 object-contain" />
+    <!-- Results Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 relative z-10">
+
+      <!-- Result Card 1 -->
+      <div class="group relative">
+        <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
+                    transition-all duration-500 ease-out
+                    hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
+                    hover:-translate-y-2 cursor-pointer">
+          
+          <!-- Number Badge -->
+          <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
+                      flex items-center justify-center rounded-full shadow-lg
+                      group-hover:scale-110 transition-transform duration-300">
+            01
+          </div>
+
+          <!-- Icon Container -->
+          <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+            <!-- Outer glow ring -->
+            <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
+                        group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
+            <!-- Middle ring -->
+            <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
+                        group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
+            <!-- Background circle for icon -->
+            <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
+                        group-hover:bg-opacity-20 transition-all duration-300"></div>
+            <!-- Icon -->
+            <img src="img/imgs/h1.png" class="relative w-20 h-20 object-contain z-10
+                      group-hover:scale-125 transition-all duration-300 drop-shadow-lg
+                      brightness-110" alt="Revenue Icon" />
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
+                     group-hover:text-[#FFBE49] transition-colors duration-300">
+            Higher & Predictable Revenue
+          </h3>
+
+          <!-- Description -->
+          <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
+                    group-hover:text-gray-300 transition-colors duration-300">
+            Build sustainable revenue streams with proven strategies that deliver consistent growth
+          </p>
+
+          <!-- Bottom accent line -->
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
+                      group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
         </div>
       </div>
 
-      <!-- ITEM 2 -->
-      <div class="result-item text-center max-w-xs lg:col-start-3 lg:col-span-1">
-        <p class="text-gray-300 mb-8 text-xl">
-          Stronger, more accountable teams
-        </p>
-        <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto">
-          <img src="img/imgs/h3.png" class="w-14 h-14 object-contain" />
+      <!-- Result Card 2 -->
+      <div class="group relative">
+        <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
+                    transition-all duration-500 ease-out
+                    hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
+                    hover:-translate-y-2 cursor-pointer">
+          
+          <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
+                      flex items-center justify-center rounded-full shadow-lg
+                      group-hover:scale-110 transition-transform duration-300">
+            02
+          </div>
+
+          <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
+                        group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
+            <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
+                        group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
+            <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
+                        group-hover:bg-opacity-20 transition-all duration-300"></div>
+            <img src="img/imgs/h2.png" class="relative w-20 h-20 object-contain z-10
+                      group-hover:scale-125 transition-all duration-300 drop-shadow-lg
+                      brightness-110" alt="Time Freedom Icon" />
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
+                     group-hover:text-[#FFBE49] transition-colors duration-300">
+            More Time Freedom
+          </h3>
+
+          <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
+                    group-hover:text-gray-300 transition-colors duration-300">
+            Reclaim your time and focus on strategic growth while your business runs smoothly
+          </p>
+
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
+                      group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
         </div>
       </div>
 
-      <!-- ITEM 3 -->
-      <div class="result-item text-center max-w-xs lg:col-span-2 lg:col-start-5">
-        <p class="text-gray-300 mb-8 text-xl">
-          Stable & system-driven operations
-        </p>
-        <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto">
-          <img src="img/imgs/h5.png" class="w-14 h-14 object-contain" />
+      <!-- Result Card 3 -->
+      <div class="group relative">
+        <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
+                    transition-all duration-500 ease-out
+                    hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
+                    hover:-translate-y-2 cursor-pointer">
+          
+          <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
+                      flex items-center justify-center rounded-full shadow-lg
+                      group-hover:scale-110 transition-transform duration-300">
+            03
+          </div>
+
+          <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
+                        group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
+            <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
+                        group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
+            <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
+                        group-hover:bg-opacity-20 transition-all duration-300"></div>
+            <img src="img/imgs/h3.png" class="relative w-20 h-20 object-contain z-10
+                      group-hover:scale-125 transition-all duration-300 drop-shadow-lg
+                      brightness-110" alt="Team Icon" />
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
+                     group-hover:text-[#FFBE49] transition-colors duration-300">
+            Stronger, Accountable Teams
+          </h3>
+
+          <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
+                    group-hover:text-gray-300 transition-colors duration-300">
+            Build high-performing teams that take ownership and drive results independently
+          </p>
+
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
+                      group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
         </div>
       </div>
 
-      <!-- ITEM 4 (BETWEEN 1 & 2) -->
-      <div class="result-item text-center max-w-xs lg:col-span-1 lg:col-start-2">
-        <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8">
-          <img src="img/imgs/h2.png" class="w-14 h-14 object-contain" />
+      <!-- Result Card 4 -->
+      <div class="group relative">
+        <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
+                    transition-all duration-500 ease-out
+                    hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
+                    hover:-translate-y-2 cursor-pointer">
+          
+          <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
+                      flex items-center justify-center rounded-full shadow-lg
+                      group-hover:scale-110 transition-transform duration-300">
+            04
+          </div>
+
+          <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
+                        group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
+            <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
+                        group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
+            <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
+                        group-hover:bg-opacity-20 transition-all duration-300"></div>
+            <img src="img/imgs/h4.png" class="relative w-20 h-20 object-contain z-10
+                      group-hover:scale-125 transition-all duration-300 drop-shadow-lg
+                      brightness-110" alt="Growth Icon" />
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
+                     group-hover:text-[#FFBE49] transition-colors duration-300">
+            Business Stability & Momentum
+          </h3>
+
+          <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
+                    group-hover:text-gray-300 transition-colors duration-300">
+            Create sustainable growth momentum with solid foundations and clear direction
+          </p>
+
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
+                      group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
         </div>
-        <p class="text-gray-300 text-xl">
-          More time freedom for the founder
-        </p>
       </div>
 
-      <!-- ITEM 5 (BETWEEN 2 & 3) -->
-      <div class="result-item text-center max-w-xs lg:col-span-1 lg:col-start-4">
-        <div class="result-circle w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8">
-          <img src="img/imgs/h4.png" class="w-14 h-14 object-contain" />
+      <!-- Result Card 5 -->
+      <div class="group relative sm:col-span-2 lg:col-span-1">
+        <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
+                    transition-all duration-500 ease-out
+                    hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
+                    hover:-translate-y-2 cursor-pointer">
+          
+          <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
+                      flex items-center justify-center rounded-full shadow-lg
+                      group-hover:scale-110 transition-transform duration-300">
+            05
+          </div>
+
+          <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
+                        group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
+            <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
+                        group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
+            <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
+                        group-hover:bg-opacity-20 transition-all duration-300"></div>
+            <img src="img/imgs/h5.png" class="relative w-20 h-20 object-contain z-10
+                      group-hover:scale-125 transition-all duration-300 drop-shadow-lg
+                      brightness-110" alt="Systems Icon" />
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
+                     group-hover:text-[#FFBE49] transition-colors duration-300">
+            System-Driven Operations
+          </h3>
+
+          <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
+                    group-hover:text-gray-300 transition-colors duration-300">
+            Implement scalable systems that ensure consistency and eliminate daily chaos
+          </p>
+
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
+                      group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
         </div>
-        <p class="text-gray-300 text-xl">
-          Increased business stability & growth momentum
-        </p>
       </div>
 
     </div>
+
+    <!-- Bottom decorative corners -->
+    <div class="absolute bottom-10 left-10 w-24 h-24 border-l-2 border-b-2 border-[#FFBE49] opacity-20"></div>
+    <div class="absolute bottom-10 right-10 w-24 h-24 border-r-2 border-b-2 border-[#FFBE49] opacity-20"></div>
+
     <!-- Bottom gold border accent -->
     <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
   </section>
@@ -840,6 +1012,7 @@ if ($result) {
 
   <div id="footer-container"></div>
   <script src="assets/js/loader.js" defer></script>
+  <script src="assets/js/components-loader.js"></script>
   <script src="assets/js/navbar.js" defer></script>
   <script src="assets/js/index.js" defer></script>
 

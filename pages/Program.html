@@ -97,12 +97,13 @@
     <main class="pt-16 md:pt-20" id="home">
         <!-- Hero Section -->
         <section class="relative  min-h-[calc(100vh-72px)] lg:min-h-[calc(100vh-88px)] flex items-center justify-center overflow-hidden">
-            <!-- Background Image with Blur -->
+          <!-- Background Image with Blur -->
             <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-cover bg-center  scale-110" 
                      style="background-image: url('../img/imgs/program_hero.jpeg');"></div>
             </div>
-            
+  
+
             <!-- Overlay -->
             <div class="absolute inset-0 bg-black/60 z-0"></div>
 
@@ -119,7 +120,7 @@
             <div class="relative z-20 max-w-[90rem] w-full px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between gap-12 -mt-12">
                 <div class="flex-1 max-w-2xl text-center lg:text-left fade-in">
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
-                        Programs Designed to Scale Your Business — Not Just Inspire You
+                  Programs Built to Scale Your Business with Clarity
                     </h1>
                     <p class="text-lg sm:text-xl lg:text-[22px] leading-relaxed max-w-2xl text-white/90">
                         Structured coaching programs built on clarity, systems, and predictable growth.
@@ -444,11 +445,6 @@
 
 </section>
 <!-- Bottom gold border accent -->
-<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
-
-
-
-      
 
 
   <!-- Feature Courses Section -->
@@ -598,6 +594,22 @@
 			items.forEach((item) => observer.observe(item));
 		};
 
+		const initAnimations = () => {
+			const fadeElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.1 }
+			);
+			fadeElements.forEach((el) => observer.observe(el));
+		};
+
 		document.addEventListener('DOMContentLoaded', async () => {
 			const navbarRoot = await injectComponent('/components/Navbar.html', '#navbar-container');
 			setTimeout(() => {
@@ -607,6 +619,7 @@
 			}, 150);
 			await injectComponent('../components/fotter.html', '#footer-container', 'footer');
 			initReveal();
+			initAnimations();
 		});
 	</script>
 </body>
