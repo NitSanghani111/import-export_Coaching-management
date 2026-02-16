@@ -4,8 +4,10 @@
 .env
 .env.local
 .env.production
+.env.example
 Dockerfile
 docker-compose.yml
+
 # ===============================
 # Dependencies
 # ===============================
@@ -25,7 +27,6 @@ admin/workshops_img/*
 # Database
 # ===============================
 *.sql
-!coachingdb.sql
 
 # ===============================
 # IDE & System Files
@@ -36,6 +37,7 @@ admin/workshops_img/*
 Thumbs.db
 *.swp
 *.swo
+.qodo/
 
 # ===============================
 # Logs
@@ -50,3 +52,9 @@ debug.log
 .cache/
 .tmp/
 tmp/
+
+# ===============================
+# Test Files
+# ===============================
+test-*.php
+*-test.php

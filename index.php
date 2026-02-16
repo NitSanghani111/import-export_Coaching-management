@@ -767,84 +767,89 @@ if ($result) {
         </div>
       </div>
 
-      <!-- Result Card 4 -->
-      <div class="group relative">
-        <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
-                    transition-all duration-500 ease-out
-                    hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
-                    hover:-translate-y-2 cursor-pointer">
-          
-          <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
-                      flex items-center justify-center rounded-full shadow-lg
-                      group-hover:scale-110 transition-transform duration-300">
-            04
+      <!-- Centered wrapper for cards 4 & 5 -->
+      <div class="sm:col-span-2 lg:col-span-3 flex flex-wrap justify-center gap-8 lg:gap-10">
+        
+        <!-- Result Card 4 -->
+        <div class="group relative w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.67rem)]">
+          <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
+                      transition-all duration-500 ease-out
+                      hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
+                      hover:-translate-y-2 cursor-pointer">
+            
+            <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
+                        flex items-center justify-center rounded-full shadow-lg
+                        group-hover:scale-110 transition-transform duration-300">
+              04
+            </div>
+
+            <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+              <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
+                          group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
+              <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
+                          group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
+              <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
+                          group-hover:bg-opacity-20 transition-all duration-300"></div>
+              <img src="img/imgs/h4.png" class="relative w-20 h-20 object-contain z-10
+                        group-hover:scale-125 transition-all duration-300 drop-shadow-lg
+                        brightness-110" alt="Growth Icon" />
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
+                       group-hover:text-[#FFBE49] transition-colors duration-300">
+              Business Stability & Momentum
+            </h3>
+
+            <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
+                      group-hover:text-gray-300 transition-colors duration-300">
+              Create sustainable growth momentum with solid foundations and clear direction
+            </p>
+
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
+                        group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
           </div>
-
-          <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
-            <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
-                        group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
-            <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
-                        group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
-            <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
-                        group-hover:bg-opacity-20 transition-all duration-300"></div>
-            <img src="img/imgs/h4.png" class="relative w-20 h-20 object-contain z-10
-                      group-hover:scale-125 transition-all duration-300 drop-shadow-lg
-                      brightness-110" alt="Growth Icon" />
-          </div>
-
-          <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
-                     group-hover:text-[#FFBE49] transition-colors duration-300">
-            Business Stability & Momentum
-          </h3>
-
-          <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
-                    group-hover:text-gray-300 transition-colors duration-300">
-            Create sustainable growth momentum with solid foundations and clear direction
-          </p>
-
-          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
-                      group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
         </div>
-      </div>
 
-      <!-- Result Card 5 -->
-      <div class="group relative sm:col-span-2 lg:col-span-1">
-        <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
-                    transition-all duration-500 ease-out
-                    hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
-                    hover:-translate-y-2 cursor-pointer">
-          
-          <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
-                      flex items-center justify-center rounded-full shadow-lg
-                      group-hover:scale-110 transition-transform duration-300">
-            05
+        <!-- Result Card 5 -->
+        <div class="group relative w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.67rem)]">
+          <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
+                      transition-all duration-500 ease-out
+                      hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
+                      hover:-translate-y-2 cursor-pointer">
+            
+            <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
+                        flex items-center justify-center rounded-full shadow-lg
+                        group-hover:scale-110 transition-transform duration-300">
+              05
+            </div>
+
+            <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+              <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
+                          group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
+              <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
+                          group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
+              <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
+                          group-hover:bg-opacity-20 transition-all duration-300"></div>
+              <img src="img/imgs/h5.png" class="relative w-20 h-20 object-contain z-10
+                        group-hover:scale-125 transition-all duration-300 drop-shadow-lg
+                        brightness-110" alt="Systems Icon" />
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
+                       group-hover:text-[#FFBE49] transition-colors duration-300">
+              System-Driven Operations
+            </h3>
+
+            <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
+                      group-hover:text-gray-300 transition-colors duration-300">
+              Implement scalable systems that ensure consistency and eliminate daily chaos
+            </p>
+
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
+                        group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
           </div>
-
-          <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
-            <div class="absolute inset-0 border-2 border-[#FFBE49] rounded-full opacity-30
-                        group-hover:opacity-60 transition-all duration-300 group-hover:scale-110"></div>
-            <div class="absolute inset-3 border-2 border-[#FFBE49] rounded-full opacity-20
-                        group-hover:opacity-40 transition-all duration-300 group-hover:scale-105"></div>
-            <div class="absolute inset-6 bg-[#ffff] bg-opacity-10 rounded-full
-                        group-hover:bg-opacity-20 transition-all duration-300"></div>
-            <img src="img/imgs/h5.png" class="relative w-20 h-20 object-contain z-10
-                      group-hover:scale-125 transition-all duration-300 drop-shadow-lg
-                      brightness-110" alt="Systems Icon" />
-          </div>
-
-          <h3 class="text-xl sm:text-2xl font-semibold text-center mb-4 text-white
-                     group-hover:text-[#FFBE49] transition-colors duration-300">
-            System-Driven Operations
-          </h3>
-
-          <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
-                    group-hover:text-gray-300 transition-colors duration-300">
-            Implement scalable systems that ensure consistency and eliminate daily chaos
-          </p>
-
-          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
-                      group-hover:w-3/4 transition-all duration-500 rounded-full"></div>
         </div>
+
       </div>
 
     </div>
