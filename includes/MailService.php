@@ -142,7 +142,8 @@ class MailService {
             error_log('Contact Email Error: ' . $e->getMessage());
             return [
                 'success' => false,
-                'message' => 'Failed to send message. Please try again later.'
+                'message' => 'Failed to send message. Please try again later.',
+                'debug_error' => $e->getMessage()
             ];
         }
     }

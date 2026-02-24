@@ -72,11 +72,11 @@ try {
         $result = $mailService->sendContactEmail($data);
         
         if (!$result['success']) {
-            // Email sending failed
+            // Email sending failed - include actual SMTP error for debugging
             JsonResponse::error(
                 $result['message'] ?? 'Failed to send message',
                 500,
-                ['email_error' => $result['message'] ?? 'Unknown error']
+                ['email_error' => $result['debug_error'] ?? $result['message'] ?? 'Unknown error']
             );
         }
         
