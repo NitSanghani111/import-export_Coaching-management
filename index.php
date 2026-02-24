@@ -31,6 +31,7 @@ if ($result) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
   <title>Home page</title>
 
   <!-- Preconnect to external domains for faster loading -->
@@ -83,6 +84,26 @@ if ($result) {
       font-family: 'Playfair Display', Georgia, serif;
     }
 
+    /* Premium name styling in hero section */
+    .hero-name {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFBE49 0%, #ffd699 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px rgba(255, 190, 73, 0.4);
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 30px rgba(255, 190, 73, 0.3));
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    @media (max-width: 768px) {
+      .hero-name {
+        font-size: 2.5rem;
+      }
+    }
+
     /* Panel behind carousel to separate from page background */
   </style>
 </head>
@@ -91,7 +112,7 @@ if ($result) {
 
   <!-- Page Loader with Logo -->
   <div id="page-loader">
-   
+
     <div class="loader-spinner"></div>
     <div class="loader-text">Loading</div>
   </div>
@@ -113,10 +134,10 @@ if ($result) {
 
       <!-- LEFT TEXT -->
       <div>
-        <h1 class="text-3xl md:text-4xl xl:text-4xl font-serif leading-tight mb-4">
-          PARTH JETHVA
+        <h1 class="font-serif leading-tight mb-4">
+          <span class="hero-name">PARTH JETHVA</span>
           <br />
-          Startup & Business Growth Coach
+          <span class="text-3xl md:text-4xl xl:text-4xl">Startup & Business Growth Coach</span>
         </h1>
         <h2 class="lg:text-3xl">Struggling with clarity or growth?
         </h2>
@@ -137,9 +158,9 @@ if ($result) {
       <!-- RIGHT IMAGE -->
       <div class="relative flex justify-center">
         <img
-          src="img/imgs/client.jpeg"
+          src="img/imgs/parth_img-removebg-preview.png"
           alt="Client"
-          class="hero-img max-w-md w-full grayscale rounded" />
+          class=" max-w-md w-full grayscale rounded" />
       </div>
 
     </div>
@@ -148,63 +169,67 @@ if ($result) {
   <section class="max-w-7xl mx-auto px-6 py-28 relative">
     <!-- Subtle background -->
     <div class="absolute inset-0 opacity-5" style="background: radial-gradient(circle at 20% 50%, #FFBE49 0%, transparent 50%), radial-gradient(circle at 80% 50%, #FFBE49 0%, transparent 50%);"></div>
-    
+
     <div class="relative z-10">
-    <!-- Heading -->
-    <h2 class="text-4xl md:text-5xl font-serif mb-20">
-      My 3 Growth Pillars
-    </h2>
+      <!-- Heading -->
+      <h2 class="text-4xl md:text-5xl font-serif mb-20">
+        My 3 Growth Pillars
+      </h2>
 
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pillars-grid">
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pillars-grid">
 
-      <!-- CARD 1 -->
-      <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
-        <div class="mb-8 text-gray-400">
-          <img src="./img/design/Clarity.svg" alt="" class="w-18 h-18 mx-auto" />
-          <p class="text-xs tracking-widest mt-2 text-gray-500">CLARITY</p>
+        <!-- CARD 1 -->
+        <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
+          <div class="mb-8 text-gray-400">
+            <img src="./img/design/Clarity.svg" alt="" class="w-18 h-18 mx-auto" />
+            <p class="text-xs tracking-widest mt-2 text-gray-500">CLARITY</p>
+          </div>
+
+          <h3 class="text-3xl font-serif text-[#FFBE49] mb-6">
+            Clarity & Direction
+          </h3>
+
+          <p class="text-gray-300 text-lg leading-relaxed">
+            Get a clear roadmap, priorities, and next steps—so you execute with confidence.
+
+
+          </p>
         </div>
 
-        <h3 class="text-3xl font-serif text-[#FFBE49] mb-6">
-          Clarity & Direction
-        </h3>
+        <!-- CARD 2 -->
+        <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
+          <div class="mb-8 text-gray-400">
+            <img src="./img/design/Computer.svg" alt="" class="w-18 h-18 mx-auto" />
+          </div>
 
-        <p class="text-gray-300 text-lg leading-relaxed">
-          Stop guessing. Start executing with confidence.
-        </p>
-      </div>
+          <h3 class="text-3xl font-serif text-[#FFBE49] mb-6">
+            Systems & Structure
+          </h3>
 
-      <!-- CARD 2 -->
-      <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
-        <div class="mb-8 text-gray-400">
-          <img src="./img/design/Computer.svg" alt="" class="w-18 h-18 mx-auto" />
+          <p class="text-gray-300 text-lg leading-relaxed">
+            Build repeatable sales & delivery systems—so your business runs without daily chaos.
+
+          </p>
         </div>
 
-        <h3 class="text-3xl font-serif text-[#FFBE49] mb-6">
-          Systems & Structure
-        </h3>
+        <!-- CARD 3 -->
+        <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
+          <div class="mb-8 text-gray-400">
+            <img src="./img/design/Growth.svg" alt="" class="w-18 h-18 mx-auto" />
+          </div>
 
-        <p class="text-gray-300 text-lg leading-relaxed">
-          Build a business that runs without daily chaos.
-        </p>
-      </div>
+          <h3 class="text-3xl font-serif text-[#FFBE49] mb-6">
+            Profit & Performance
+          </h3>
 
-      <!-- CARD 3 -->
-      <div class="card-base px-12 py-16 text-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,190,73,0.2)] cursor-pointer">
-        <div class="mb-8 text-gray-400">
-          <img src="./img/design/Growth.svg" alt="" class="w-18 h-18 mx-auto" />
+          <p class="text-gray-300 text-lg leading-relaxed">
+            Improve margins, cashflow, and weekly numbers—so you grow with control.
+
+          </p>
         </div>
 
-        <h3 class="text-3xl font-serif text-[#FFBE49] mb-6">
-          Profit & Performance
-        </h3>
-
-        <p class="text-gray-300 text-lg leading-relaxed">
-          Scale consistently with proven business frameworks.
-        </p>
       </div>
-
-    </div>
     </div>
     <!-- Bottom gold border accent -->
     <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
@@ -212,149 +237,157 @@ if ($result) {
 
   <!-- Signature progrmams -->
 
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
-  <!-- Top gold border accent -->
-  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
+    <!-- Top gold border accent -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
 
-  <div class="relative z-10">
-  <!-- Section Title -->
-  <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif mb-14">
-    Our Programs
-  </h2>
+    <div class="relative z-10">
+      <!-- Section Title -->
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif mb-14">
+        Our Programs
+      </h2>
 
-  <!-- Programs Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+      <!-- Programs Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
 
-    <!-- Program Card -->
-    <div class="group rounded-[28px] overflow-hidden
+        <!-- Program Card -->
+        <div class="group rounded-[28px] overflow-hidden
                 bg-[#0C0C0C] border border-white/10
                 transition-all duration-500
                 hover:border-[#FFBE49]/40 hover:-translate-y-2">
 
-      <!-- Image -->
-      <div class="relative overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-          class="w-full h-52 sm:h-60 object-cover
+          <!-- Image -->
+          <div class="relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+              class="w-full h-52 sm:h-60 object-cover
                  transition-transform duration-700 group-hover:scale-105"
-          alt="Startup Success Blueprint" />
-      </div>
+              alt="Startup Success Blueprint" />
+          </div>
 
-      <!-- Content -->
-      <div class="px-7 py-7 flex flex-col gap-4">
+          <!-- Content -->
+          <div class="px-7 py-7 flex flex-col gap-4">
 
-        <h3 class="text-xl sm:text-2xl font-serif leading-snug">
-          Startup Success Blueprint
-        </h3>
+            <h3 class="text-xl sm:text-2xl font-serif leading-snug">
+              Startup Success Blueprint
+            </h3>
 
-        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
-          A practical, step-by-step system to build a business that survives,
-          stabilises and scales.
-        </p>
+            <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+              A step-by-step system to go from idea → first customers → a business that scales.
+            </p>
 
-        <!-- Divider -->
-        <div class="h-px w-full bg-white/10 my-2"></div>
+            <!-- Divider -->
+            <div class="h-px w-full bg-white/10 my-2"></div>
 
-        <!-- Key Points -->
-        <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
-          <li>Validate your idea & market the right way</li>
-          <li>Fix your business model & money leaks</li>
-          <li>Build simple systems for sales & operations</li>
-          <li>Create a 6–12 month growth roadmap</li>
-        </ul>
+            <!-- Key Points -->
+            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
+              <li>Validate the right problem + customer</li>
+              <li>Build a sellable offer + pricing that makes sense</li>
+              <li>Set up simple sales system</li>
+              <li>90-day execution plan + tracking dashboard
 
-        <!-- CTA -->
-        <a href="#"
-           class="mt-6 inline-flex items-center gap-2
+                Know more / Swipe up to see the full roadmap →</li>
+            </ul>
+
+            <!-- CTA -->
+            <a href="#"
+              class="mt-6 inline-flex items-center gap-2
                   text-[#FFBE49] font-medium
                   hover:gap-3 transition-all">
-          Know more about this program
-          <span>→</span>
-        </a>
+              Know more about this program
+              <span>→</span>
+            </a>
 
-      </div>
-    </div>
+          </div>
+        </div>
 
-    <!-- Duplicate cards (structure stays same) -->
-    <div class="group rounded-[28px] overflow-hidden
+        <!-- Duplicate cards (structure stays same) -->
+        <div class="group rounded-[28px] overflow-hidden
                 bg-[#0C0C0C] border border-white/10
                 transition-all duration-500
                 hover:border-[#FFBE49]/40 hover:-translate-y-2">
 
-      <div class="relative overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-          class="w-full h-52 sm:h-60 object-cover
+          <div class="relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+              class="w-full h-52 sm:h-60 object-cover
                  transition-transform duration-700 group-hover:scale-105" />
-      </div>
+          </div>
 
-      <div class="px-7 py-7 flex flex-col gap-4">
-        <h3 class="text-xl sm:text-2xl font-serif">
-          Leadership & Team Systems
-        </h3>
+          <div class="px-7 py-7 flex flex-col gap-4">
+            <h3 class="text-xl sm:text-2xl font-serif">
+              Founder Execution OS
+            </h3>
 
-        <p class="text-gray-400 text-sm sm:text-base">
-          Build accountable teams and systems that don’t depend on you daily.
-        </p>
+            <p class="text-gray-400 text-sm sm:text-base">
+              A daily operating system to execute faster, stay consistent, and hit targets without burnout.
+            </p>
 
-        <div class="h-px w-full bg-white/10 my-2"></div>
+            <div class="h-px w-full bg-white/10 my-2"></div>
 
-        <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
-          <li>Hiring clarity & role design</li>
-          <li>Delegation & accountability</li>
-          <li>Simple SOPs that scale</li>
-        </ul>
+            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
+              <li>Weekly goals → daily execution blocks
+              </li>
+              <li>Habit + accountability system
+              </li>
+              <li>Founder time management + focus control
+              </li>
+              <li>
+                Review system: what worked, what to fix, next week plan
 
-        <a href="#"
-           class="mt-6 inline-flex items-center gap-2
+              </li>
+            </ul>
+
+            <a href="#"
+              class="mt-6 inline-flex items-center gap-2
                   text-[#FFBE49] font-medium hover:gap-3 transition-all">
-          Know more about this program →
-        </a>
-      </div>
-    </div>
+              Know more about this program →
+            </a>
+          </div>
+        </div>
 
-    <div class="group rounded-[28px] overflow-hidden
+        <div class="group rounded-[28px] overflow-hidden
                 bg-[#0C0C0C] border border-white/10
                 transition-all duration-500
                 hover:border-[#FFBE49]/40 hover:-translate-y-2">
 
-      <div class="relative overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-          class="w-full h-52 sm:h-60 object-cover
+          <div class="relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+              class="w-full h-52 sm:h-60 object-cover
                  transition-transform duration-700 group-hover:scale-105" />
-      </div>
+          </div>
 
-      <div class="px-7 py-7 flex flex-col gap-4">
-        <h3 class="text-xl sm:text-2xl font-serif">
-          Growth & Scale Roadmap
-        </h3>
+          <div class="px-7 py-7 flex flex-col gap-4">
+            <h3 class="text-xl sm:text-2xl font-serif">
+              Growth & Scale Roadmap
+            </h3>
 
-        <p class="text-gray-400 text-sm sm:text-base">
-          Structured plans to scale revenue without burning out.
-        </p>
+            <p class="text-gray-400 text-sm sm:text-base">
+              Structured plans to scale revenue without burning out.
+            </p>
 
-        <div class="h-px w-full bg-white/10 my-2"></div>
+            <div class="h-px w-full bg-white/10 my-2"></div>
 
-        <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
-          <li>Channel clarity</li>
-          <li>Predictable growth levers</li>
-          <li>Execution roadmap</li>
-        </ul>
+            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
+              <li>Channel clarity</li>
+              <li>Predictable growth levers</li>
+              <li>Execution roadmap</li>
+            </ul>
 
-        <a href="#"
-           class="mt-6 inline-flex items-center gap-2
+            <a href="#"
+              class="mt-6 inline-flex items-center gap-2
                   text-[#FFBE49] font-medium hover:gap-3 transition-all">
-          Know more about this program →
-        </a>
+              Know more about this program →
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
-
-  </div>
-  </div>
-  <!-- Bottom gold border accent -->
-  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
-</section>
+    <!-- Bottom gold border accent -->
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+  </section>
 
 
 
@@ -432,7 +465,7 @@ if ($result) {
     <!-- Bottom gold border accent -->
     <!-- Top gold border accent -->
     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
-    
+
     <!-- Decorative Background Elements -->
     <div class="absolute top-10 left-0 w-64 h-64 bg-[#FFBE49] opacity-5 rounded-full blur-3xl"></div>
     <div class="absolute bottom-10 right-0 w-96 h-96 bg-[#FFBE49] opacity-5 rounded-full blur-3xl"></div>
@@ -446,8 +479,8 @@ if ($result) {
 
       <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto px-4">
         No theory. No guesswork.<br class="hidden sm:block">
-        Only practical, real-world frameworks that help you build,
-        fix, and scale your business with clarity.
+        Only practical, real-world frameworks that deliver results.
+
       </p>
     </div>
 
@@ -474,8 +507,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Clear direction, positioning, and decision-making
-          frameworks tailored to your stage.
+        Clear direction, positioning, and decisions—built for your current stage.
         </p>
 
         <!-- Hover Accent Line -->
@@ -500,8 +532,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Simple, repeatable sales processes that
-          work without chaos or pressure.
+          Simple, repeatable sales process that converts without daily stress.
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -525,8 +556,8 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Focused marketing plans built on clarity,
-          not random posting or trends.
+        A focused plan that brings leads—no random posting, no guessing.
+
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -550,8 +581,8 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Hiring, structure, and delegation systems
-          that reduce dependency on you.
+          Hiring clarity + delegation systems so work runs without you.
+
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -575,8 +606,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Clean workflows and tools that
-          save time and prevent burnout.
+         Clean workflows + tools that save time and reduce burnout.
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -600,8 +630,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Design models that grow revenue
-          without growing complexity.
+         Design a model that grows revenue without growing complexity
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -630,7 +659,7 @@ if ($result) {
       <p class="text-xl sm:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
         Entrepreneurs across 15+ industries have scaled using my methods
       </p>
-      
+
       <!-- Gold underline accent -->
       <div class="w-32 h-1 bg-[#FFBE49] mx-auto mt-8"></div>
     </div>
@@ -644,7 +673,7 @@ if ($result) {
                     transition-all duration-500 ease-out
                     hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
                     hover:-translate-y-2 cursor-pointer">
-          
+
           <!-- Number Badge -->
           <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
                       flex items-center justify-center rounded-full shadow-lg
@@ -678,8 +707,9 @@ if ($result) {
           <!-- Description -->
           <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
                     group-hover:text-gray-300 transition-colors duration-300">
-            Build sustainable revenue streams with proven strategies that deliver consistent growth
-          </p>
+           Build consistent revenue using clear offers + repeatable sales systems.
+
+                  </p>
 
           <!-- Bottom accent line -->
           <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
@@ -693,7 +723,7 @@ if ($result) {
                     transition-all duration-500 ease-out
                     hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
                     hover:-translate-y-2 cursor-pointer">
-          
+
           <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
                       flex items-center justify-center rounded-full shadow-lg
                       group-hover:scale-110 transition-transform duration-300">
@@ -719,7 +749,7 @@ if ($result) {
 
           <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
                     group-hover:text-gray-300 transition-colors duration-300">
-            Reclaim your time and focus on strategic growth while your business runs smoothly
+           Reduce daily firefighting—focus on growth while systems run the business
           </p>
 
           <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
@@ -733,7 +763,7 @@ if ($result) {
                     transition-all duration-500 ease-out
                     hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
                     hover:-translate-y-2 cursor-pointer">
-          
+
           <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
                       flex items-center justify-center rounded-full shadow-lg
                       group-hover:scale-110 transition-transform duration-300">
@@ -759,7 +789,8 @@ if ($result) {
 
           <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
                     group-hover:text-gray-300 transition-colors duration-300">
-            Build high-performing teams that take ownership and drive results independently
+           Build ownership, roles, and accountability—so work moves without you.
+
           </p>
 
           <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
@@ -769,14 +800,14 @@ if ($result) {
 
       <!-- Centered wrapper for cards 4 & 5 -->
       <div class="sm:col-span-2 lg:col-span-3 flex flex-wrap justify-center gap-8 lg:gap-10">
-        
+
         <!-- Result Card 4 -->
         <div class="group relative w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.67rem)]">
           <div class="h-full border-2 border-white/10 rounded-2xl p-8 bg-black/40 backdrop-blur-sm
                       transition-all duration-500 ease-out
                       hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
                       hover:-translate-y-2 cursor-pointer">
-            
+
             <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
                         flex items-center justify-center rounded-full shadow-lg
                         group-hover:scale-110 transition-transform duration-300">
@@ -802,7 +833,8 @@ if ($result) {
 
             <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
                       group-hover:text-gray-300 transition-colors duration-300">
-              Create sustainable growth momentum with solid foundations and clear direction
+            Create a stable foundation with clear priorities and a 90-day roadmap.
+
             </p>
 
             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
@@ -816,7 +848,7 @@ if ($result) {
                       transition-all duration-500 ease-out
                       hover:border-[#FFBE49] hover:shadow-[0_0_30px_rgba(255,190,73,0.15)]
                       hover:-translate-y-2 cursor-pointer">
-            
+
             <div class="absolute -top-4 -right-4 w-12 h-12 bg-[#FFBE49] text-black font-bold text-xl
                         flex items-center justify-center rounded-full shadow-lg
                         group-hover:scale-110 transition-transform duration-300">
@@ -842,7 +874,8 @@ if ($result) {
 
             <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed
                       group-hover:text-gray-300 transition-colors duration-300">
-              Implement scalable systems that ensure consistency and eliminate daily chaos
+            SOPs + tracking that remove chaos and keep execution consistent.
+
             </p>
 
             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#FFBE49]
@@ -863,7 +896,7 @@ if ($result) {
   </section>
 
 
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-24 md:py-32 relative">    <!-- Top gold border accent -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-24 md:py-32 relative"> <!-- Top gold border accent -->
     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
     <!-- TITLE -->
     <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-6 sm:mb-12 md:mb-14">
@@ -898,13 +931,11 @@ if ($result) {
               </div>
               <div class="min-w-0">
                 <h3 class="text-lg sm:text-2xl font-serif leading-tight">
-                  Rakesh Patel
+                 Naim Shah (Proton Tech Industries)
+
                 </h3>
 
-                <p class="text-xs sm:text-sm text-gray-500 flex flex-wrap gap-1.5 sm:gap-3">
-                  <span>1 Review</span>
-                  <span>📍 Ahmedabad, India</span>
-                </p>
+             
 
               </div>
             </div>
@@ -922,9 +953,7 @@ if ($result) {
             </h4>
 
             <p class="text-xs sm:text-base text-gray-700 leading-snug sm:leading-relaxed">
-              I was stuck with ideas but no clear execution plan. Parth helped me
-              structure my business, fix my pricing, and focus on the right things.
-              The guidance was practical, simple, and immediately useful.
+            Before this, I was stuck in confusion—too many ideas, no clear direction. Parth helped me simplify everything into one clear plan and weekly execution. Now I know exactly what to do next.
             </p>
 
           </div>
@@ -937,13 +966,10 @@ if ($result) {
               </div>
               <div class="min-w-0">
                 <h3 class="text-lg sm:text-2xl font-serif leading-tight">
-                  Neha Shah
+               Aman Patel (Balaji Industries)
                 </h3>
 
-                <p class="text-xs sm:text-sm text-gray-500 flex flex-wrap gap-1.5 sm:gap-3">
-                  <span>2 Reviews</span>
-                  <span>📍 Mumbai, India</span>
-                </p>
+                
 
               </div>
             </div>
@@ -961,9 +987,7 @@ if ($result) {
             </h4>
 
             <p class="text-xs sm:text-base text-gray-700 leading-snug sm:leading-relaxed">
-              What I liked most was the clarity. No over-complicated theories.
-              Just clean systems for sales and operations that I could implement
-              immediately in my business.
+             The biggest change was my offer. We fixed positioning and pricing in a way that finally made sense. I stopped discounting and started closing with confidence
             </p>
 
           </div>
@@ -976,13 +1000,10 @@ if ($result) {
               </div>
               <div class="min-w-0">
                 <h3 class="text-lg sm:text-2xl font-serif leading-tight">
-                  Aman Verma
+             Priti Gajjar (Sai Hardware)
                 </h3>
 
-                <p class="text-xs sm:text-sm text-gray-500 flex flex-wrap gap-1.5 sm:gap-3">
-                  <span>1 Review</span>
-                  <span>📍 Bengaluru, India</span>
-                </p>
+               
 
               </div>
             </div>
@@ -1000,8 +1021,7 @@ if ($result) {
             </h4>
 
             <p class="text-xs sm:text-base text-gray-700 leading-snug sm:leading-relaxed">
-              Straightforward advice, no fluff. Helped me understand where my
-              business was leaking money and how to fix it step by step.
+             I didn’t need motivation. I needed a system. We built a simple sales process and follow-ups that I can repeat every week. This alone improved my consistency.
             </p>
 
           </div>

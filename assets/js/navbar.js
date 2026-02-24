@@ -120,16 +120,20 @@
             };
 
             window.initNavbar = () => {
-                const ok = bindNavbar();
-                if (!ok) {
-                    console.error('Navbar elements missing on this page');
+                bindNavbar();
+            };
+
+            // Auto-initialize only when navbar elements are already in the DOM
+            // (pages using async component injection call window.initNavbar() manually after injection)
+            const tryAutoInit = () => {
+                if (document.getElementById('site-header')) {
+                    window.initNavbar();
                 }
             };
 
-            // Auto-initialize when DOM is ready
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', window.initNavbar);
+                document.addEventListener('DOMContentLoaded', tryAutoInit);
             } else {
-                window.initNavbar();
+                tryAutoInit();
             }
         })();

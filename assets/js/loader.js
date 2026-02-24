@@ -46,7 +46,7 @@ if ('IntersectionObserver' in window) {
 function prefetchResources() {
   const links = [
     'components/Navbar.html',
-    'components/fotter.html',
+    'components/footer.html',
     'assets/css/main.css'
   ];
   

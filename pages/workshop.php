@@ -166,6 +166,7 @@ function getDescription($workshop, $descField) {
   <title>Workshops</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
 
   <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
@@ -942,7 +943,7 @@ function getDescription($workshop, $descField) {
 			// Load components in parallel for faster page load
 			const [navbarRoot] = await Promise.all([
 				injectComponent('/components/Navbar.html', '#navbar-container'),
-				injectComponent('../components/fotter.html', '#footer-container', 'footer')
+				injectComponent('../components/footer.html', '#footer-container', 'footer')
 			]);
 			
 			// Initialize navbar immediately

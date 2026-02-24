@@ -45,6 +45,7 @@ if (!empty($params)) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
   <title>Blogs | Parth Coaching</title>
 
   <!-- Tailwind CDN -->
@@ -355,7 +356,7 @@ if (!empty($params)) {
 					window.initNavbar();
 				}
 			}, 150);
-			await injectComponent('../components/fotter.html', '#footer-container', 'footer');
+			await injectComponent('../components/footer.html', '#footer-container', 'footer');
 			initReveal();
 		});
 	</script>

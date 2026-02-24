@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Load navbar and footer in parallel (not sequential)
   const [navbarRoot] = await Promise.all([
     injectComponent('components/Navbar.html', '#navbar-container', 'header'),
-    injectComponent('components/fotter.html', '#footer-container', 'footer')
+    injectComponent('components/footer.html', '#footer-container', 'footer')
   ]);
   
   // Initialize navbar immediately

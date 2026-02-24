@@ -32,6 +32,7 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
   <title><?= htmlspecialchars($blog['title']); ?> | Parth Coaching</title>
 
   <!-- Tailwind CDN -->
@@ -377,7 +378,7 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
 					window.initNavbar();
 				}
 			}, 150);
-			await injectComponent('../components/fotter.html', '#footer-container', 'footer');
+			await injectComponent('../components/footer.html', '#footer-container', 'footer');
 			initReveal();
 		});
 	</script>

@@ -39,7 +39,7 @@
   async function loadAllComponents() {
     const components = [
       { url: 'components/Navbar.html', id: 'navbar-container' },
-      { url: 'components/fotter.html', id: 'footer-container' }
+      { url: 'components/footer.html', id: 'footer-container' }
     ];
 
     try {
