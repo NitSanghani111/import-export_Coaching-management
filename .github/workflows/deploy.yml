@@ -1,15 +1,9 @@
-name: Deploy to ByetHost (Disabled)
-
-# Workflow is currently disabled - using manual deployment
-# To enable: uncomment the 'on:' section below and add secrets to GitHub
-
-# on:
-#   push:
-#     branches:
-#       - main
+name: Deploy to Hostinger
 
 on:
-  workflow_dispatch: # Only run manually from GitHub Actions tab
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -19,30 +13,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP
+      - name: Deploy via FTP to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
           local-dir: ./
-          server-dir: parthj.22web.org/htdocs/
-          dangerous-clean-slate: false
+          server-dir: /public_html/
+
           exclude: |
             **/.git*
             **/.github/**
             **/.env
             **/.env.example
             **/*.sql
-            **/coachingdb.sql
-            **/admin/workshops_img/**
             **/node_modules/**
             **/Dockerfile
             **/docker-compose.yml
-            **/README.md
-            **/DEPLOYMENT.md
-            **/PERFORMANCE.md
-            **/QUICK_FIX_REFERENCE.md
-            **/.qodo/**
+            **/*.md
             **/.vscode/**
-            **/optimize-database.sql

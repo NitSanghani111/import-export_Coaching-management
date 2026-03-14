@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +11,9 @@
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap"
+		rel="stylesheet" />
 	<link rel="stylesheet" href="../assets/css/main.css" />
 
 	<!-- Tailwind CSS with cache busting -->
@@ -35,28 +38,38 @@
 		.mobile-menu {
 			transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 		}
+
 		.reveal {
 			opacity: 0;
 			transform: translateY(24px);
 			transition: opacity 0.6s ease, transform 0.6s ease;
 		}
+
 		.revealed {
 			opacity: 1;
 			transform: translateY(0);
 		}
+
 		body {
 			margin: 0;
 			background: #000;
 			color: #fff;
 			font-family: 'Inter', system-ui, -apple-system, sans-serif;
 		}
-		h1, h2, h3, h4, h5, h6 {
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
 			font-family: 'Playfair Display', Georgia, serif;
 		}
-	</style>    
+	</style>
 </head>
+
 <body class="antialiased">
-	
+
 	<!-- Page Loader -->
 	<div id="page-loader">
 		<div class="loader-spinner"></div>
@@ -67,141 +80,170 @@
 
 	<main class="pt-0">
 		<!-- Hero -->
-		<section
-			class="relative min-h-[calc(100vh-72px)] lg:min-h-[calc(100vh-88px)] flex items-center overflow-hidden"
+		<section class="relative min-h-[calc(100vh-72px)] lg:min-h-[calc(100vh-88px)] flex items-center overflow-hidden"
 			style="background-image:  url('../img/imgs/about_hero.jpeg'); background-size: cover; background-position: center;"
-			aria-label="Hero"
-		>	
+			aria-label="Hero">
 			<div class="absolute inset-0 bg-black/60"></div>
 			<div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 w-full">
 				<div class="flex flex-col lg:flex-row items-center lg:items-center justify-between gap-8 lg:gap-12">
 					<div class="max-w-3xl reveal text-center lg:text-left">
-						<h1 class="text-[40px] md:text-[46px] lg:text-[52px] font-bold text-white leading-tight mb-5" style="font-family: 'Inter', sans-serif;">
+						<h1 class="text-[40px] md:text-[46px] lg:text-[52px] font-bold text-white leading-tight mb-5"
+							style="font-family: 'Inter', sans-serif;">
 							Meet Parth Jethva
 						</h1>
-						<p class="text-[24px] md:text-[24px] lg:text-[26px] text-white/85 leading-relaxed" style="font-family: 'Inter', sans-serif; font-weight: 500;">
-							Helping entrepreneurs scale with clarity, systems, and predictable growth. No fluff, just real-world strategies that work.
+						<p class="text-[24px] md:text-[24px] lg:text-[26px] text-white/85 leading-relaxed"
+							style="font-family: 'Inter', sans-serif; font-weight: 500;">
+							Helping entrepreneurs scale with clarity, systems, and predictable growth. No fluff, just
+							real-world strategies that work.
 						</p>
 					</div>
 					<div class="reveal flex-shrink-0 lg:ml-auto lg:translate-x-10">
-						<div class="w-[240px] h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full overflow-hidden border-4 border-[#FFBE49]/40 shadow-[0_20px_60px_rgba(255,190,73,0.25)] bg-black/30 backdrop-blur-sm flex items-center justify-center hover:shadow-[0_25px_70px_rgba(255,190,73,0.35)] hover:border-[#FFBE49]/60 transition-all duration-300">
-							<img src="../img/imgs/parth_img-removebg-preview.png" alt="Client portrait" class="w-full h-full object-cover">
+						<div
+							class="w-[240px] h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full overflow-hidden border-4 border-[#FFBE49]/40 shadow-[0_20px_60px_rgba(255,190,73,0.25)] bg-black/30 backdrop-blur-sm flex items-center justify-center hover:shadow-[0_25px_70px_rgba(255,190,73,0.35)] hover:border-[#FFBE49]/60 transition-all duration-300">
+							<img src="../img/imgs/parth_img-removebg-preview.png" alt="Client portrait"
+								class="w-full h-full object-cover">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="absolute inset-x-0 bottom-0 text-white/90">
 				<svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" class="w-full h-[120px]">
-					<path d="M0,80 C320,140 640,40 960,90 C1200,130 1320,90 1440,60 L1440,120 L0,120 Z" fill="rgba(0,0,0,0.6)"/>
+					<path d="M0,80 C320,140 640,40 960,90 C1200,130 1320,90 1440,60 L1440,120 L0,120 Z"
+						fill="rgba(0,0,0,0.6)" />
 				</svg>
 			</div>
 		</section>
 
 		<!-- Who Am I -->
-		<section class="bg-black pt-20 md:pt-28 lg:pt-32 pb-16 md:pb-24 lg:pb-32 px-6 md:px-12 lg:px-20 relative" id="about">
+		<section class="bg-black pt-20 md:pt-28 lg:pt-32 pb-16 md:pb-24 lg:pb-32 px-6 md:px-12 lg:px-20 relative"
+			id="about">
 			<!-- Top gold border accent -->
 
 			<div class="max-w-7xl mx-auto">
-				<h2 class="text-[32px] md:text-[36px] lg:text-[40px] font-bold text-white text-left mb-10 md:mb-12 lg:mb-16 reveal" style="font-family: 'Inter', sans-serif;">
+				<h2 class="text-[32px] md:text-[36px] lg:text-[40px] font-bold text-white text-left mb-10 md:mb-12 lg:mb-16 reveal"
+					style="font-family: 'Inter', sans-serif;">
 					Who is Parth Jethva?
 
 				</h2>
 				<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start reveal">
 					<div class="lg:col-span-7 space-y-5 md:space-y-6">
 						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Inter', sans-serif;">
-							<span class="text-amber-400 font-semibold">Parth Jethva</span>  is a Startup & Business Growth Coach who helps MSME owners, entrepreneurs, and startups scale their businesses using clarity, systems, and predictable growth strategies. 
+							<span class="text-amber-400 font-semibold">Parth Jethva</span> is a Startup & Business
+							Growth Coach who helps MSME owners, entrepreneurs, and startups scale their businesses using
+							clarity, systems, and predictable growth strategies.
 						</p>
 						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Inter', sans-serif;">
-							He believes entrepreneurs don't fail because they lack hard work — they fail because they lack direction, sales systems, and a structured business model. 
+							He believes entrepreneurs don't fail because they lack hard work — they fail because they
+							lack direction, sales systems, and a structured business model.
 
 						</p>
 						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Inter', sans-serif;">
-							With years of hands-on experience across multiple industries, Parth has helped business owners build profitable models, fix sales bottlenecks, strengthen their marketing engine, and create high-performing teams that reduce the founder’s daily workload.
+							With years of hands-on experience across multiple industries, Parth has helped business
+							owners build profitable models, fix sales bottlenecks, strengthen their marketing engine,
+							and create high-performing teams that reduce the founder’s daily workload.
 						</p>
 						<p class="text-[20px] text-white/80 leading-loose" style="font-family: 'Inter', sans-serif;">
-							His coaching approach is practical, simple to execute, and focused purely on real business results — not motivation or theory.
+							His coaching approach is practical, simple to execute, and focused purely on real business
+							results — not motivation or theory.
 						</p>
 					</div>
 					<div class="lg:col-span-5 order-2 lg:order-none">
-						<div class="w-full h-full min-h-[400px] lg:min-h-[500px] rounded-2xl border-2 border-[#FFBE49]/40 overflow-hidden shadow-[0_20px_60px_rgba(255,190,73,0.25)] lg:sticky lg:top-24 hover:shadow-[0_25px_70px_rgba(255,190,73,0.35)] hover:border-[#FFBE49]/60 transition-all duration-300">
-							<img
-								src="../img/imgs/whoami.jpeg"
-								alt="Portrait of Parth Jethva in a business setting"
-								class="w-full h-full object-cover"
-								loading="lazy"
-							/>
+						<div
+							class="w-full h-full min-h-[400px] lg:min-h-[500px] rounded-2xl border-2 border-[#FFBE49]/40 overflow-hidden shadow-[0_20px_60px_rgba(255,190,73,0.25)] lg:sticky lg:top-24 hover:shadow-[0_25px_70px_rgba(255,190,73,0.35)] hover:border-[#FFBE49]/60 transition-all duration-300">
+							<img src="../img/imgs/parth_img-removebg-preview.png"
+								alt="Portrait of Parth Jethva in a business setting" class="w-full h-full object-cover"
+								loading="lazy" />
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- Bottom gold border accent -->
-			<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+			<div
+				class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
 		</section>
 
 		<!-- Vision & Mission -->
 		<section class="bg-black py-16 md:py-24 px-6 md:px-12 lg:px-20 relative" id="vision">
 			<!-- Top gold border accent -->
-			<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+			<div
+				class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
 			<div class="max-w-7xl mx-auto">
-				<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-left mb-12 md:mb-16 reveal">
+				<h2
+					class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-left mb-12 md:mb-16 reveal">
 					Our Vision And Mission
 				</h2>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-14 justify-items-stretch md:justify-items-center">
-					<article class="reveal border border-amber-300/90 rounded-[28px] p-8 md:p-12 lg:p-16 min-h-[320px] md:min-h-[360px] lg:min-h-[380px] bg-gradient-to-b from-white/5 via-black/70 to-black/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center shadow-[0_14px_70px_-14px_rgba(245,158,11,0.32)] transition duration-300 transform hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_18px_90px_-12px_rgba(245,158,11,0.45)] hover:border-amber-200">
-						<img src="../img/design/icon-2.svg" class="pb-10"  alt="" style="width: 70px;">
-						<p class="text-[20px] md:text-[22px] lg:text-[24px] text-white leading-relaxed max-w-xl" style="font-family: 'Inter', sans-serif;">
-						To empower 1,00,000 entrepreneurs with the clarity, mindset, and tools needed to build businesses that are stable, scalable, and truly successful.
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-14 justify-items-stretch md:justify-items-center">
+					<article
+						class="reveal border border-amber-300/90 rounded-[28px] p-8 md:p-12 lg:p-16 min-h-[320px] md:min-h-[360px] lg:min-h-[380px] bg-gradient-to-b from-white/5 via-black/70 to-black/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center shadow-[0_14px_70px_-14px_rgba(245,158,11,0.32)] transition duration-300 transform hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_18px_90px_-12px_rgba(245,158,11,0.45)] hover:border-amber-200">
+						<img src="../img/design/icon-2.svg" class="pb-10" alt="" style="width: 70px;">
+						<p class="text-[20px] md:text-[22px] lg:text-[24px] text-white leading-relaxed max-w-xl"
+							style="font-family: 'Inter', sans-serif;">
+							To empower 1,00,000 entrepreneurs with the clarity, mindset, and tools needed to build
+							businesses that are stable, scalable, and truly successful.
 
 						</p>
 					</article>
-					<article class="reveal border border-white/45 rounded-[28px] p-8 md:p-12 lg:p-16 min-h-[320px] md:min-h-[360px] lg:min-h-[380px] bg-gradient-to-b from-white/4 via-black/70 to-black/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center shadow-[0_12px_48px_-16px_rgba(0,0,0,0.6)] transition duration-300 transform hover:-translate-y-2 hover:scale-[1.01] hover:border-amber-100/70 hover:shadow-[0_16px_70px_-14px_rgba(245,158,11,0.32)]">
+					<article
+						class="reveal border border-white/45 rounded-[28px] p-8 md:p-12 lg:p-16 min-h-[320px] md:min-h-[360px] lg:min-h-[380px] bg-gradient-to-b from-white/4 via-black/70 to-black/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center shadow-[0_12px_48px_-16px_rgba(0,0,0,0.6)] transition duration-300 transform hover:-translate-y-2 hover:scale-[1.01] hover:border-amber-100/70 hover:shadow-[0_16px_70px_-14px_rgba(245,158,11,0.32)]">
 						<img src="../img/design/icon-1.svg" alt="" class="pb-10" style="width: 70px;">
-						<p class="text-[20px] md:text-[22px] lg:text-[24px] text-white leading-relaxed max-w-xl" style="font-family: 'Inter', sans-serif;">
-							To empower entrepreneurs with clarity, systems, and the tools needed to build stable, scalable, and profitable businesses.
+						<p class="text-[20px] md:text-[22px] lg:text-[24px] text-white leading-relaxed max-w-xl"
+							style="font-family: 'Inter', sans-serif;">
+							To empower entrepreneurs with clarity, systems, and the tools needed to build stable,
+							scalable, and profitable businesses.
 						</p>
 					</article>
 				</div>
 			</div>
 			<!-- Bottom gold border accent -->
-			<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+			<div
+				class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
 		</section>
 
 		<!-- My Story Section -->
 		<section class="bg-black py-16 md:py-24 lg:py-28 px-6 md:px-12 lg:px-20 relative" id="story">
 			<!-- Top gold border accent -->
-			<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+			<div
+				class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
 			<div class="max-w-6xl mx-auto">
-				
+
 				<!-- Section Header -->
-				<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-left mb-12 md:mb-16 reveal">
+				<h2
+					class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white text-left mb-12 md:mb-16 reveal">
 					My Story
 				</h2>
 
 				<!-- Story Content -->
 				<div class="reveal space-y-8 md:space-y-10">
-					
-					<p class="font-serif text-[24px] md:text-[24px] text-white/90 leading-relaxed" style="font-family: 'Inter', sans-serif;">
+
+					<p class="font-serif text-[24px] md:text-[24px] text-white/90 leading-relaxed"
+						style="font-family: 'Inter', sans-serif;">
 						Most entrepreneurs don’t struggle because they lack effort.
 
 						<span class="text-amber-400 font-semibold">less effort.</span>
 					</p>
 
-					<p class="text-xl md:text-2xl text-white/90 leading-relaxed" style="font-family: 'Inter', sans-serif;">
-They struggle because no one taught them how to scale.
+					<p class="text-xl md:text-2xl text-white/90 leading-relaxed"
+						style="font-family: 'Inter', sans-serif;">
+						They struggle because no one taught them how to scale.
 
 						<span class="text-amber-400 font-semibold">how to scale.</span>
 					</p>
 
 
 
-					<p class="text-xl md:text-2xl text-white/90 leading-relaxed" >
-						I started coaching to give business owners the 
-						<span class="text-amber-400 font-semibold">clarity, frameworks, and accountability</span> 
+					<p class="text-xl md:text-2xl text-white/90 leading-relaxed">
+						I started coaching to give business owners the
+						<span class="text-amber-400 font-semibold">clarity, frameworks, and accountability</span>
 						I wish every entrepreneur had from day one—
 					</p>
 
 					<div class="border-l-4 border-amber-400 pl-6 md:pl-8 py-4">
-						<p class="text-2xl md:text-3xl text-amber-400 font-semibold leading-relaxed" >
+						<p class="text-2xl md:text-3xl text-amber-400 font-semibold leading-relaxed">
 							so they don't waste years repeating the same mistakes.
 						</p>
 					</div>
@@ -209,199 +251,207 @@ They struggle because no one taught them how to scale.
 				</div>
 
 			</div>
-		<!-- Bottom gold border accent -->
-		<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
-	</section>
+			<!-- Bottom gold border accent -->
+			<div
+				class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
+		</section>
 
 		<!-- My Approach -->
-	<section class="bg-black py-20 md:py-28 px-6 md:px-12 lg:px-20 relative" id="approach">
-	<!-- Top gold border accent -->
-	<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
-  <div class="max-w-7xl mx-auto">
+		<section class="bg-black py-20 md:py-28 px-6 md:px-12 lg:px-20 relative" id="approach">
+			<!-- Top gold border accent -->
+			<div
+				class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
+			<div class="max-w-7xl mx-auto">
 
-    <!-- Heading -->
-    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-16">
-      My Approach
-    </h2>
+				<!-- Heading -->
+				<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-16">
+					My Approach
+				</h2>
 
-    <!-- Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4
+				<!-- Cards -->
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4
                 gap-8 lg:gap-10 items-end">
 
-      <!-- Card 1 -->
-      <article class="relative border border-white/25 rounded-[28px]
+					<!-- Card 1 -->
+					<article class="relative border border-white/25 rounded-[28px]
                       p-10 flex flex-col items-center text-center
                       min-h-[300px] bg-black/60
                       transition hover:border-amber-300/60
                       hover:shadow-[0_12px_50px_rgba(245,158,11,0.18)]">
-        <img src="../img/design/Handshake.svg" alt="" class="pb-8 w-30 h-30">
-        <p class="font-serif text-lg text-white leading-relaxed">
-          Data-driven &<br />practical
-        </p>
-      </article>
+						<img src="../img/design/Handshake.svg" alt="" class="pb-8 w-30 h-30">
+						<p class="font-serif text-lg text-white leading-relaxed">
+							Data-driven &<br />practical
+						</p>
+					</article>
 
-      <!-- Card 2 (slightly elevated, not taller hero) -->
-      <article class="relative border border-amber-400/40 rounded-[28px]
+					<!-- Card 2 (slightly elevated, not taller hero) -->
+					<article class="relative border border-amber-400/40 rounded-[28px]
                       p-10 flex flex-col items-center text-center
                       min-h-[340px] bg-black/70
                       shadow-[0_14px_60px_rgba(245,158,11,0.28)]
                       transition hover:shadow-[0_18px_70px_rgba(245,158,11,0.38)]">
-        <img src="../img/design/icon-1.svg" alt="" class="pb-8 w-30 h-30">
-        <p class="font-serif text-lg text-white leading-relaxed">
-          Simple & actionable<br />frameworks
-        </p>
-      </article>
+						<img src="../img/design/icon-1.svg" alt="" class="pb-8 w-30 h-30">
+						<p class="font-serif text-lg text-white leading-relaxed">
+							Simple & actionable<br />frameworks
+						</p>
+					</article>
 
-      <!-- Card 3 (different height, same importance) -->
-      <article class="relative border border-white/30 rounded-[28px]
+					<!-- Card 3 (different height, same importance) -->
+					<article class="relative border border-white/30 rounded-[28px]
                       p-10 flex flex-col items-center text-center
                       min-h-[360px] bg-black/65
                       transition hover:border-amber-300/60
                       hover:shadow-[0_14px_55px_rgba(245,158,11,0.22)]">
-        <img src="../img/imgs/automation_18621317.png" alt="" class="pb-8 w-28 	">
-        <p class="font-serif text-lg text-white leading-relaxed">
-          System-oriented<br />execution
-        </p>
-      </article>
+						<img src="../img/imgs/automation_18621317.png" alt="" class="pb-8 w-28 	">
+						<p class="font-serif text-lg text-white leading-relaxed">
+							System-oriented<br />execution
+						</p>
+					</article>
 
-      <!-- Card 4 -->
-      <article class="relative border border-white/25 rounded-[28px]
+					<!-- Card 4 -->
+					<article class="relative border border-white/25 rounded-[28px]
                       p-10 flex flex-col items-center text-center
                       min-h-[320px] bg-black/60
                       transition hover:border-amber-300/60
                       hover:shadow-[0_12px_50px_rgba(245,158,11,0.18)]">
-        <img src="../img/design/Successful Businessman.svg" alt="" class="pb-8 w-30 h-30">
-        <p class="font-serif text-lg text-white leading-relaxed">
-          Personal guidance<br />with accountability
-        </p>
-      </article>
+						<img src="../img/design/Successful Businessman.svg" alt="" class="pb-8 w-30 h-30">
+						<p class="font-serif text-lg text-white leading-relaxed">
+							Personal guidance<br />with accountability
+						</p>
+					</article>
 
-    </div>
-  </div>
-  <!-- Bottom gold border accent -->
-  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
-</section>
+				</div>
+			</div>
+			<!-- Bottom gold border accent -->
+			<div
+				class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
+		</section>
 
 
 		<!-- Why Work With Me -->
 		<section class="relative bg-black py-20 md:py-28 px-6 md:px-12 lg:px-20 overflow-hidden" id="why">
 			<!-- Top gold border accent -->
-			<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+			<div
+				class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
 
-  <!-- Soft Background Glow -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[420px] h-[420px]
+			<!-- Soft Background Glow -->
+			<div class="absolute inset-0 pointer-events-none">
+				<div class="absolute top-1/2 left-0 -translate-y-1/2 w-[420px] h-[420px]
                 bg-white/[0.06] rounded-full blur-[140px]"></div>
-  </div>
+			</div>
 
-  <div class="max-w-7xl mx-auto relative z-10">
+			<div class="max-w-7xl mx-auto relative z-10">
 
-    <!-- Heading -->
-    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-10">
-      Why Work With Me
-    </h2>
+				<!-- Heading -->
+				<h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-10">
+					Why Work With Me
+				</h2>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-      <!-- LEFT CONTENT -->
-      <div class="space-y-10">
+					<!-- LEFT CONTENT -->
+					<div class="space-y-10">
 
-        <!-- Philosophy -->
-        <p class="text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl">
-          Because I don’t teach <span class="text-amber-400">motivation</span>.<br />
-          I help you build <span class="text-amber-400">systems</span> that create results
-          even when you’re not working.
-        </p>
+						<!-- Philosophy -->
+						<p class="text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl">
+							Because I don’t teach <span class="text-amber-400">motivation</span>.<br />
+							I help you build <span class="text-amber-400">systems</span> that create results
+							even when you’re not working.
+						</p>
 
-        <p class="text-sm md:text-base text-white/65 max-w-xl">
-          That’s the difference between just running a business —
-          and truly scaling one.
-        </p>
+						<p class="text-sm md:text-base text-white/65 max-w-xl">
+							That’s the difference between just running a business —
+							and truly scaling one.
+						</p>
 
-        <!-- Reasons -->
-        <div class="space-y-5 pt-4">
+						<!-- Reasons -->
+						<div class="space-y-5 pt-4">
 
-          <div class="flex items-start gap-4">
-            <span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
-            <p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
-              Practical, real-world business experience
-            </p>
-          </div>
+							<div class="flex items-start gap-4">
+								<span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
+								<p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
+									Practical, real-world business experience
+								</p>
+							</div>
 
-          <div class="flex items-start gap-4">
-            <span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
-            <p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
-              Proven frameworks designed for predictable growth
-            </p>
-          </div>
+							<div class="flex items-start gap-4">
+								<span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
+								<p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
+									Proven frameworks designed for predictable growth
+								</p>
+							</div>
 
-          <div class="flex items-start gap-4">
-            <span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
-            <p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
-              Focus on systems, not motivation
-            </p>
-          </div>
+							<div class="flex items-start gap-4">
+								<span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
+								<p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
+									Focus on systems, not motivation
+								</p>
+							</div>
 
-          <div class="flex items-start gap-4">
-            <span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
-            <p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
-              Clear execution plans
-            </p>
-          </div>
+							<div class="flex items-start gap-4">
+								<span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
+								<p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
+									Clear execution plans
+								</p>
+							</div>
 
-          <div class="flex items-start gap-4">
-            <span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
-            <p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
-              Support that reduces founder overwhelm
-            </p>
-          </div>
+							<div class="flex items-start gap-4">
+								<span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
+								<p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
+									Support that reduces founder overwhelm
+								</p>
+							</div>
 
-          <div class="flex items-start gap-4">
-            <span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
-            <p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
-              Execution partners invested in your success
-            </p>
-          </div>
+							<div class="flex items-start gap-4">
+								<span class="mt-2 w-2 h-2 rounded-full bg-amber-400"></span>
+								<p class="text-sm md:text-base lg:text-lg text-white/80 leading-relaxed">
+									Execution partners invested in your success
+								</p>
+							</div>
 
-        </div>
-      </div>
+						</div>
+					</div>
 
-      <!-- RIGHT IMAGE -->
-      <div class="relative w-full min-h-[420px] lg:min-h-[520px]
+					<!-- RIGHT IMAGE -->
+					<div class="relative w-full min-h-[300px] lg:min-h-400px]
                   rounded-[24px] overflow-hidden
                   border border-white/10 shadow-2xl">
 
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-black/20"></div>
+						<!-- Overlay -->
+						<div class="absolute inset-0 bg-black/20"></div>
 
-        <img
-          src="../img/imgs/workwithme.jpeg"
-          alt="Working with founders"
-          class="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
+						<img src="https://valeriumoraru.com/wp-content/uploads/2022/11/Be-confident-and-professional-at-work.jpeg"
+							alt="Working with founders" class="w-auto h-auto object-contain" loading="lazy" />
+					</div>
 
-    </div>
-  </div>
-  <!-- Bottom gold border accent -->
-  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
-</section>
+				</div>
+			</div>
+			<!-- Bottom gold border accent -->
+			<div
+				class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
+		</section>
 
 
 		<!-- CTA -->
 		<section class="bg-black py-16 md:py-24 pb-24 md:pb-32 px-6 md:px-12 lg:px-20 relative" id="contact">
 			<!-- Top gold border accent -->
-			<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
+			<div
+				class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
+			</div>
 			<div class="max-w-6xl mx-auto">
-				<div class="reveal border border-white/30 rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8">
-					<h3 class="font-source-serif-4 text-2xl md:text-3xl lg:text-2xl  text-white leading-tight text-center md:text-left max-w-xl">
+				<div
+					class="reveal border border-white/30 rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8">
+					<h3
+						class="font-source-serif-4 text-2xl md:text-3xl lg:text-2xl  text-white leading-tight text-center md:text-left max-w-xl">
 						Ready to scale with clarity and confidence?
 					</h3>
-					<a
-						href="/contact"
-						class="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-semibold text-base md:text-lg px-8 py-3 md:px-10 md:py-4 rounded-full shadow-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white"
-					>
+					<a href="/contact"
+						class="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-semibold text-base md:text-lg px-8 py-3 md:px-10 md:py-4 rounded-full shadow-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white">
 						Contact Us
 						<span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
 					</a>
@@ -411,7 +461,7 @@ They struggle because no one taught them how to scale.
 	</main>
 
 	<div id="footer-container"></div>
-<script src="../assets/js/loader.js"></script>
+	<script src="../assets/js/loader.js"></script>
 	<script src="../assets/js/navbar.js"></script>
 	<script>
 		const injectComponent = async (src, selector, pick) => {
@@ -460,7 +510,7 @@ They struggle because no one taught them how to scale.
 			initReveal();
 		});
 	</script>
-	
-</body>
-</html>
 
+</body>
+
+</html>

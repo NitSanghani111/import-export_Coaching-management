@@ -235,7 +235,7 @@ if ($result) {
     <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
   </section>
 
-  <!-- Signature progrmams -->
+  <!-- Signature programs -->
 
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
     <!-- Top gold border accent -->
@@ -243,147 +243,88 @@ if ($result) {
 
     <div class="relative z-10">
       <!-- Section Title -->
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif mb-14">
-        Our Programs
-      </h2>
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-14 gap-6">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif">
+          Our Programs
+        </h2>
+        <a href="/program" class="hidden sm:inline-flex items-center gap-2 text-[#FFBE49] font-medium border border-[#FFBE49]/30 rounded-full px-6 py-2.5 hover:bg-[#FFBE49]/10 transition-all text-sm">
+          View All Programs
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
 
-      <!-- Programs Grid -->
+      <!-- Programs Grid — show only first 3 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
 
+        <?php 
+        require_once __DIR__ . '/data/programs.php';
+        $homeCounter = 0;
+        foreach ($programs as $slug => $prog):
+            if ($homeCounter >= 3) break;
+        ?>
         <!-- Program Card -->
         <div class="group rounded-[28px] overflow-hidden
                 bg-[#0C0C0C] border border-white/10
                 transition-all duration-500
-                hover:border-[#FFBE49]/40 hover:-translate-y-2">
+                hover:border-[#FFBE49]/40 hover:-translate-y-2 flex flex-col">
 
           <!-- Image -->
-          <div class="relative overflow-hidden">
+          <div class="relative overflow-hidden shrink-0">
             <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-              class="w-full h-52 sm:h-60 object-cover
-                 transition-transform duration-700 group-hover:scale-105"
-              alt="Startup Success Blueprint" />
+              src="<?= htmlspecialchars($prog['hero_image']) ?>"
+              class="w-full h-52 sm:h-60 object-cover transition-transform duration-700 group-hover:scale-105"
+              alt="<?= htmlspecialchars($prog['title']) ?>" />
           </div>
 
           <!-- Content -->
-          <div class="px-7 py-7 flex flex-col gap-4">
+          <div class="px-7 py-7 flex flex-col flex-1 gap-4">
 
-            <h3 class="text-xl sm:text-2xl font-serif leading-snug">
-              Startup Success Blueprint
+            <h3 class="text-xl sm:text-2xl font-serif leading-snug text-[#FFBE49]">
+              <?= htmlspecialchars($prog['title']) ?>
             </h3>
 
-            <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
-              A step-by-step system to go from idea → first customers → a business that scales.
+            <p class="text-gray-400 text-sm sm:text-base leading-relaxed line-clamp-3 md:min-h-[72px]">
+              <?= htmlspecialchars($prog['subtitle']) ?>
             </p>
 
             <!-- Divider -->
             <div class="h-px w-full bg-white/10 my-2"></div>
 
             <!-- Key Points -->
-            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
-              <li>Validate the right problem + customer</li>
-              <li>Build a sellable offer + pricing that makes sense</li>
-              <li>Set up simple sales system</li>
-              <li>90-day execution plan + tracking dashboard
-
-                Know more / Swipe up to see the full roadmap →</li>
+            <ul class="text-gray-400 text-sm space-y-2 flex-1 overflow-hidden mb-2">
+                <?php 
+                $counter = 0;
+                foreach ($prog['achievements'] as $point):
+                    if ($counter >= 3) break;
+                ?>
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 mt-0.5 text-[#FFBE49]/70 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span class="line-clamp-1"><?= htmlspecialchars($point) ?></span>
+                </li>
+                <?php 
+                    $counter++;
+                endforeach; 
+                ?>
             </ul>
 
             <!-- CTA -->
-            <a href="#"
-              class="mt-6 inline-flex items-center gap-2
-                  text-[#FFBE49] font-medium
-                  hover:gap-3 transition-all">
-              Know more about this program
-              <span>→</span>
+            <a href="/program/<?= $slug ?>"
+              class="mt-auto inline-flex items-center gap-2 text-[#FFBE49] font-medium hover:gap-3 transition-all pt-4 border-t border-white/5 text-sm">
+              Know more
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
 
           </div>
         </div>
-
-        <!-- Duplicate cards (structure stays same) -->
-        <div class="group rounded-[28px] overflow-hidden
-                bg-[#0C0C0C] border border-white/10
-                transition-all duration-500
-                hover:border-[#FFBE49]/40 hover:-translate-y-2">
-
-          <div class="relative overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-              class="w-full h-52 sm:h-60 object-cover
-                 transition-transform duration-700 group-hover:scale-105" />
-          </div>
-
-          <div class="px-7 py-7 flex flex-col gap-4">
-            <h3 class="text-xl sm:text-2xl font-serif">
-              Founder Execution OS
-            </h3>
-
-            <p class="text-gray-400 text-sm sm:text-base">
-              A daily operating system to execute faster, stay consistent, and hit targets without burnout.
-            </p>
-
-            <div class="h-px w-full bg-white/10 my-2"></div>
-
-            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
-              <li>Weekly goals → daily execution blocks
-              </li>
-              <li>Habit + accountability system
-              </li>
-              <li>Founder time management + focus control
-              </li>
-              <li>
-                Review system: what worked, what to fix, next week plan
-
-              </li>
-            </ul>
-
-            <a href="#"
-              class="mt-6 inline-flex items-center gap-2
-                  text-[#FFBE49] font-medium hover:gap-3 transition-all">
-              Know more about this program →
-            </a>
-          </div>
-        </div>
-
-        <div class="group rounded-[28px] overflow-hidden
-                bg-[#0C0C0C] border border-white/10
-                transition-all duration-500
-                hover:border-[#FFBE49]/40 hover:-translate-y-2">
-
-          <div class="relative overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-              class="w-full h-52 sm:h-60 object-cover
-                 transition-transform duration-700 group-hover:scale-105" />
-          </div>
-
-          <div class="px-7 py-7 flex flex-col gap-4">
-            <h3 class="text-xl sm:text-2xl font-serif">
-              Growth & Scale Roadmap
-            </h3>
-
-            <p class="text-gray-400 text-sm sm:text-base">
-              Structured plans to scale revenue without burning out.
-            </p>
-
-            <div class="h-px w-full bg-white/10 my-2"></div>
-
-            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
-              <li>Channel clarity</li>
-              <li>Predictable growth levers</li>
-              <li>Execution roadmap</li>
-            </ul>
-
-            <a href="#"
-              class="mt-6 inline-flex items-center gap-2
-                  text-[#FFBE49] font-medium hover:gap-3 transition-all">
-              Know more about this program →
-            </a>
-          </div>
-        </div>
+        <?php 
+            $homeCounter++;
+        endforeach; ?>
 
       </div>
+
+      <!-- More Programs Button (mobile + desktop bottom) -->
+     
+
     </div>
     <!-- Bottom gold border accent -->
     <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60"></div>
