@@ -29,16 +29,22 @@ if ($result) {
 
 <head>
   <meta charset="UTF-8">
+
+  <meta name="description" content="Best Business Coach Rajkot and Startup & SME Growth Expert helping entrepreneurs scale faster, improve systems, and maximize business growth effectively.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
-  <title>Home page</title>
+  <meta name="google-site-verification" content="gJv45ffCY_CzhjAghuk0pQtRk_Dz_YMbgKsF4BtXOE4" />
+  <title>Best Business Coach Rajkot | Startup & SME Growth Expert</title>
 
   <!-- Preconnect to external domains for faster loading -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M7SP2QJL');</script>
   <!-- Preload critical CSS -->
   <link rel="preload" href="assets/css/main.css" as="style">
 
@@ -48,6 +54,14 @@ if ($result) {
   <!-- Tailwind (defer to prevent blocking) -->
   <link rel="preload" as="script" href="https://cdn.tailwindcss.com">
   <script src="https://cdn.tailwindcss.com" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q21ERFEHX8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q21ERFEHX8');
+</script>
 
   <!-- Google Fonts with font-display swap for faster rendering -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -109,6 +123,8 @@ if ($result) {
 </head>
 
 <body class="bg-black text-white">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7SP2QJL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Page Loader with Logo -->
   <div id="page-loader">
@@ -142,7 +158,7 @@ if ($result) {
         <h2 class="lg:text-3xl">Struggling with clarity or growth?
         </h2>
         <p class="text-gray-300 max-w-xl leading-relaxed mb-10 pt-5">
-          Helping Entrepreneurs scale with clarity, systems, and predictable growth.
+          Helping Entrepreneurs scale with clarity, systems, and predictable growth  Strategies.
         </p>
 
         <!-- CTA -->
@@ -156,12 +172,14 @@ if ($result) {
       </div>
 
       <!-- RIGHT IMAGE -->
-      <div class="relative flex justify-center">
-        <img
-          src="img/imgs/parth_img-removebg-preview.png"
-          alt="Client"
-          class=" max-w-md w-full grayscale rounded" />
-      </div>
+<div class="relative flex justify-center">
+  <div class="rounded-full border-4 border-[#FFBE49]/40 shadow-[0_20px_60px_rgba(255,190,73,0.25)] p-1">
+    <img
+      src="img/imgs/tmp.jpeg"
+      alt="Client"
+      class="w-[400px] h-[400px] object-cover grayscale rounded-full" />
+  </div>
+</div>
 
     </div>
   </section>
@@ -191,7 +209,7 @@ if ($result) {
           </h3>
 
           <p class="text-gray-300 text-lg leading-relaxed">
-            Get a clear roadmap, priorities, and next steps—so you execute with confidence.
+         Build a Clear Business Roadmap with Defined Priorities and Actionable Next Steps
 
 
           </p>
@@ -208,7 +226,8 @@ if ($result) {
           </h3>
 
           <p class="text-gray-300 text-lg leading-relaxed">
-            Build repeatable sales & delivery systems—so your business runs without daily chaos.
+          Create Scalable Sales and Delivery Systems for a Smooth, Stress-Free Business
+
 
           </p>
         </div>
@@ -224,7 +243,8 @@ if ($result) {
           </h3>
 
           <p class="text-gray-300 text-lg leading-relaxed">
-            Improve margins, cashflow, and weekly numbers—so you grow with control.
+         Improve Profit Margins, Cash Flow, and Weekly Metrics for Controlled Business Growth
+
 
           </p>
         </div>
@@ -448,7 +468,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-        Clear direction, positioning, and decisions—built for your current stage.
+       Get Clear Direction, Strong Positioning, and Smart Decisions for Your Business Stage.
         </p>
 
         <!-- Hover Accent Line -->
@@ -459,7 +479,7 @@ if ($result) {
       <div class="group relative rounded-[28px] bg-gradient-to-br from-black/90 to-black/60 border border-white/10 
                 px-6 sm:px-8 py-8 sm:py-10 transition-all duration-500 ease-out
                 hover:border-[#FFBE49]/60 hover:shadow-[0_0_40px_rgba(255,190,73,0.2)]
-                hover:-translate-y-2 hover:scale-[1.02] cursor-pointer">
+                hover:-translate-y-2 hov    er:scale-[1.02] cursor-pointer">
 
         <div class="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-[#FFBE49] text-black font-bold 
                   flex items-center justify-center text-lg shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
@@ -473,7 +493,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Simple, repeatable sales process that converts without daily stress.
+         Build a Simple, Repeatable Sales Process That Converts Without Daily Stress
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -497,8 +517,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-        A focused plan that brings leads—no random posting, no guessing.
-
+   Build a Strategic Plan to Generate Leads Without Guessing or Inconsistent Posting.
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -522,8 +541,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-          Hiring clarity + delegation systems so work runs without you.
-
+        Create Clear Hiring Processes and Delegation Systems for a Self-Running Business.
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -543,11 +561,11 @@ if ($result) {
         <div class="absolute top-0 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
         <h3 class="text-xl sm:text-2xl font-semibold mb-4 group-hover:text-[#FFBE49] transition-colors duration-300">
-          Automation andProcesses
+          Automation and Processes
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-         Clean workflows + tools that save time and reduce burnout.
+       Streamline Workflows with Efficient Tools for Better Productivity and Less Burnout.
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -571,7 +589,7 @@ if ($result) {
         </h3>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-         Design a model that grows revenue without growing complexity
+        Design a Scalable Business Model That Increases Revenue Without Added Complexity.
         </p>
 
         <div class="mt-6 h-1 w-0 bg-[#FFBE49] rounded-full group-hover:w-full transition-all duration-500"></div>

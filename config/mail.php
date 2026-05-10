@@ -44,6 +44,7 @@ try {
     error_log('Mail Config Error: ' . $e->getMessage());
 }
 
+
 // Helper function to get environment variable
 function env($key, $default = null) {
     return $_ENV[$key] ?? $default;
@@ -52,9 +53,9 @@ function env($key, $default = null) {
 // Mail configuration array
 return [
     'smtp' => [
-        'host'     => env('SMTP_HOST', 'smtp.gmail.com'),
-        'port'     => env('SMTP_PORT', 587),
-        'username' => env('SMTP_USERNAME', ''),
+        'host'     => env('SMTP_HOST', 'smtp.hostinger.com'),
+        'port'     => env('SMTP_PORT', 465),
+        'username' => env('SMTP_USERNAME', 'support@parthjethava.com'),
         'password' => env('SMTP_PASSWORD', ''),
         'encryption' => 'tls', // or 'ssl' for port 465
     ],

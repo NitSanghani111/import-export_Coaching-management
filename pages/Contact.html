@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Contact Us | Parth Jethva</title>
 
+    <title>   Contact Parth Jethava | Business Coach & Growth Expert</title>
+ <meta name="description" content="Contact Parth Jethava, Business Coach & Growth Expert to get expert guidance, scale your business, and achieve higher profits with proven strategies.">
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +16,19 @@
     <!-- Preload critical CSS -->
     <link rel="preload" href="../assets/css/main.css" as="style">
     <link rel="stylesheet" href="../assets/css/main.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q21ERFEHX8"></script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M7SP2QJL');</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q21ERFEHX8');
+</script>
 
     <!-- Tailwind — must load synchronously so tailwind.config runs after it -->
     <script src="https://cdn.tailwindcss.com?v=3"></script>
@@ -145,7 +158,8 @@
 </head>
 
 <body class="antialiased overflow-x-hidden" style="background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);">
-
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7SP2QJL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Page Loader -->
     <div id="page-loader">
         <div class="loader-spinner"></div>
@@ -705,7 +719,7 @@
 
             try {
                 // Send email using PHPMailer backend with production-safe error handling
-                const response = await fetch('../ajax/contact-new.php', {
+                const response = await fetch('./ajax/contact-new.php', {
                     method: 'POST',
                     body: new URLSearchParams(formData)
                 });

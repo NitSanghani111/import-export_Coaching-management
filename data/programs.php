@@ -5,9 +5,10 @@
 $programs = [
     'startup-success-blueprint' => [
         'slug' => 'startup-success-blueprint',
-        'title' => 'Startup Success Blueprint',
+        'title' => 'Startup Success Blueprint | Launch, Grow & Scale Your Startup',
         'subtitle' => 'A practical coaching program for founders who want a step-by-step roadmap from idea → validation → offer → sales → systems → scale.',
         'description' => 'What makes it different: No heavy theory. Weekly action + templates + accountability.',
+         'meta_description' => 'Startup Success Blueprint Launch, Grow & Scale Your Startup with proven strategies, expert coaching, and actionable systems to build a profitable, scalable business.',
         'hero_image' => 'https://media.gettyimages.com/id/1405451621/video/diverse-group-of-coworkers-look-at-blueprints-and-work-together.jpg?s=640x640&k=20&c=NP0zsUI0cXlo9lVXEKgLZkxjbPhAIS5wzqcDKZeTiA8=',
         'achievements' => [
             'Clear direction: who you serve + what problem you solve',
@@ -84,8 +85,9 @@ $programs = [
     'founder-execution-os' => [
         'slug' => 'founder-execution-os',
         'title' => 'Founder Execution OS',
-        'subtitle' => 'Founder Routine + Delegation + KPI System',
+        'subtitle' => 'Founder Execution OS | Systems for Business Growth & Scaling',
         'description' => 'Founder Execution OS is a practical operating system for founders who want daily clarity, strong delegation, and a KPI-driven rhythm—so execution becomes consistent and the business doesn\'t depend on you. This is not motivation. This is a system you run every week.',
+         'meta_description' => 'Founder Execution OS Systems for Business Growth & Scaling helps founders streamline execution, build strong systems, improve productivity, and scale faster.',
         'hero_image' => 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=800&fit=crop',
         'who_its_for' => [
             'You’re busy all day but progress feels slow',
@@ -180,9 +182,10 @@ $programs = [
     
     'marketing-engine-builder' => [
         'slug' => 'marketing-engine-builder',
-        'title' => 'Marketing Engine Builder',
+        'title' => 'Marketing Engine Builder | Create a Powerful Marketing System',
         'subtitle' => 'Build predictable leads. Not random marketing.',
         'description' => 'Marketing Engine Builder is a practical implementation program where we build your complete marketing system—so you get consistent enquiries/leads every week, with clear tracking and a repeatable process.',
+         'meta_description' => 'Marketing Engine Builder Create a Powerful Marketing System to generate consistent leads, increase conversions, automate campaigns, and scale your business growth.',
         'hero_image' => 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=800&fit=crop',
         'who_its_for' => [
             'You want predictable lead flow',
@@ -273,9 +276,10 @@ $programs = [
     
     'mba' => [
         'slug' => 'mba',
-        'title' => 'Mastery of Business Accelerator (MBA)',
+        'title' => 'MBA for Entrepreneurs | Practical Business Growth Program',
         'subtitle' => 'The complete scaling system for 6- & 7-figure businesses',
         'description' => 'The Mastery of Business Accelerator (MBA) is an elite, intensive program designed for established business owners who want to scale their revenue rapidly while removing themselves from daily operations. This is about building a self-managing company.',
+         'meta_description' => 'MBA for Entrepreneurs Practical Business Growth Program designed to help founders gain real-world skills, build scalable systems, and grow a profitable business.',
         'hero_image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXZp5eSQAJIjIn_LIWC9FhF-_3zs0m4FiOw&s',
         'who_its_for' => [
             'Founders already generating consistent revenue but hitting a plateau',
@@ -351,9 +355,10 @@ $programs = [
     
     'mindset-accelerator' => [
         'slug' => 'mindset-accelerator',
-        'title' => 'Mindset Accelerator',
+        'title' => 'Mindset Accelerator | Unlock Your Business Success ',
         'subtitle' => 'Rewire your thinking for high performance',
         'description' => 'The Mindset Accelerator is designed to break down the mental barriers, limiting beliefs, and self-sabotaging behaviors that hold founders back from their true potential. Business growth is 80% psychology and 20% mechanics.',
+         'meta_description' => 'Mindset Accelerator Unlock Your Business Success with powerful mindset shifts, improved focus, and proven strategies to overcome challenges and drive growth.',
         'hero_image' => 'https://s44783.pcdn.co/wp-content/uploads/2025/02/shutterstock_2250904209._1024X684jpg.jpg.optimal.jpg',
         'who_its_for' => [
             'Founders suffering from imposter syndrome or burnout',
@@ -416,9 +421,10 @@ $programs = [
     
     'sop-sprint' => [
         'slug' => 'sop-sprint',
-        'title' => 'SOP Sprint',
+        'title' => 'SOP Sprint | Build SOPs & Improve Business Efficiencyt',
         'subtitle' => 'Systemize your business in 30 days',
         'description' => 'A rapid implementation sprint to extract the knowledge from your head and turn it into documented Standard Operating Procedures (SOPs). Get your business ready for delegation.',
+         'meta_description' => 'SOP Sprint Build SOPs & Improve Business Efficiency with proven systems to streamline operations, boost productivity, reduce errors, and scale your business faster.',
         'hero_image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop',
         'who_its_for' => [
             'Founders who are the bottleneck in their own business',

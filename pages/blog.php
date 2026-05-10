@@ -44,12 +44,26 @@ if (!empty($params)) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="robots" content="noindex, nofollow">
+
   <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
-  <title>Blogs | Parth Coaching</title>
+  <title>Business Growth Blog | Proven Business Growth Strategies</title>
+   <meta name="description" content="Business Growth Blog with proven business growth strategies, expert tips, and actionable insights to help you scale, increase profits, and succeed.">
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q21ERFEHX8"></script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M7SP2QJL');</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q21ERFEHX8');
+</script>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -158,7 +172,8 @@ if (!empty($params)) {
   </style>
 </head>
 <body class="text-white antialiased">
-    
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7SP2QJL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Page Loader -->
     <div id="page-loader">
       <div class="loader-spinner"></div>

@@ -6,7 +6,8 @@
   <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
-  <title>Programs | Parth Jethva</title>
+  <title>Business Coaching Programs Rajkot | Scale Your Business Fast</title>
+    <meta name="description" content="Scale your business fast with Business Coaching Programs Rajkot offering expert mentoring, proven systems, and strategies for sustainable growth.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -138,7 +139,21 @@
             Structured coaching programs built on clarity, systems, and predictable growth.
           </p>
         </div>
-      </div>
+        <!-- Client Image Added -->
+       <div class="flex-1 flex justify-center lg:justify-end fade-in">
+  <div class="relative group">
+    
+    <!-- Glow -->
+    <div class="absolute -inset-4 bg-accent/20 rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+    
+    <!-- Gold ring wrapper -->
+    <div class="relative rounded-full border-[6px] border-[#D4AF37] p-1">
+      <img src="../img/imgs/tmp6.jpeg" alt="Empowered Client" 
+        class="w-[200px] h-[200px] md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] object-cover rounded-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]" />
+    </div>
+
+  </div>
+</div>
     </section>
 
     <!-- Programs Section -->
@@ -234,104 +249,7 @@
     <!-- Bottom gold border accent -->
 
 
-    <!-- Feature Courses Section -->
-    <section class="py-24 bg-black relative">
-      <!-- Top gold border accent -->
-      <div
-        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFBE49] to-transparent opacity-60">
-      </div>
-      <div class="max-w-7xl mx-auto px-6">
 
-        <!-- Section Title -->
-        <h2 class="text-4xl sm:text-5xl font-serif font-bold text-white mb-20">
-          Feature Courses
-        </h2>
-
-        <!-- Cards Wrapper -->
-        <div class="flex flex-col lg:flex-row items-center justify-center gap-10">
-
-          <!-- LEFT CARD -->
-          <div class="relative w-[350px] h-[420px]
-               rounded-[28px]
-               bg-black
-               border border-white/15
-               shadow-[0_0_40px_rgba(255,255,255,0.05)]
-               overflow-hidden
-               transition
-               hover:scale-105">
-
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&h=700&fit=crop"
-              class="absolute inset-0 w-full h-full object-cover opacity-90" alt="Growth Blueprint">
-
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-            <div class="absolute bottom-6 left-0 right-0 px-6 text-center flex flex-col-2 items-center">
-              <h3 class="text-white font-serif text-lg mb-4 pb-[-5px] pl-5 pr-10">
-                Growth<br />Blueprint
-              </h3>
-
-              <span class="px-5 py-2 rounded-full bg-white/20 text-white/50 text-sm font-medium cursor-not-allowed">
-                Coming Soon
-              </span>
-            </div>
-          </div>
-
-          <!-- CENTER (FEATURED) CARD -->
-          <div class="relative w-[400px] h-[480px]
-               rounded-[36px]
-               bg-black
-               border border-white/25
-               shadow-[0_0_60px_rgba(255,255,255,0.12)]
-               overflow-hidden
-               transition
-               hover:scale-105">
-
-            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=800&fit=crop"
-              class="absolute inset-0 w-full h-full object-cover" alt="CEO Systems">
-
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-            <div class="absolute bottom-8 left-0 right-0 px-8 text-center">
-              <h3 class="text-white font-serif text-xl mb-5">
-                CEO Systems
-              </h3>
-
-              <span
-                class="px-6 py-2 rounded-full bg-white/20 text-white/50 text-sm font-medium cursor-not-allowed inline-block">
-                Coming Soon
-              </span>
-            </div>
-          </div>
-
-          <!-- RIGHT CARD -->
-          <div class="relative w-[350px] h-[420px]
-               rounded-[28px]
-               bg-black
-               border border-white/15
-               shadow-[0_0_40px_rgba(255,255,255,0.05)]
-               overflow-hidden
-               transition
-               hover:scale-105">
-
-            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=500&h=700&fit=crop"
-              class="absolute inset-0 w-full h-full object-cover opacity-90" alt="Growth Blueprint">
-
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-            <div class="absolute bottom-6 left-0 right-0 px-6 text-center  flex flex-col-2 items-center">
-              <h3 class="text-white font-serif text-lg mb-4 pb-[-5px] pl-5 pr-10">
-                Growth<br />Blueprint
-              </h3>
-
-              <span class="px-5 py-2 rounded-full bg-white/20 text-white/50 text-sm font-medium cursor-not-allowed">
-                Coming Soon
-              </span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
 
   </main>
 
