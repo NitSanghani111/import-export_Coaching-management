@@ -15,17 +15,24 @@ jobs:
 
       - name: Deploy via FTP to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+
           protocol: ftp
           port: 21
+
           local-dir: ./
           server-dir: /domains/parthjethava.com/public_html/
 
+          # Prevent deleting everything on server
+          dangerous-clean-slate: false
+
           exclude: |
             **/.git*
+            **/.git*/**
             **/.github/**
             **/.env
             **/.env.example
@@ -35,3 +42,5 @@ jobs:
             **/docker-compose.yml
             **/*.md
             **/.vscode/**
+            **/.DS_Store
+            **/Thumbs.db
