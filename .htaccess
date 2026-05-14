@@ -88,19 +88,10 @@ RewriteRule ^ - [L]
 # Clean routes for top-level pages -> map to pages/* (match actual lowercase filenames)
 RewriteRule ^about/?$ /pages/about.html [L]
 RewriteRule ^contact/?$ /pages/contact.html [L]
-RewriteRule ^program/?$ /pages/program.php [L]
+RewriteRule ^program/?$ /pages/program.html [L]
 RewriteRule ^workshop/?$ /pages/workshop.php [L]
 RewriteRule ^blog/?$ /pages/blog.php [L]
-RewriteRule ^terms/?$ /pages/terms.html [L]
-
-# Program detail routing
-RewriteRule ^program/([a-zA-Z0-9-]+)/?$ /pages/program_detail.php?slug=$1 [L,QSA]
-
-# Redirect .html extensions to clean URLs
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+pages/terms\.html
-RewriteRule ^ /terms [R=301,L]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+terms\.html
-RewriteRule ^ /terms [R=301,L]
+RewriteRule ^trypage/?$ /pages/trypage.html [L]
 
 # Blog detail page (slug routing)
 RewriteRule ^blogs/([a-zA-Z0-9-]+)/?$ /pages/blog_detail.php?slug=$1 [L,QSA]
