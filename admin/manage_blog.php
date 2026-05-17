@@ -153,10 +153,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, image=?, meta_title=?, meta_description=? WHERE id=?");
-                    $stmt->bind_param("sssssi", $title, $slug, $desc, $image_name, $meta_title, $meta_description, $edit_id);
+                    $stmt->bind_param("ssssssi", $title, $slug, $desc, $image_name, $meta_title, $meta_description, $edit_id);
                 } else {
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, meta_title=?, meta_description=? WHERE id=?");
-                    $stmt->bind_param("ssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
+                    $stmt->bind_param("sssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
                 }
                 $stmt->execute();
                 // Sync categories: clear and insert new selections
