@@ -158,46 +158,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, meta_title=?, meta_description=? WHERE id=?");
                     $stmt->bind_param("sssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
                 }
-                $stmt->execute();
-                // Sync categories: clear and insert new selections
-                $conn->query("DELETE FROM blog_categories WHERE blog_id = " . intval($edit_id));
-                if (!empty($postedCategories)) {
-                    $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
-                    foreach ($postedCategories as $cid) {
-                        $cid = intval($cid);
-                        if ($cid > 0) {
-                            $catIns->bind_param("ii", $edit_id, $cid);
-                            $catIns->execute();
+                if (!$stmt->execute()) {
+                    error_log("Blog update execute failed: " . $stmt->error);
+                    $error = "Database error: Could not update blog post.";
+                } else {
+                    // Sync categories: clear and insert new selections
+                    $conn->query("DELETE FROM blog_categories WHERE blog_id = " . intval($edit_id));
+                    if (!empty($postedCategories)) {
+                        $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
+                        foreach ($postedCategories as $cid) {
+                            $cid = intval($cid);
+                            if ($cid > 0) {
+                                $catIns->bind_param("ii", $edit_id, $cid);
+                                if (!$catIns->execute()) {
+                                    error_log("Category insert failed: " . $catIns->error);
+                                }
+                            }
                         }
                     }
+                    $_SESSION['flash_success'] = 'Blog post updated successfully!';
+                    header("Location: " . getRedirectUrl('manage_blog.php'));
+                    ob_end_flush();
+                    exit;
                 }
-                $_SESSION['flash_success'] = 'Blog post updated successfully!';
-                header("Location: " . getRedirectUrl('manage_blog.php'));
-                ob_end_flush();
-                exit;
             } else {
                 // Create new blog
                 if (!$image_name) {
                     $error = "Please upload an image.";
                 } else {
                     $stmt = $conn->prepare("INSERT INTO blog (title, slug, description, image, meta_title, meta_description) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("ssssss", $title, $slug, $desc, $image_name, $meta_title, $meta_description);
-                    $stmt->execute();
-                    $newId = $stmt->insert_id;
-                    if (!empty($postedCategories)) {
-                        $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
-                        foreach ($postedCategories as $cid) {
-                            $cid = intval($cid);
-                            if ($cid > 0) {
-                                $catIns->bind_param("ii", $newId, $cid);
-                                $catIns->execute();
+                    if (!$stmt) {
+                        error_log("Prepare failed: " . $conn->error);
+                        $error = "Database error: Could not prepare insert statement.";
+                    } else {
+                        $stmt->bind_param("ssssss", $title, $slug, $desc, $image_name, $meta_title, $meta_description);
+                        if (!$stmt->execute()) {
+                            error_log("Blog insert execute failed: " . $stmt->error);
+                            $error = "Database error: Could not create blog post.";
+                        } else {
+                            $newId = $stmt->insert_id;
+                            if (!empty($postedCategories)) {
+                                $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
+                                foreach ($postedCategories as $cid) {
+                                    $cid = intval($cid);
+                                    if ($cid > 0) {
+                                        $catIns->bind_param("ii", $newId, $cid);
+                                        if (!$catIns->execute()) {
+                                            error_log("Category insert failed: " . $catIns->error);
+                                        }
+                                    }
+                                }
                             }
+                            $_SESSION['flash_success'] = 'Blog post created successfully!';
+                            header("Location: " . getRedirectUrl('manage_blog.php'));
+                            ob_end_flush();
+                            exit;
                         }
                     }
-                    $_SESSION['flash_success'] = 'Blog post created successfully!';
-                    header("Location: " . getRedirectUrl('manage_blog.php'));
-                    ob_end_flush();
-                    exit;
                 }
             }
             if (isset($error) === false) {
@@ -210,7 +227,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Fetch all blogs
 $blogs_result = $conn->query("SELECT * FROM blog ORDER BY id DESC");
-$blogs = $blogs_result ? $blogs_result->fetch_all(MYSQLI_ASSOC) : [];
+if (!$blogs_result) {
+    error_log("Blog query failed: " . $conn->error);
+    $blogs = [];
+} else {
+    $blogs = $blogs_result->fetch_all(MYSQLI_ASSOC) ?: [];
+}
 $total_blogs = count($blogs);
 ?>
 
