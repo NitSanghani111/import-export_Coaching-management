@@ -88,6 +88,9 @@ if ($edit_id) {
 $catAll = $conn->query("SELECT * FROM categories ORDER BY name ASC");
 if ($catAll) {
     $categories = $catAll->fetch_all(MYSQLI_ASSOC);
+} else {
+    $categories = [];
+    error_log("Categories query failed: " . $conn->error);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -153,25 +156,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, image=?, meta_title=?, meta_description=? WHERE id=?");
-                    $stmt->bind_param("ssssssi", $title, $slug, $desc, $image_name, $meta_title, $meta_description, $edit_id);
+                    if (!$stmt) {
+                        error_log("Prepare failed (update with image): " . $conn->error);
+                        $error = "Database error: " . $conn->error;
+                    } else {
+                        $stmt->bind_param("ssssssi", $title, $slug, $desc, $image_name, $meta_title, $meta_description, $edit_id);
+                        if (!$stmt->execute()) {
+                            error_log("Execute failed (update with image): " . $stmt->error);
+                            $error = "Database error: " . $stmt->error;
+                        } else {
+                            $success_flag = true;
+                        }
+                    }
                 } else {
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, meta_title=?, meta_description=? WHERE id=?");
-                    $stmt->bind_param("sssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
+                    if (!$stmt) {
+                        error_log("Prepare failed (update no image): " . $conn->error);
+                        $error = "Database error: " . $conn->error;
+                    } else {
+                        $stmt->bind_param("sssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
+                        if (!$stmt->execute()) {
+                            error_log("Execute failed (update no image): " . $stmt->error);
+                            $error = "Database error: " . $stmt->error;
+                        } else {
+                            $success_flag = true;
+                        }
+                    }
                 }
-                if (!$stmt->execute()) {
-                    error_log("Blog update execute failed: " . $stmt->error);
-                    $error = "Database error: Could not update blog post.";
-                } else {
+                
+                if (isset($success_flag) && $success_flag === true) {
                     // Sync categories: clear and insert new selections
                     $conn->query("DELETE FROM blog_categories WHERE blog_id = " . intval($edit_id));
                     if (!empty($postedCategories)) {
                         $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
-                        foreach ($postedCategories as $cid) {
-                            $cid = intval($cid);
-                            if ($cid > 0) {
-                                $catIns->bind_param("ii", $edit_id, $cid);
-                                if (!$catIns->execute()) {
-                                    error_log("Category insert failed: " . $catIns->error);
+                        if ($catIns) {
+                            foreach ($postedCategories as $cid) {
+                                $cid = intval($cid);
+                                if ($cid > 0) {
+                                    $catIns->bind_param("ii", $edit_id, $cid);
+                                    if (!$catIns->execute()) {
+                                        error_log("Category insert failed: " . $catIns->error);
+                                    }
                                 }
                             }
                         }
@@ -188,23 +213,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     $stmt = $conn->prepare("INSERT INTO blog (title, slug, description, image, meta_title, meta_description) VALUES (?, ?, ?, ?, ?, ?)");
                     if (!$stmt) {
-                        error_log("Prepare failed: " . $conn->error);
-                        $error = "Database error: Could not prepare insert statement.";
+                        error_log("Prepare failed (insert): " . $conn->error);
+                        $error = "Database error: " . $conn->error;
                     } else {
                         $stmt->bind_param("ssssss", $title, $slug, $desc, $image_name, $meta_title, $meta_description);
                         if (!$stmt->execute()) {
-                            error_log("Blog insert execute failed: " . $stmt->error);
-                            $error = "Database error: Could not create blog post.";
+                            error_log("Execute failed (insert): " . $stmt->error);
+                            $error = "Database error: " . $stmt->error;
                         } else {
                             $newId = $stmt->insert_id;
                             if (!empty($postedCategories)) {
                                 $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
-                                foreach ($postedCategories as $cid) {
-                                    $cid = intval($cid);
-                                    if ($cid > 0) {
-                                        $catIns->bind_param("ii", $newId, $cid);
-                                        if (!$catIns->execute()) {
-                                            error_log("Category insert failed: " . $catIns->error);
+                                if ($catIns) {
+                                    foreach ($postedCategories as $cid) {
+                                        $cid = intval($cid);
+                                        if ($cid > 0) {
+                                            $catIns->bind_param("ii", $newId, $cid);
+                                            if (!$catIns->execute()) {
+                                                error_log("Category insert failed: " . $catIns->error);
+                                            }
                                         }
                                     }
                                 }
