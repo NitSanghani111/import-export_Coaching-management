@@ -21,9 +21,17 @@ function createSlug($string) {
     return trim($string, '-');
 }
 
+// Helper function to get safe redirect URL (ensures HTTPS in production)
+function getRedirectUrl($path = 'manage_blog.php') {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $basePath = '/admin/';
+    return $protocol . '://' . $host . $basePath . $path;
+}
+
 // Auth check
 if (!isset($_SESSION['admin'])) {
-    header("Location: login.php");
+    header("Location: " . getRedirectUrl('login.php'));
     exit;
 }
 
@@ -47,7 +55,7 @@ if (isset($_GET['delete'])) {
     $deleteStmt->bind_param("i", $id);
     $deleteStmt->execute();
     $_SESSION['flash_success'] = 'Blog post deleted successfully!';
-    header("Location: manage_blog.php");
+    header("Location: " . getRedirectUrl('manage_blog.php'));
     ob_end_flush();
     exit;
 }
@@ -164,7 +172,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 }
                 $_SESSION['flash_success'] = 'Blog post updated successfully!';
-                header("Location: manage_blog.php");
+                header("Location: " . getRedirectUrl('manage_blog.php'));
+                ob_end_flush();
+                exit;
             } else {
                 // Create new blog
                 if (!$image_name) {
@@ -185,7 +195,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                     $_SESSION['flash_success'] = 'Blog post created successfully!';
-                    header("Location: manage_blog.php");
+                    header("Location: " . getRedirectUrl('manage_blog.php'));
+                    ob_end_flush();
+                    exit;
                 }
             }
             if (isset($error) === false) {

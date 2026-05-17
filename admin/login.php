@@ -2,6 +2,14 @@
 session_start();
 require "../db.php";
 
+// Helper function to get safe redirect URL (ensures HTTPS in production)
+function getRedirectUrl($path = 'dashboard.php') {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $basePath = '/admin/';
+    return $protocol . '://' . $host . $basePath . $path;
+}
+
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -17,7 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $admin = $result->fetch_assoc();
         if (password_verify($password, $admin["password"])) {
             $_SESSION["admin"] = $admin["username"];
-            header("Location: dashboard.php");
+            header("Location: " . getRedirectUrl('dashboard.php'));
+            ob_end_flush();
             exit;
         } else {
             $error = "Invalid password";

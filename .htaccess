@@ -88,7 +88,7 @@ RewriteRule ^ - [L]
 # Clean routes for top-level pages -> map to pages/* (match actual lowercase filenames)
 RewriteRule ^about/?$ /pages/about.html [L]
 RewriteRule ^contact/?$ /pages/contact.html [L]
-RewriteRule ^program/?$ /pages/program.html [L]
+RewriteRule ^program/?$ /pages/program.php [L]
 RewriteRule ^workshop/?$ /pages/workshop.php [L]
 RewriteRule ^blog/?$ /pages/blog.php [L]
 RewriteRule ^trypage/?$ /pages/trypage.html [L]
