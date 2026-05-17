@@ -157,10 +157,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, image=?, meta_title=?, meta_description=? WHERE id=?");
                     if (!$stmt) {
-                        error_log("Prepare failed (update with image): " . $conn->error);
-                        $error = "Database error: " . $conn->error;
+                        // Fallback: UPDATE without meta columns if they don't exist
+                        $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, image=? WHERE id=?");
+                        if ($stmt) {
+                            $stmt->bind_param("ssssi", $title, $slug, $desc, $image_name, $edit_id);
+                        } else {
+                            error_log("Prepare failed (update with image): " . $conn->error);
+                            $error = "Database error: " . $conn->error;
+                        }
                     } else {
                         $stmt->bind_param("ssssssi", $title, $slug, $desc, $image_name, $meta_title, $meta_description, $edit_id);
+                    }
                         if (!$stmt->execute()) {
                             error_log("Execute failed (update with image): " . $stmt->error);
                             $error = "Database error: " . $stmt->error;
@@ -171,8 +178,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, meta_title=?, meta_description=? WHERE id=?");
                     if (!$stmt) {
-                        error_log("Prepare failed (update no image): " . $conn->error);
-                        $error = "Database error: " . $conn->error;
+                        // Fallback: UPDATE without meta columns if they don't exist
+                        $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=? WHERE id=?");
+                        if ($stmt) {
+                            $stmt->bind_param("sssi", $title, $slug, $desc, $edit_id);
+                        } else {
+                            error_log("Prepare failed (update no image): " . $conn->error);
+                            $error = "Database error: " . $conn->error;
+                        }
                     } else {
                         $stmt->bind_param("sssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
                         if (!$stmt->execute()) {
@@ -213,8 +226,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     $stmt = $conn->prepare("INSERT INTO blog (title, slug, description, image, meta_title, meta_description) VALUES (?, ?, ?, ?, ?, ?)");
                     if (!$stmt) {
-                        error_log("Prepare failed (insert): " . $conn->error);
-                        $error = "Database error: " . $conn->error;
+                        // Fallback: INSERT without meta columns if they don't exist
+                        $stmt = $conn->prepare("INSERT INTO blog (title, slug, description, image) VALUES (?, ?, ?, ?)");
+                        if ($stmt) {
+                            $stmt->bind_param("ssss", $title, $slug, $desc, $image_name);
+                        } else {
+                            error_log("Prepare failed (insert): " . $conn->error);
+                            $error = "Database error: " . $conn->error;
+                        }
                     } else {
                         $stmt->bind_param("ssssss", $title, $slug, $desc, $image_name, $meta_title, $meta_description);
                         if (!$stmt->execute()) {
