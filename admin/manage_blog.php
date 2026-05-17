@@ -85,6 +85,8 @@ if ($catAll) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = isset($_POST['title']) ? trim($_POST['title']) : '';
     $desc = isset($_POST['description']) ? trim($_POST['description']) : '';
+    $meta_title = isset($_POST['meta_title']) ? trim($_POST['meta_title']) : '';
+    $meta_description = isset($_POST['meta_description']) ? trim($_POST['meta_description']) : '';
     $postedCategories = isset($_POST['categories']) && is_array($_POST['categories'])
         ? array_map('intval', $_POST['categories'])
         : [];
@@ -142,11 +144,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             @unlink($oldPath);
                         }
                     }
-                    $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, image=? WHERE id=?");
-                    $stmt->bind_param("ssssi", $title, $slug, $desc, $image_name, $edit_id);
+                    $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, image=?, meta_title=?, meta_description=? WHERE id=?");
+                    $stmt->bind_param("sssssi", $title, $slug, $desc, $image_name, $meta_title, $meta_description, $edit_id);
                 } else {
-                    $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=? WHERE id=?");
-                    $stmt->bind_param("sssi", $title, $slug, $desc, $edit_id);
+                    $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, meta_title=?, meta_description=? WHERE id=?");
+                    $stmt->bind_param("ssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
                 }
                 $stmt->execute();
                 // Sync categories: clear and insert new selections
@@ -168,8 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (!$image_name) {
                     $error = "Please upload an image.";
                 } else {
-                    $stmt = $conn->prepare("INSERT INTO blog (title, slug, description, image) VALUES (?, ?, ?, ?)");
-                    $stmt->bind_param("ssss", $title, $slug, $desc, $image_name);
+                    $stmt = $conn->prepare("INSERT INTO blog (title, slug, description, image, meta_title, meta_description) VALUES (?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("ssssss", $title, $slug, $desc, $image_name, $meta_title, $meta_description);
                     $stmt->execute();
                     $newId = $stmt->insert_id;
                     if (!empty($postedCategories)) {
@@ -473,6 +475,30 @@ $total_blogs = count($blogs);
                                 <div>
                                     <label class="block text-sm font-medium text-gray-300 mb-2">Description <span class="text-red-400">*</span></label>
                                     <textarea name="description" id="editor" placeholder="Write your blog content here..." ><?= $edit_blog ? htmlspecialchars($edit_blog['description']) : '' ?></textarea>
+                                </div>
+
+                                <!-- Meta Title -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        Meta Title 
+                                        <span class="text-xs text-gray-500 font-normal">(For SEO - up to 60 characters)</span>
+                                    </label>
+                                    <input type="text" name="meta_title" placeholder="Enter SEO meta title..." maxlength="255"
+                                           class="w-full rounded-lg p-3 form-input" 
+                                           value="<?= $edit_blog && !empty($edit_blog['meta_title']) ? htmlspecialchars($edit_blog['meta_title']) : '' ?>">
+                                    <p class="text-xs text-gray-400 mt-1">This will appear in search engine results and browser tabs</p>
+                                </div>
+
+                                <!-- Meta Description -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        Meta Description
+                                        <span class="text-xs text-gray-500 font-normal">(For SEO - up to 160 characters)</span>
+                                    </label>
+                                    <textarea name="meta_description" placeholder="Enter SEO meta description..." maxlength="500"
+                                           class="w-full rounded-lg p-3 form-input resize-none" 
+                                           rows="3"><?= $edit_blog && !empty($edit_blog['meta_description']) ? htmlspecialchars($edit_blog['meta_description']) : '' ?></textarea>
+                                    <p class="text-xs text-gray-400 mt-1">Brief description shown under the title in search results</p>
                                 </div>
 
                                 <!-- Categories -->

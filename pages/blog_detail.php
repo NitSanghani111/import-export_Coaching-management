@@ -24,6 +24,10 @@ if ($result->num_rows === 0) {
 $blog = $result->fetch_assoc();
 $categories = !empty($blog['categories']) ? explode('|', $blog['categories']) : [];
 $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['image']) : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80';
+
+// Use meta fields if available, otherwise fallback to title and truncated description
+$metaTitle = !empty($blog['meta_title']) ? htmlspecialchars($blog['meta_title']) : htmlspecialchars($blog['title']);
+$metaDescription = !empty($blog['meta_description']) ? htmlspecialchars($blog['meta_description']) : substr(strip_tags($blog['description']), 0, 160);
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +35,16 @@ $image = !empty($blog['image']) ? '../admin/uploads/' . htmlspecialchars($blog['
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="<?= $metaDescription; ?>" />
+  <meta name="title" content="<?= $metaTitle; ?>" />
+  <meta property="og:title" content="<?= $metaTitle; ?>" />
+  <meta property="og:description" content="<?= $metaDescription; ?>" />
+  <meta property="og:image" content="<?= $image; ?>" />
+  <meta name="twitter:title" content="<?= $metaTitle; ?>" />
+  <meta name="twitter:description" content="<?= $metaDescription; ?>" />
 
   <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
-  <title><?= htmlspecialchars($blog['title']); ?> | Parth Coaching</title>
+  <title><?= $metaTitle; ?> | Parth Coaching</title>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
