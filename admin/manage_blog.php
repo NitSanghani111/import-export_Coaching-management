@@ -23,10 +23,67 @@ function createSlug($string) {
 
 // Helper function to get safe redirect URL (ensures HTTPS in production)
 function getRedirectUrl($path = 'manage_blog.php') {
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'];
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $basePath = '/admin/';
     return $protocol . '://' . $host . $basePath . $path;
+}
+
+// Convert mysqli_result to array without requiring mysqlnd
+function mysqliResultToArray($result) {
+    if (!$result) return [];
+
+    if (method_exists($result, 'fetch_all')) {
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        return is_array($rows) ? $rows : [];
+    }
+
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    return $rows;
+}
+
+// Fetch rows from prepared statement without requiring mysqlnd (avoids mysqli_stmt::get_result fatal)
+function stmtFetchAllAssoc($stmt) {
+    if (!$stmt) return [];
+
+    if (method_exists($stmt, 'get_result')) {
+        $res = @$stmt->get_result();
+        if ($res) {
+            return mysqliResultToArray($res);
+        }
+    }
+
+    $meta = $stmt->result_metadata();
+    if (!$meta) return [];
+
+    $row = [];
+    $bind = [];
+    while ($field = $meta->fetch_field()) {
+        $row[$field->name] = null;
+        $bind[] = &$row[$field->name];
+    }
+
+    if (!empty($bind)) {
+        call_user_func_array([$stmt, 'bind_result'], $bind);
+    }
+
+    $rows = [];
+    while ($stmt->fetch()) {
+        $copy = [];
+        foreach ($row as $k => $v) {
+            $copy[$k] = $v;
+        }
+        $rows[] = $copy;
+    }
+    return $rows;
+}
+
+function stmtFetchOneAssoc($stmt) {
+    $rows = stmtFetchAllAssoc($stmt);
+    return $rows[0] ?? null;
 }
 
 // Auth check
@@ -41,16 +98,15 @@ if (isset($_GET['delete'])) {
     $stmt = $conn->prepare("SELECT image FROM blog WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $result = $stmt->get_result();
-    $blog = $result->fetch_assoc();
-    
+    $blog = stmtFetchOneAssoc($stmt);
+
     if ($blog && !empty($blog['image'])) {
         $imagePath = "uploads/" . basename($blog['image']);
         if (file_exists($imagePath)) {
             @unlink($imagePath);
         }
     }
-    
+
     $deleteStmt = $conn->prepare("DELETE FROM blog WHERE id = ?");
     $deleteStmt->bind_param("i", $id);
     $deleteStmt->execute();
@@ -72,22 +128,24 @@ if ($edit_id) {
     $stmt = $conn->prepare("SELECT * FROM blog WHERE id = ?");
     $stmt->bind_param("i", $edit_id);
     $stmt->execute();
-    $result = $stmt->get_result();
-    $edit_blog = $result->fetch_assoc();
+    $edit_blog = stmtFetchOneAssoc($stmt);
+
     // Fetch already-linked categories for pre-checking
     $catStmt = $conn->prepare("SELECT category_id FROM blog_categories WHERE blog_id = ?");
     $catStmt->bind_param("i", $edit_id);
     $catStmt->execute();
-    $catResult = $catStmt->get_result();
-    while ($row = $catResult->fetch_assoc()) {
-        $selectedCategories[] = (int)$row['category_id'];
+    $catRows = stmtFetchAllAssoc($catStmt);
+    foreach ($catRows as $row) {
+        if (isset($row['category_id'])) {
+            $selectedCategories[] = (int)$row['category_id'];
+        }
     }
 }
 
 // Fetch all categories for checkbox list
 $catAll = $conn->query("SELECT * FROM categories ORDER BY name ASC");
 if ($catAll) {
-    $categories = $catAll->fetch_all(MYSQLI_ASSOC);
+    $categories = mysqliResultToArray($catAll);
 } else {
     $categories = [];
     error_log("Categories query failed: " . $conn->error);
@@ -105,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selectedCategories = $postedCategories;
     
     // Check for POST size limit error
-    if ($_SERVER['CONTENT_LENGTH'] > 52428800) { // 50MB limit check
+    if (!empty($_SERVER['CONTENT_LENGTH']) && $_SERVER['CONTENT_LENGTH'] > 52428800) { // 50MB limit check
         $error = "⚠️ File too large! Maximum upload size is 50MB. Please compress your image.";
     } elseif (empty($title) || empty($desc)) {
         $error = "Title and description are required.";
@@ -168,12 +226,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     } else {
                         $stmt->bind_param("ssssssi", $title, $slug, $desc, $image_name, $meta_title, $meta_description, $edit_id);
                     }
-                        if (!$stmt->execute()) {
-                            error_log("Execute failed (update with image): " . $stmt->error);
-                            $error = "Database error: " . $stmt->error;
-                        } else {
-                            $success_flag = true;
-                        }
+                    
+                    if ($stmt && !$stmt->execute()) {
+                        error_log("Execute failed (update with image): " . $stmt->error);
+                        $error = "Database error: " . $stmt->error;
+                    } elseif ($stmt) {
+                        $success_flag = true;
                     }
                 } else {
                     $stmt = $conn->prepare("UPDATE blog SET title=?, slug=?, description=?, meta_title=?, meta_description=? WHERE id=?");
@@ -188,12 +246,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     } else {
                         $stmt->bind_param("sssssi", $title, $slug, $desc, $meta_title, $meta_description, $edit_id);
-                        if (!$stmt->execute()) {
-                            error_log("Execute failed (update no image): " . $stmt->error);
-                            $error = "Database error: " . $stmt->error;
-                        } else {
-                            $success_flag = true;
-                        }
+                    }
+                    
+                    if ($stmt && !$stmt->execute()) {
+                        error_log("Execute failed (update no image): " . $stmt->error);
+                        $error = "Database error: " . $stmt->error;
+                    } elseif ($stmt) {
+                        $success_flag = true;
                     }
                 }
                 
@@ -236,30 +295,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     } else {
                         $stmt->bind_param("ssssss", $title, $slug, $desc, $image_name, $meta_title, $meta_description);
-                        if (!$stmt->execute()) {
-                            error_log("Execute failed (insert): " . $stmt->error);
-                            $error = "Database error: " . $stmt->error;
-                        } else {
-                            $newId = $stmt->insert_id;
-                            if (!empty($postedCategories)) {
-                                $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
-                                if ($catIns) {
-                                    foreach ($postedCategories as $cid) {
-                                        $cid = intval($cid);
-                                        if ($cid > 0) {
-                                            $catIns->bind_param("ii", $newId, $cid);
-                                            if (!$catIns->execute()) {
-                                                error_log("Category insert failed: " . $catIns->error);
-                                            }
+                    }
+                    
+                    if ($stmt && !$stmt->execute()) {
+                        error_log("Execute failed (insert): " . $stmt->error);
+                        $error = "Database error: " . $stmt->error;
+                    } elseif ($stmt) {
+                        $newId = $stmt->insert_id;
+                        if (!empty($postedCategories)) {
+                            $catIns = $conn->prepare("INSERT INTO blog_categories (blog_id, category_id) VALUES (?, ?)");
+                            if ($catIns) {
+                                foreach ($postedCategories as $cid) {
+                                    $cid = intval($cid);
+                                    if ($cid > 0) {
+                                        $catIns->bind_param("ii", $newId, $cid);
+                                        if (!$catIns->execute()) {
+                                            error_log("Category insert failed: " . $catIns->error);
                                         }
                                     }
                                 }
                             }
-                            $_SESSION['flash_success'] = 'Blog post created successfully!';
-                            header("Location: " . getRedirectUrl('manage_blog.php'));
-                            ob_end_flush();
-                            exit;
                         }
+                        $_SESSION['flash_success'] = 'Blog post created successfully!';
+                        header("Location: " . getRedirectUrl('manage_blog.php'));
+                        ob_end_flush();
+                        exit;
                     }
                 }
             }
@@ -277,7 +337,7 @@ if (!$blogs_result) {
     error_log("Blog query failed: " . $conn->error);
     $blogs = [];
 } else {
-    $blogs = $blogs_result->fetch_all(MYSQLI_ASSOC) ?: [];
+    $blogs = mysqliResultToArray($blogs_result);
 }
 $total_blogs = count($blogs);
 ?>

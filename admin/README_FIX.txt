@@ -53,7 +53,6 @@ This means:
 3. Test publishing a blog
 4. Once it works, you can delete these test files:
    - admin/test_db.php
-   - admin/debug_blog.php
    - admin/check_logs.php
    - admin/migrate_add_meta.php (keep manage_blog.php updated)
 
