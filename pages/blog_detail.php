@@ -44,7 +44,7 @@ $metaDescription = !empty($blog['meta_description']) ? htmlspecialchars($blog['m
   <meta name="twitter:description" content="<?= $metaDescription; ?>" />
 
   <link rel="icon" href="/img/design/Logo.svg" type="image/svg+xml" />
-  <title><?= $metaTitle; ?> | Parth Coaching</title>
+  <title><?= $metaTitle; ?> </title>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
