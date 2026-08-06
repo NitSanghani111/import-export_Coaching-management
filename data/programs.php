@@ -6,7 +6,7 @@ $programs = [
     'startup-success-blueprint' => [
         'slug' => 'startup-success-blueprint',
         'title' => 'Startup Success Blueprint | Launch, Grow & Scale Your Startup',
-        'subtitle' => 'A practical coaching program for founders who want a step-by-step roadmap from idea → validation → offer → sales → systems → scale.',
+       
         'description' => 'What makes it different: No heavy theory. Weekly action + templates + accountability.',
          'meta_description' => 'Startup Success Blueprint Launch, Grow & Scale Your Startup with proven strategies, expert coaching, and actionable systems to build a profitable, scalable business.',
         'hero_image' => 'https://media.gettyimages.com/id/1405451621/video/diverse-group-of-coworkers-look-at-blueprints-and-work-together.jpg?s=640x640&k=20&c=NP0zsUI0cXlo9lVXEKgLZkxjbPhAIS5wzqcDKZeTiA8=',

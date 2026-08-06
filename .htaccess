@@ -94,6 +94,9 @@ RewriteRule ^workshop/?$ /pages/workshop.php [L]
 RewriteRule ^blog/?$ /pages/blog.php [L]
 RewriteRule ^trypage/?$ /pages/trypage.html [L]
 
+# Program detail page (slug routing)
+RewriteRule ^program/([a-zA-Z0-9-]+)/?$ /pages/program_detail.php?slug=$1 [L,QSA]
+
 # Blog detail page (slug routing)
 RewriteRule ^blogs/([a-zA-Z0-9-]+)/?$ /pages/blog_detail.php?slug=$1 [L,QSA]
 
