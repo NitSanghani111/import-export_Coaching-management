@@ -18,25 +18,9 @@ jobs:
         with:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # Use your exact IP address here or store it in your secrets
           server: '193.203.185.189' 
-          # Hostinger's custom secure port from your screenshot
           port: 65002 
           
           local_path: './'
-          # Updated to point directly to your active public folder
-          remote_path: '/domains/parthjethava.com/public_html/' 
-          
-          # Files to exclude from upload
-          exclude: |
-            .git*
-            .github
-            .env*
-            *.sql
-            node_modules
-            Dockerfile
-            docker-compose.yml
-            *.md
-            .vscode
-            .DS_Store
-            Thumbs.db
+          # FIXED: Removed the leading slash to make it relative to your home directory
+          remote_path: 'domains/://parthjethava.com' 
