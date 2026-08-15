@@ -11,37 +11,32 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Deploy via FTP to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-
+      - name: Deploy via SFTP to Hostinger
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-
-          protocol: ftps
-          port: 21
-          timeout: 120000
-
-          local-dir: ./
-          server-dir: /domains/parthjethava.com/public_html/
-
-          # Prevent deleting everything on server
-          dangerous-clean-slate: false
-
+          # Use your exact IP address here or store it in your secrets
+          server: '193.203.185.189' 
+          # Hostinger's custom secure port from your screenshot
+          port: 65002 
+          
+          local_path: './'
+          # Updated to point directly to your active public folder
+          remote_path: '/domains/parthjethava.com/public_html/' 
+          
+          # Files to exclude from upload
           exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/.env
-            **/.env.example
-            **/*.sql
-            **/node_modules/**
-            **/Dockerfile
-            **/docker-compose.yml
-            **/*.md
-            **/.vscode/**
-            **/.DS_Store
-            **/Thumbs.db
+            .git*
+            .github
+            .env*
+            *.sql
+            node_modules
+            Dockerfile
+            docker-compose.yml
+            *.md
+            .vscode
+            .DS_Store
+            Thumbs.db
