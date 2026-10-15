@@ -153,6 +153,7 @@ if ($catAll) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = isset($_POST['title']) ? trim($_POST['title']) : '';
+    $raw_slug = isset($_POST['slug']) ? trim($_POST['slug']) : '';
     $desc = isset($_POST['description']) ? trim($_POST['description']) : '';
     $meta_title = isset($_POST['meta_title']) ? trim($_POST['meta_title']) : '';
     $meta_description = isset($_POST['meta_description']) ? trim($_POST['meta_description']) : '';
@@ -165,10 +166,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check for POST size limit error
     if (!empty($_SERVER['CONTENT_LENGTH']) && $_SERVER['CONTENT_LENGTH'] > 52428800) { // 50MB limit check
         $error = "⚠️ File too large! Maximum upload size is 50MB. Please compress your image.";
-    } elseif (empty($title) || empty($desc)) {
-        $error = "Title and description are required.";
+    } elseif (empty($title)) {
+        $error = "Title is required.";
+    } elseif (empty($raw_slug)) {
+        $error = "Slug is required.";
+    } elseif (empty($desc)) {
+        $error = "Description is required.";
     } else {
-        $slug = createSlug($title);
+        $slug = createSlug($raw_slug);
+        if (empty($slug)) {
+            $error = "Please enter a valid slug containing letters, numbers, or hyphens.";
+        } else {
+            // Check if slug is unique (excluding current editing blog)
+            if ($edit_id) {
+                $chkStmt = $conn->prepare("SELECT id FROM blog WHERE slug = ? AND id != ?");
+                $chkStmt->bind_param("si", $slug, $edit_id);
+            } else {
+                $chkStmt = $conn->prepare("SELECT id FROM blog WHERE slug = ?");
+                $chkStmt->bind_param("s", $slug);
+            }
+            if ($chkStmt) {
+                $chkStmt->execute();
+                $slugExists = stmtFetchOneAssoc($chkStmt);
+                if ($slugExists) {
+                    $error = "⚠️ The slug '" . htmlspecialchars($slug) . "' is already in use by another blog post. Please enter a unique slug.";
+                }
+            }
+        }
         $image_name = null;
         
         if (isset($_FILES["image"]) && $_FILES["image"]["size"] > 0) {
@@ -588,9 +612,27 @@ $total_blogs = count($blogs);
                                 <!-- Title -->
                                 <div>
                                     <label class="block text-sm font-medium text-gray-300 mb-2">Title <span class="text-red-400">*</span></label>
-                                    <input type="text" name="title" placeholder="Enter blog post title" required 
+                                    <input type="text" name="title" id="titleInput" placeholder="Enter blog post title" required 
                                            class="w-full rounded-lg p-3 form-input" 
-                                           value="<?= $edit_blog ? htmlspecialchars($edit_blog['title']) : '' ?>">
+                                           value="<?= isset($_POST['title']) ? htmlspecialchars($_POST['title']) : ($edit_blog ? htmlspecialchars($edit_blog['title']) : '') ?>">
+                                </div>
+
+                                <!-- Slug -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        Slug <span class="text-red-400">*</span>
+                                        <span class="text-xs text-gray-400 font-normal ml-1">(URL identifier: spaces automatically convert to hyphens)</span>
+                                    </label>
+                                    <input type="text" name="slug" id="slugInput" placeholder="enter-blog-slug" required 
+                                           class="w-full rounded-lg p-3 form-input font-mono text-sm" 
+                                           value="<?= isset($_POST['slug']) ? htmlspecialchars($_POST['slug']) : ($edit_blog ? htmlspecialchars($edit_blog['slug']) : '') ?>"
+                                           autocomplete="off">
+                                    <p class="text-xs text-gray-400 mt-2 flex items-center gap-1.5 flex-wrap">
+                                        <span>Live URL Preview:</span>
+                                        <span class="font-mono bg-white/5 border border-white/10 px-2.5 py-1 rounded-md text-yellow-300 text-xs break-all inline-flex items-center gap-1">
+                                            <span class="text-gray-400">/blogs/</span><span id="slugPreview" class="text-yellow-300 font-semibold"><?= htmlspecialchars($_POST['slug'] ?? ($edit_blog['slug'] ?? 'your-slug-here')) ?></span>
+                                        </span>
+                                    </p>
                                 </div>
 
                                 <!-- Image Upload with Validation -->
@@ -684,6 +726,9 @@ $total_blogs = count($blogs);
                                     <p class="text-sm font-medium text-white group-hover:text-yellow-300 transition truncate">
                                         <?= htmlspecialchars($blog['title']) ?>
                                     </p>
+                                    <p class="text-xs text-yellow-400/80 font-mono mt-0.5 truncate">
+                                        /blogs/<?= htmlspecialchars($blog['slug'] ?? '') ?>
+                                    </p>
                                     <p class="text-xs text-gray-500 mt-1">
                                         ID: <?= $blog['id'] ?>
                                     </p>
@@ -716,15 +761,23 @@ $total_blogs = count($blogs);
 
                             <!-- Content -->
                             <div class="p-6">
-                                <h4 class="text-lg font-bold font-sora mb-2 line-clamp-2">
+                                <h4 class="text-lg font-bold font-sora mb-1 line-clamp-2">
                                     <?= htmlspecialchars($blog['title']) ?>
                                 </h4>
+                                <p class="text-xs text-yellow-400/90 font-mono mb-3 truncate">
+                                    /blogs/<?= htmlspecialchars($blog['slug'] ?? '') ?>
+                                </p>
                                 <p class="text-sm text-gray-400 mb-4 line-clamp-2">
                                     <?= strip_tags(substr(htmlspecialchars($blog['description']), 0, 100)) ?>...
                                 </p>
 
                                 <!-- Actions -->
                                 <div class="flex gap-2">
+                                    <?php if (!empty($blog['slug'])): ?>
+                                    <a href="../blogs/<?= htmlspecialchars($blog['slug']) ?>" target="_blank" class="bg-white/10 hover:bg-white/20 text-white px-3 py-2 rounded-lg font-semibold text-sm text-center transition">
+                                        View
+                                    </a>
+                                    <?php endif; ?>
                                     <a href="?edit=<?= $blog['id'] ?>" class="gradient-accent text-black flex-1 py-2 rounded-lg font-semibold text-sm text-center hover:shadow-lg transition">
                                         Edit
                                     </a>
@@ -766,7 +819,84 @@ $total_blogs = count($blogs);
         const imageInput = document.getElementById('imageInput');
         const imageSizeWarning = document.getElementById('imageSizeWarning');
         const blogForm = document.getElementById('blogForm');
+        const slugInput = document.getElementById('slugInput');
+        const slugPreview = document.getElementById('slugPreview');
         let deleteId = null;
+
+        // Update live slug URL preview
+        function updateSlugPreview() {
+            if (slugPreview && slugInput) {
+                const val = slugInput.value.replace(/^-+|-+$/g, '');
+                slugPreview.textContent = val || 'your-slug-here';
+            }
+        }
+
+        // Slug input real-time formatting: spaces become hyphens (-)
+        if (slugInput) {
+            // Intercept space key press to instantly insert a hyphen (-)
+            slugInput.addEventListener('keydown', function(e) {
+                if (e.key === ' ' || e.code === 'Space') {
+                    e.preventDefault();
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    const val = this.value;
+
+                    // Do not allow starting with a hyphen
+                    if (start === 0 && end === 0) return;
+                    // Prevent consecutive hyphens
+                    if (start > 0 && val[start - 1] === '-') return;
+
+                    // Insert hyphen at cursor position
+                    this.value = val.substring(0, start) + '-' + val.substring(end);
+                    this.selectionStart = this.selectionEnd = start + 1;
+                    this.dispatchEvent(new Event('input'));
+                }
+            });
+
+            // Format slug on input: convert to lowercase, spaces/symbols to hyphens
+            slugInput.addEventListener('input', function() {
+                const start = this.selectionStart;
+                const oldLength = this.value.length;
+
+                // 1. Lowercase
+                // 2. Spaces/underscores -> '-'
+                // 3. Keep alphanumeric and '-'
+                // 4. Collapse consecutive hyphens '--' -> '-'
+                // 5. Remove leading hyphens
+                // Note: Trailing hyphen is preserved while typing so user can continue writing words
+                const formatted = this.value
+                    .toLowerCase()
+                    .replace(/[\s_]+/g, '-')
+                    .replace(/[^a-z0-9-]/g, '')
+                    .replace(/-{2,}/g, '-')
+                    .replace(/^-+/g, '');
+
+                if (this.value !== formatted) {
+                    const diff = formatted.length - oldLength;
+                    this.value = formatted;
+                    const newPos = Math.max(0, start + diff);
+                    this.setSelectionRange(newPos, newPos);
+                }
+
+                updateSlugPreview();
+            });
+
+            // Remove any trailing hyphens when user leaves the field
+            slugInput.addEventListener('blur', function() {
+                this.value = this.value.replace(/-+$/g, '');
+                updateSlugPreview();
+            });
+
+            // Clean up trailing hyphens when form is submitted
+            if (blogForm) {
+                blogForm.addEventListener('submit', function() {
+                    slugInput.value = slugInput.value.replace(/^-+|-+$/g, '');
+                });
+            }
+
+            // Initial preview sync
+            updateSlugPreview();
+        }
 
         // File size validation
         if (imageInput) {
