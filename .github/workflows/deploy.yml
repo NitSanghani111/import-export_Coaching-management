@@ -30,6 +30,7 @@ jobs:
             .github
             .env*
             *.sql
+            db.php
             node_modules
             Dockerfile
             docker-compose.yml
