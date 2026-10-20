@@ -22,5 +22,18 @@ jobs:
           port: 65002 
           
           local_path: './'
-          # FIXED: Removed the leading slash to make it relative to your home directory
-          remote_path: 'domains/://parthjethava.com' 
+          remote_path: 'domains/parthjethava.com/public_html/' 
+          
+          # Files to exclude from upload
+          exclude: |
+            .git*
+            .github
+            .env*
+            *.sql
+            node_modules
+            Dockerfile
+            docker-compose.yml
+            *.md
+            .vscode
+            .DS_Store
+            Thumbs.db 
