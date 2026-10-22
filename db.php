@@ -25,7 +25,7 @@ if ($isLocalDocker) {
 else {
     $host = "localhost";   // cPanel MySQL host
     $user="u722755904_Parth_jethva";     // change this
-    $pass = "Parth902"; // change this
+    $pass = "Parth@9012"; // change this
     $db   = "u722755904_coachingdb";     // change this
 }
 
